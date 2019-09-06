@@ -14,14 +14,14 @@ import UIKit
  NSExtensionPrincipalClass = ${PRODUCT_MODULE_NAME}.HopliteKB
  */
 
-//let kCatTypeEnabled = "kCatTypeEnabled"
+let kCatTypeEnabled = "kCatTypeEnabled"
 
 class HopliteKB: KeyboardViewController {
     
     let takeDebugScreenshot: Bool = false
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        UserDefaults.standard.register(defaults: [kCatTypeEnabled: true])
+        UserDefaults.standard.register(defaults: [kCatTypeEnabled: false])
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
@@ -34,11 +34,11 @@ class HopliteKB: KeyboardViewController {
         
         let keyOutput = key.outputForCase(self.shiftState.uppercase())
         
-        if !UserDefaults.standard.bool(forKey: kCatTypeEnabled) {
+        //if !UserDefaults.standard.bool(forKey: kCatTypeEnabled) {
             textDocumentProxy.insertText(keyOutput)
             return
-        }
-        
+        //}
+        /*
         if key.type == .character || key.type == .specialCharacter {
             if let context = textDocumentProxy.documentContextBeforeInput {
                 if context.count < 2 {
@@ -74,6 +74,7 @@ class HopliteKB: KeyboardViewController {
             textDocumentProxy.insertText(keyOutput)
             return
         }
+        */
     }
     
     override func setupKeys() {

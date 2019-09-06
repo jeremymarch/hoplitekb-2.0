@@ -94,10 +94,10 @@ class KeyboardViewController: UIInputViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         UserDefaults.standard.register(defaults: [
-            kAutoCapitalization: true,
+            kAutoCapitalization: false, //true will make it start on uppercase
             kPeriodShortcut: true,
             kKeyboardClicks: false,
-            kSmallLowercase: false
+            kSmallLowercase: true
         ])
         self.shiftState = .disabled
         self.currentMode = 0
@@ -108,6 +108,7 @@ class KeyboardViewController: UIInputViewController {
         var needGlobe:Bool = true //true for iOS < 11.0
         if #available(iOSApplicationExtension 11.0, *) {
             needGlobe = self.needsInputModeSwitchKey
+            print("input: \(self.needsInputModeSwitchKey)")
         }
         self.keyboard = greekKeyboard(needsInputModeSwitchKey:needGlobe)
         
@@ -259,6 +260,11 @@ class KeyboardViewController: UIInputViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.bannerView?.isHidden = false
         self.keyboardHeight = self.height(orientationIsPortrait: self.isPortrait(), withTopBanner: (self.bannerView != nil))
+        
+        //not available until here:
+        if #available(iOSApplicationExtension 11.0, *) {
+            print("input: \(needsInputModeSwitchKey)")
+        }
     }
     
     override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
@@ -302,7 +308,7 @@ class KeyboardViewController: UIInputViewController {
             canonicalLandscapeHeight = 352
         }
         else {
-            canonicalPortraitHeight = isPortrait && actualScreenWidth >= 400 ? 226 : 216
+            canonicalPortraitHeight = isPortrait && actualScreenWidth >= 400 ? 266 : 256
             canonicalLandscapeHeight = 162
         }
         

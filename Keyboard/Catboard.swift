@@ -14,7 +14,7 @@ set the name of your KeyboardViewController subclass in the Info.plist file.
 NSExtensionPrincipalClass = ${PRODUCT_MODULE_NAME}.Catboard
 */
 
-let kCatTypeEnabled = "kCatTypeEnabled"
+//let kCatTypeEnabled = "kCatTypeEnabled"
 
 class Catboard: KeyboardViewController {
     
