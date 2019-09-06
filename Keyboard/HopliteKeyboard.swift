@@ -14,7 +14,7 @@
 //  Copyright (c) 2014 Alexei Baboulevitch ("Archagon"). All rights reserved.
 //
 
-func greekKeyboard() -> Keyboard {
+func greekKeyboard(needsInputModeSwitchKey:Bool) -> Keyboard {
     let greekKeyboard = Keyboard()
     
     for key in ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"] {
@@ -46,9 +46,13 @@ func greekKeyboard() -> Keyboard {
     keyModeChangeNumbers.toMode = 1
     greekKeyboard.add(key: keyModeChangeNumbers, row: 3, page: 0)
     
-    let keyboardChange = Key(.keyboardChange)
-    greekKeyboard.add(key: keyboardChange, row: 3, page: 0)
-    
+    //globe key
+    var keyboardChange:Key?
+    if needsInputModeSwitchKey
+    {
+        keyboardChange = Key(.keyboardChange)
+        greekKeyboard.add(key: keyboardChange!, row: 3, page: 0)
+    }
     let settings = Key(.settings)
     greekKeyboard.add(key: settings, row: 3, page: 0)
     
@@ -93,9 +97,10 @@ func greekKeyboard() -> Keyboard {
     keyModeChangeLetters.uppercaseKeyCap = "ABC"
     keyModeChangeLetters.toMode = 0
     greekKeyboard.add(key: keyModeChangeLetters, row: 3, page: 1)
-    
-    greekKeyboard.add(key: Key(keyboardChange), row: 3, page: 1)
-    
+    if needsInputModeSwitchKey
+    {
+        greekKeyboard.add(key: Key(keyboardChange!), row: 3, page: 1)
+    }
     greekKeyboard.add(key: Key(settings), row: 3, page: 1)
     
     greekKeyboard.add(key: Key(space), row: 3, page: 1)
@@ -126,7 +131,10 @@ func greekKeyboard() -> Keyboard {
     
     greekKeyboard.add(key: Key(keyModeChangeLetters), row: 3, page: 2)
     
-    greekKeyboard.add(key: Key(keyboardChange), row: 3, page: 2)
+    if needsInputModeSwitchKey
+    {
+        greekKeyboard.add(key: Key(keyboardChange!), row: 3, page: 2)
+    }
     
     greekKeyboard.add(key: Key(settings), row: 3, page: 2)
     

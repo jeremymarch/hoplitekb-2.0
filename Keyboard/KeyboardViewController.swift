@@ -99,13 +99,17 @@ class KeyboardViewController: UIInputViewController {
             kKeyboardClicks: false,
             kSmallLowercase: false
         ])
-        
-        self.keyboard = defaultKeyboard()
-        
         self.shiftState = .disabled
         self.currentMode = 0
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+        //self.keyboard = defaultKeyboard()
+        var needGlobe:Bool = true //true for iOS < 11.0
+        if #available(iOSApplicationExtension 11.0, *) {
+            needGlobe = self.needsInputModeSwitchKey
+        }
+        self.keyboard = greekKeyboard(needsInputModeSwitchKey:needGlobe)
         
         self.forwardingView = ForwardingView(frame: CGRect.zero)
         self.view.addSubview(self.forwardingView)
