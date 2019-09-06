@@ -1,22 +1,22 @@
 //
-//  Catboard.swift
-//  TransliteratingKeyboard
+//  HopliteKB.swift
+//  Keyboard
 //
-//  Created by Alexei Baboulevitch on 9/24/14.
-//  Copyright (c) 2014 Alexei Baboulevitch ("Archagon"). All rights reserved.
+//  Created by Jeremy on 9/5/19.
+//  Copyright © 2019 Apple. All rights reserved.
 //
 
 import UIKit
 
 /*
-This is the demo keyboard. If you're implementing your own keyboard, simply follow the example here and then
-set the name of your KeyboardViewController subclass in the Info.plist file.
-NSExtensionPrincipalClass = ${PRODUCT_MODULE_NAME}.Catboard
-*/
+ This is the demo keyboard. If you're implementing your own keyboard, simply follow the example here and then
+ set the name of your KeyboardViewController subclass in the Info.plist file.
+ NSExtensionPrincipalClass = ${PRODUCT_MODULE_NAME}.HopliteKB
+ */
 
-let kCatTypeEnabled = "kCatTypeEnabled"
+//let kCatTypeEnabled = "kCatTypeEnabled"
 
-class Catboard: KeyboardViewController {
+class HopliteKB: KeyboardViewController {
     
     let takeDebugScreenshot: Bool = false
     
@@ -24,7 +24,7 @@ class Catboard: KeyboardViewController {
         UserDefaults.standard.register(defaults: [kCatTypeEnabled: true])
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -59,7 +59,7 @@ class Catboard: KeyboardViewController {
                     textDocumentProxy.insertText(keyOutput)
                     return
                 }
-
+                
                 textDocumentProxy.insertText("\(randomCat())")
                 textDocumentProxy.insertText(" ")
                 textDocumentProxy.insertText(keyOutput)
@@ -97,7 +97,7 @@ class Catboard: KeyboardViewController {
     }
     
     override func createBanner() -> ExtraView? {
-        return CatboardBanner(globalColors: type(of: self).globalColors, darkMode: false, solidColorMode: self.solidColorMode())
+        return nil//CatboardBanner(globalColors: type(of: self).globalColors, darkMode: false, solidColorMode: self.solidColorMode())
     }
     
     @objc func takeScreenshotDelay() {
@@ -134,7 +134,7 @@ class Catboard: KeyboardViewController {
         }
     }
 }
-
+/*
 func randomCat() -> String {
     let cats = "🐱😺😸😹😽😻😿😾😼🙀"
     
@@ -146,3 +146,4 @@ func randomCat() -> String {
     
     return String(character)
 }
+*/

@@ -254,7 +254,7 @@ class KeyboardViewController: UIInputViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.bannerView?.isHidden = false
-        self.keyboardHeight = self.height(orientationIsPortrait: self.isPortrait(), withTopBanner: true)
+        self.keyboardHeight = self.height(orientationIsPortrait: self.isPortrait(), withTopBanner: (self.bannerView != nil))
     }
     
     override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
@@ -269,7 +269,7 @@ class KeyboardViewController: UIInputViewController {
             }
         }
         
-        self.keyboardHeight = self.height(orientationIsPortrait: self.isPortrait(), withTopBanner: true)
+        self.keyboardHeight = self.height(orientationIsPortrait: self.isPortrait(), withTopBanner: (self.bannerView != nil))
     }
     
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
