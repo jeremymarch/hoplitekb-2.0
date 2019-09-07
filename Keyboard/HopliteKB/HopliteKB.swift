@@ -29,52 +29,136 @@ class HopliteKB: KeyboardViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    let COMBINING_GRAVE =            0x0300
+    let COMBINING_ACUTE =            0x0301
+    let COMBINING_CIRCUMFLEX =       0x0342//0x0302
+    let COMBINING_MACRON =           0x0304
+    let COMBINING_BREVE =            0x0306
+    let COMBINING_DIAERESIS =        0x0308
+    let COMBINING_SMOOTH_BREATHING = 0x0313
+    let COMBINING_ROUGH_BREATHING =  0x0314
+    let COMBINING_IOTA_SUBSCRIPT =   0x0345
+    let EM_DASH =                    0x2014
+    let LEFT_PARENTHESIS =           0x0028
+    let RIGHT_PARENTHESIS =          0x0029
+    let SPACE =                      0x0020
+    let EN_DASH =                    0x2013
+    let HYPHEN =                     0x2010
+    let COMMA =                      0x002C
+    
     override func keyPressed(_ key: Key) {
         let textDocumentProxy = self.textDocumentProxy
-        
         let keyOutput = key.outputForCase(self.shiftState.uppercase())
         
-        //if !UserDefaults.standard.bool(forKey: kCatTypeEnabled) {
-            textDocumentProxy.insertText(keyOutput)
-            return
-        //}
-        /*
-        if key.type == .character || key.type == .specialCharacter {
-            if let context = textDocumentProxy.documentContextBeforeInput {
-                if context.count < 2 {
-                    textDocumentProxy.insertText(keyOutput)
-                    return
-                }
-                
-                var index = context.endIndex
-                
-                index = context.index(before: index)
-                if context[index] != " " {
-                    textDocumentProxy.insertText(keyOutput)
-                    return
-                }
-                
-                index = context.index(before: index)
-                if context[index] == " " {
-                    textDocumentProxy.insertText(keyOutput)
-                    return
-                }
-                
-                textDocumentProxy.insertText("\(randomCat())")
-                textDocumentProxy.insertText(" ")
-                textDocumentProxy.insertText(keyOutput)
+        if key.type == .diacritic
+        {
+            var whichAccent = ""
+            var accent = -1
+            if whichAccent == "´" //acute
+            {
+                accent = 1
+            }
+            else if whichAccent == "˜" //circumflex
+            {
+                accent = 2
+            }
+            else if whichAccent == "`" //grave
+            {
+                accent = 3
+            }
+            else if whichAccent == "¯" //macron
+            {
+                accent = 4
+            }
+            else if whichAccent == "῾" //rough breathing
+            {
+                accent = 5
+            }
+            else if whichAccent == "᾿" //smooth breathing
+            {
+                accent = 6
+            }
+            else if whichAccent == "ͺ" //iota subscript
+            {
+                accent = 7
+            }
+            else if whichAccent == "()" //surrounding parentheses
+            {
+                accent = 8
+            }
+            else if whichAccent == "¨" //diaeresis
+            {
+                accent = 9
+            }
+            else if whichAccent == "˘" //breve
+            {
+                accent = 10
+            }
+            else
+            {
                 return
             }
-            else {
-                textDocumentProxy.insertText(keyOutput)
+            
+            let context = self.textDocumentProxy.documentContextBeforeInput
+            let len = context?.count
+            if len == nil || len! < 1
+            {
                 return
             }
+            
+            //accentSyllable(&context?.utf16, context.count, &context.count, 1, false);
+            /*
+             let bufferSize = 200
+             var nameBuf = [Int8](repeating: 0, count: bufferSize) // Buffer for C string
+             nameBuf[0] = Int8(context![context!.index(before: context!.endIndex)])
+             accentSyllableUtf8(&nameBuf, 1, false)
+             let name = String(cString: nameBuf)
+             */
+            
+            let combiningChars = [COMBINING_BREVE,COMBINING_GRAVE,COMBINING_ACUTE,COMBINING_CIRCUMFLEX,COMBINING_MACRON,COMBINING_DIAERESIS,COMBINING_SMOOTH_BREATHING,COMBINING_ROUGH_BREATHING,COMBINING_IOTA_SUBSCRIPT]
+            
+            // 1. make a buffer for the C string
+            let bufferSize16 = 12 //5 is max, for safety
+            var buffer16 = [UInt16](repeating: 0, count: bufferSize16)
+            
+            // 2. figure out how many characters to send
+            var lenToSend = 1
+            let maxCombiningChars = 5
+            for a in (context!.unicodeScalars).reversed()
+            {
+                if lenToSend < maxCombiningChars && combiningChars.contains(Int(a.value))
+                {
+                    lenToSend += 1
+                }
+                else
+                {
+                    break
+                }
+            }
+            
+            // 3. fill the buffer
+            let suf = context!.unicodeScalars.suffix(lenToSend)
+            var j = 0
+            for i in (1...lenToSend).reversed()
+            {
+                buffer16[j] = UInt16(suf[suf.index(suf.endIndex, offsetBy: -i)].value)
+                j += 1
+            }
+            var len16:Int32 = Int32(lenToSend)
+            let unicodeMode = 1
+            print("len: \(len16), accent pressed, umode: \(unicodeMode)")
+            
+            //accentSyllable(&buffer16, 0, &len16, Int32(accent), true, unicodeMode)
+            
+            let newLetter = String(utf16CodeUnits: buffer16, count: Int(len16))
+            
+            (textDocumentProxy as UIKeyInput).deleteBackward() //seems to include any combining chars, but not in MSWord!
+            (textDocumentProxy as UIKeyInput).insertText("\(newLetter)")
         }
-        else {
+        else
+        {
             textDocumentProxy.insertText(keyOutput)
-            return
         }
-        */
     }
     
     override func setupKeys() {
@@ -144,7 +228,8 @@ func randomCat() -> String {
     
     let index = cats.index(cats.startIndex, offsetBy: Int(randomCat))
     let character = cats[index]
-    
+ 
+ 
     return String(character)
 }
 */

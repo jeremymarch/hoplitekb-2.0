@@ -67,7 +67,7 @@ func greekKeyboard(needsInputModeSwitchKey:Bool) -> Keyboard {
     }
     
     let settings = Key(.punctuation)
-    settings.setLetter("x")
+    settings.setLetter(".")
     greekKeyboard.add(key: settings, row: 4, page: 0)
     
     let space = Key(.space)

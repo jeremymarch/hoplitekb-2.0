@@ -11,7 +11,7 @@ import UIKit
 class HostingAppViewController: UIViewController {
     
     @IBOutlet var stats: UILabel?
-    
+    let kb = HopliteKB()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,6 +19,14 @@ class HostingAppViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(HostingAppViewController.keyboardDidHide), name: UIResponder.keyboardDidHideNotification, object: nil)
         //NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillChangeFrame:"), name: UIKeyboardWillChangeFrameNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(HostingAppViewController.keyboardDidChangeFrame(_:)), name: UIResponder.keyboardDidChangeFrameNotification, object: nil)
+        
+        kb.view.translatesAutoresizingMaskIntoConstraints = false
+        for view in self.view.subviews {
+            if let tf = view as? UITextField {
+                //inputView.resignFirstResponder()
+                tf.inputView = kb.inputView
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

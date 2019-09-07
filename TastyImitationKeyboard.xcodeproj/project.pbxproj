@@ -8,10 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		3FC5F29C23220C5400A07747 /* HopliteKB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC5F29B23220C5400A07747 /* HopliteKB.swift */; };
+		3FC5F2AF2324131400A07747 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC2A46919DF811E00F789E1 /* KeyboardViewController.swift */; };
+		3FC5F2B02324131400A07747 /* KeyboardInputTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3B5A931A0654A8003366F6 /* KeyboardInputTraits.swift */; };
+		3FC5F2B12324131400A07747 /* KeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC2A46A19DF811E00F789E1 /* KeyboardLayout.swift */; };
+		3FC5F2B22324131400A07747 /* ForwardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC2A46C19DF811E00F789E1 /* ForwardingView.swift */; };
+		3FC5F2B32324131800A07747 /* KeyboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5B67A1196E03B700114361 /* KeyboardModel.swift */; };
+		3FC5F2B42324131800A07747 /* DefaultKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBD90119F16DC7004FA2A3 /* DefaultKeyboard.swift */; };
+		3FC5F2B52324131800A07747 /* DirectionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60A13D1979FB2E00854CC8 /* DirectionEnum.swift */; };
+		3FC5F2B62324131800A07747 /* HopliteKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE808EE231F894300C1A90A /* HopliteKeyboard.swift */; };
+		3FC5F2B72324131D00A07747 /* KeyboardKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E807DC81946209600D875D1 /* KeyboardKey.swift */; };
+		3FC5F2B92324131D00A07747 /* KeyboardKeyBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60A1391979FA5C00854CC8 /* KeyboardKeyBackground.swift */; };
+		3FC5F2BA2324131D00A07747 /* KeyboardConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60A13B1979FA8E00854CC8 /* KeyboardConnector.swift */; };
+		3FC5F2BB2324131D00A07747 /* ExtraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E52A6D31A06A626006A08CE /* ExtraView.swift */; };
+		3FC5F2BC2324131D00A07747 /* DefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E52A6D71A06C16C006A08CE /* DefaultSettings.swift */; };
+		3FC5F2BD2324131D00A07747 /* DefaultSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E52A6D91A06C198006A08CE /* DefaultSettings.xib */; };
+		3FC5F2BE2324131D00A07747 /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEFD78A19E0DF15004D4974 /* Shapes.swift */; };
+		3FC5F2BF2324132000A07747 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE7599A19F75A0D00B4E6ED /* Utilities.swift */; };
+		3FC5F2C02324132200A07747 /* HopliteKB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC5F29B23220C5400A07747 /* HopliteKB.swift */; };
+		3FC5F2C12324135C00A07747 /* Catboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6AEE4B19D246D700931E8F /* Catboard.swift */; };
+		3FC5F2C22324138500A07747 /* CatboardBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEFD78819E0DC6B004D4974 /* CatboardBanner.swift */; };
+		3FC5F2C32324403500A07747 /* ImageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E52A6D11A06A61F006A08CE /* ImageKey.swift */; };
+		3FC5F2C42324403600A07747 /* ImageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E52A6D11A06A61F006A08CE /* ImageKey.swift */; };
 		3FE808EF231F894300C1A90A /* HopliteKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE808EE231F894300C1A90A /* HopliteKeyboard.swift */; };
 		4E00A6E5197183EE009414F2 /* KeyboardKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E807DC81946209600D875D1 /* KeyboardKey.swift */; };
 		4E3B5A941A0654A8003366F6 /* KeyboardInputTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3B5A931A0654A8003366F6 /* KeyboardInputTraits.swift */; };
-		4E52A6D21A06A61F006A08CE /* ImageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E52A6D11A06A61F006A08CE /* ImageKey.swift */; };
 		4E52A6D41A06A626006A08CE /* ExtraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E52A6D31A06A626006A08CE /* ExtraView.swift */; };
 		4E52A6D61A06BADA006A08CE /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E52A6D51A06BADA006A08CE /* Media.xcassets */; };
 		4E52A6D81A06C16C006A08CE /* DefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E52A6D71A06C16C006A08CE /* DefaultSettings.swift */; };
@@ -448,6 +468,7 @@
 			files = (
 				4EF16F9619D255030076AFCB /* Images.xcassets in Resources */,
 				4EF16F9F19D2552E0076AFCB /* Main.storyboard in Resources */,
+				3FC5F2BD2324131D00A07747 /* DefaultSettings.xib in Resources */,
 				4EF16F9119D254E00076AFCB /* Background.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,8 +496,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FC5F2B02324131400A07747 /* KeyboardInputTraits.swift in Sources */,
+				3FC5F2B92324131D00A07747 /* KeyboardKeyBackground.swift in Sources */,
+				3FC5F2C22324138500A07747 /* CatboardBanner.swift in Sources */,
 				4EF16F9B19D2550D0076AFCB /* AppDelegate.swift in Sources */,
+				3FC5F2B12324131400A07747 /* KeyboardLayout.swift in Sources */,
+				3FC5F2AF2324131400A07747 /* KeyboardViewController.swift in Sources */,
+				3FC5F2BF2324132000A07747 /* Utilities.swift in Sources */,
+				3FC5F2BE2324131D00A07747 /* Shapes.swift in Sources */,
+				3FC5F2BC2324131D00A07747 /* DefaultSettings.swift in Sources */,
+				3FC5F2BA2324131D00A07747 /* KeyboardConnector.swift in Sources */,
+				3FC5F2BB2324131D00A07747 /* ExtraView.swift in Sources */,
+				3FC5F2B32324131800A07747 /* KeyboardModel.swift in Sources */,
 				4EF16F9819D255030076AFCB /* ViewController.swift in Sources */,
+				3FC5F2C12324135C00A07747 /* Catboard.swift in Sources */,
+				3FC5F2B62324131800A07747 /* HopliteKeyboard.swift in Sources */,
+				3FC5F2B42324131800A07747 /* DefaultKeyboard.swift in Sources */,
+				3FC5F2C42324403600A07747 /* ImageKey.swift in Sources */,
+				3FC5F2B72324131D00A07747 /* KeyboardKey.swift in Sources */,
+				3FC5F2C02324132200A07747 /* HopliteKB.swift in Sources */,
+				3FC5F2B22324131400A07747 /* ForwardingView.swift in Sources */,
+				3FC5F2B52324131800A07747 /* DirectionEnum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,7 +524,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E52A6D21A06A61F006A08CE /* ImageKey.swift in Sources */,
 				4E52A6D41A06A626006A08CE /* ExtraView.swift in Sources */,
 				4EC2A47019DF811E00F789E1 /* ForwardingView.swift in Sources */,
 				3FE808EF231F894300C1A90A /* HopliteKeyboard.swift in Sources */,
@@ -501,6 +540,7 @@
 				4E52A6D81A06C16C006A08CE /* DefaultSettings.swift in Sources */,
 				4E72C96819E04A7A00DFDDB0 /* Catboard.swift in Sources */,
 				3FC5F29C23220C5400A07747 /* HopliteKB.swift in Sources */,
+				3FC5F2C32324403500A07747 /* ImageKey.swift in Sources */,
 				4E60A13E1979FB2E00854CC8 /* DirectionEnum.swift in Sources */,
 				4EC2A46D19DF811E00F789E1 /* KeyboardViewController.swift in Sources */,
 			);

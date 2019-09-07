@@ -107,8 +107,8 @@ class KeyboardViewController: UIInputViewController {
         //self.keyboard = defaultKeyboard()
         var needGlobe:Bool = true //true for iOS < 11.0
         if #available(iOSApplicationExtension 11.0, *) {
-            needGlobe = self.needsInputModeSwitchKey
-            print("input: \(self.needsInputModeSwitchKey)")
+            //needGlobe = self.needsInputModeSwitchKey
+            //print("input: \(self.needsInputModeSwitchKey)")
         }
         self.keyboard = greekKeyboard(needsInputModeSwitchKey:needGlobe)
         
@@ -263,7 +263,7 @@ class KeyboardViewController: UIInputViewController {
         
         //not available until here:
         if #available(iOSApplicationExtension 11.0, *) {
-            print("input: \(needsInputModeSwitchKey)")
+            //print("input: \(needsInputModeSwitchKey)")
         }
     }
     

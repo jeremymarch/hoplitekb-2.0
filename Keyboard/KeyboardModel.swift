@@ -85,8 +85,8 @@ class Key: Hashable {
             case
             .character,
             .specialCharacter,
-            .diacritic,
             .punctuation,
+            .diacritic,
             .period:
                 return true
             default:
@@ -98,6 +98,8 @@ class Key: Hashable {
     var isSpecial: Bool {
         get {
             switch self.type {
+            //case .diacritic:
+            //    return true
             case .shift:
                 return true
             case .backspace:
