@@ -205,6 +205,21 @@ class GlobalColors: NSObject {
         }
     }
     
+    class func punctuationKey(_ darkMode: Bool, solidColorMode: Bool) -> UIColor {
+        if darkMode {
+            if solidColorMode {
+                return self.darkModeSolidColorRegularKey
+            }
+            else {
+                return self.darkModeRegularKey
+            }
+        }
+        else {
+            //Hoplite Keyboard punctuation blue color
+            return UIColor.init(red: 50/255.0, green: 90/255.0, blue: 139/255.0, alpha: 1.0)
+        }
+    }
+    
     class func popup(_ darkMode: Bool, solidColorMode: Bool) -> UIColor {
         if darkMode {
             if solidColorMode {
@@ -559,6 +574,17 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                 key.downColor = nil
             }
             key.textColor = (darkMode ? self.globalColors.darkModeTextColor : self.globalColors.lightModeTextColor)
+            key.downTextColor = nil
+        case
+        Key.KeyType.punctuation:
+            key.color = self.globalColors.punctuationKey(darkMode, solidColorMode: solidColorMode)
+            if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad {
+                key.downColor = self.globalColors.specialKey(darkMode, solidColorMode: solidColorMode)
+            }
+            else {
+                key.downColor = nil
+            }
+            key.textColor = (darkMode ? self.globalColors.darkModeTextColor : self.globalColors.darkModeTextColor)
             key.downTextColor = nil
         case
         Key.KeyType.space:

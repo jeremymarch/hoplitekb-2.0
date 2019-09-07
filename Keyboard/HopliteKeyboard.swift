@@ -17,8 +17,14 @@
 func greekKeyboard(needsInputModeSwitchKey:Bool) -> Keyboard {
     let greekKeyboard = Keyboard()
 
-    for key in ["(", ")", "/", "~", "\\", "-", "i", ",", "."] {
+    for key in ["(", ")", "/", "~", "\\", "-", "i"] {
         let keyModel = Key(.diacritic)
+        keyModel.setLetter(key)
+        greekKeyboard.add(key: keyModel, row: 0, page: 0)
+    }
+    
+    for key in [",", "."] {
+        let keyModel = Key(.punctuation)
         keyModel.setLetter(key)
         greekKeyboard.add(key: keyModel, row: 0, page: 0)
     }
