@@ -68,6 +68,7 @@ class Key: Hashable {
         case `return`
         case settings
         case other
+        case diacritic
     }
     
     var type: KeyType
@@ -83,6 +84,7 @@ class Key: Hashable {
             case
             .character,
             .specialCharacter,
+            .diacritic,
             .period:
                 return true
             default:

@@ -190,6 +190,20 @@ class GlobalColors: NSObject {
             return self.lightModeRegularKey
         }
     }
+    class func diacriticKey(_ darkMode: Bool, solidColorMode: Bool) -> UIColor {
+        if darkMode {
+            if solidColorMode {
+                return self.darkModeSolidColorRegularKey
+            }
+            else {
+                return self.darkModeRegularKey
+            }
+        }
+        else {
+            //Hoplite Keyboard diacritic orange color
+            return UIColor.init(red: 255/255.0, green: 96/255.0, blue: 70/255.0, alpha: 1.0)
+        }
+    }
     
     class func popup(_ darkMode: Bool, solidColorMode: Bool) -> UIColor {
         if darkMode {
@@ -526,7 +540,18 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
         Key.KeyType.character,
         Key.KeyType.specialCharacter,
         Key.KeyType.period:
-            key.color = self.self.globalColors.regularKey(darkMode, solidColorMode: solidColorMode)
+            key.color = self.globalColors.regularKey(darkMode, solidColorMode: solidColorMode)
+            if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad {
+                key.downColor = self.globalColors.specialKey(darkMode, solidColorMode: solidColorMode)
+            }
+            else {
+                key.downColor = nil
+            }
+            key.textColor = (darkMode ? self.globalColors.darkModeTextColor : self.globalColors.lightModeTextColor)
+            key.downTextColor = nil
+        case
+        Key.KeyType.diacritic:
+            key.color = self.globalColors.diacriticKey(darkMode, solidColorMode: solidColorMode)
             if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad {
                 key.downColor = self.globalColors.specialKey(darkMode, solidColorMode: solidColorMode)
             }
