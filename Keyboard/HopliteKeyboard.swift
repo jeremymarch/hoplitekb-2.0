@@ -65,15 +65,17 @@ func greekKeyboard(needsInputModeSwitchKey:Bool) -> Keyboard {
         keyboardChange = Key(.keyboardChange)
         greekKeyboard.add(key: keyboardChange!, row: 4, page: 0)
     }
-    //let settings = Key(.settings)
-    //greekKeyboard.add(key: settings, row: 3, page: 0)
+    
+    let settings = Key(.punctuation)
+    settings.setLetter("x")
+    greekKeyboard.add(key: settings, row: 4, page: 0)
     
     let space = Key(.space)
     space.uppercaseKeyCap = "space"
     space.uppercaseOutput = " "
     space.lowercaseOutput = " "
     greekKeyboard.add(key: space, row: 4, page: 0)
-    
+ 
     let returnKey = Key(.return)
     returnKey.uppercaseKeyCap = "return"
     returnKey.uppercaseOutput = "\n"

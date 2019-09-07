@@ -612,7 +612,12 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
             key.textColor = (darkMode ? self.globalColors.darkModeTextColor : self.globalColors.lightModeTextColor)
             key.downTextColor = nil
         case
-        Key.KeyType.return,
+        Key.KeyType.return:
+            key.color = UIColor.init(red: 0/255.0, green: 122/255.0, blue: 255/255.0, alpha: 1.0)
+            key.downColor = nil
+            key.textColor = (darkMode ? self.globalColors.darkModeTextColor : self.globalColors.darkModeTextColor)
+            key.downTextColor = nil
+        case
         Key.KeyType.keyboardChange,
         Key.KeyType.settings:
             key.color = self.globalColors.specialKey(darkMode, solidColorMode: solidColorMode)
