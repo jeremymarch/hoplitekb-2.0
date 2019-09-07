@@ -374,7 +374,7 @@ class KeyboardViewController: UIInputViewController {
                             break
                         }
                         
-                        if key.isCharacter {
+                        if key.isCharacter && key.type != .diacritic && key.type != .punctuation {
                             if UIDevice.current.userInterfaceIdiom != UIUserInterfaceIdiom.pad {
                                 keyView.addTarget(self,
                                                   action: #selector(KeyboardViewController.showPopup(_:)),

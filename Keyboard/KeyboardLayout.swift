@@ -571,10 +571,10 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                 key.downColor = self.globalColors.specialKey(darkMode, solidColorMode: solidColorMode)
             }
             else {
-                key.downColor = nil
+                key.downColor = UIColor.black
             }
             key.textColor = (darkMode ? self.globalColors.darkModeTextColor : self.globalColors.lightModeTextColor)
-            key.downTextColor = nil
+            key.downTextColor = UIColor.white
         case
         Key.KeyType.punctuation:
             key.color = self.globalColors.punctuationKey(darkMode, solidColorMode: solidColorMode)
@@ -582,10 +582,10 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                 key.downColor = self.globalColors.specialKey(darkMode, solidColorMode: solidColorMode)
             }
             else {
-                key.downColor = nil
+                key.downColor = UIColor.black
             }
             key.textColor = (darkMode ? self.globalColors.darkModeTextColor : self.globalColors.darkModeTextColor)
-            key.downTextColor = nil
+            key.downTextColor = UIColor.white
         case
         Key.KeyType.space:
             key.color = self.globalColors.regularKey(darkMode, solidColorMode: solidColorMode)
