@@ -52,7 +52,7 @@ class HopliteKB: KeyboardViewController {
         
         if key.type == .diacritic
         {
-            var whichAccent = "´"
+            var whichAccent = key.lowercaseKeyCap
             var accent = -1
             if whichAccent == "´" //acute
             {
