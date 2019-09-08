@@ -52,7 +52,7 @@ class HopliteKB: KeyboardViewController {
         
         if key.type == .diacritic
         {
-            var whichAccent = ""
+            var whichAccent = "´"
             var accent = -1
             if whichAccent == "´" //acute
             {
@@ -145,10 +145,10 @@ class HopliteKB: KeyboardViewController {
                 j += 1
             }
             var len16:Int32 = Int32(lenToSend)
-            let unicodeMode = 1
+            let unicodeMode = 0
             print("len: \(len16), accent pressed, umode: \(unicodeMode)")
             
-            //accentSyllable(&buffer16, 0, &len16, Int32(accent), true, unicodeMode)
+            accentSyllable(&buffer16, 0, &len16, Int32(accent), true, Int32(unicodeMode))
             
             let newLetter = String(utf16CodeUnits: buffer16, count: Int(len16))
             

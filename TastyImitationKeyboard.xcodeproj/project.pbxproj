@@ -29,6 +29,10 @@
 		3FC5F2C22324138500A07747 /* CatboardBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEFD78819E0DC6B004D4974 /* CatboardBanner.swift */; };
 		3FC5F2C32324403500A07747 /* ImageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E52A6D11A06A61F006A08CE /* ImageKey.swift */; };
 		3FC5F2C42324403600A07747 /* ImageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E52A6D11A06A61F006A08CE /* ImageKey.swift */; };
+		3FC5F2C82324724500A07747 /* accent.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FC5F2C72324724500A07747 /* accent.c */; };
+		3FC5F2CE2324727C00A07747 /* utilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FC5F2CD2324727C00A07747 /* utilities.c */; };
+		3FC5F2D023247C6B00A07747 /* utilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FC5F2CD2324727C00A07747 /* utilities.c */; };
+		3FC5F2D123247C6F00A07747 /* accent.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FC5F2C72324724500A07747 /* accent.c */; };
 		3FE808EF231F894300C1A90A /* HopliteKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE808EE231F894300C1A90A /* HopliteKeyboard.swift */; };
 		4E00A6E5197183EE009414F2 /* KeyboardKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E807DC81946209600D875D1 /* KeyboardKey.swift */; };
 		4E3B5A941A0654A8003366F6 /* KeyboardInputTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3B5A931A0654A8003366F6 /* KeyboardInputTraits.swift */; };
@@ -118,6 +122,12 @@
 
 /* Begin PBXFileReference section */
 		3FC5F29B23220C5400A07747 /* HopliteKB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HopliteKB.swift; sourceTree = "<group>"; };
+		3FC5F2C62324724500A07747 /* Keyboard-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Keyboard-Bridging-Header.h"; sourceTree = "<group>"; };
+		3FC5F2C72324724500A07747 /* accent.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = accent.c; sourceTree = "<group>"; };
+		3FC5F2C92324725500A07747 /* accent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = accent.h; sourceTree = "<group>"; };
+		3FC5F2CA2324725D00A07747 /* GreekUnicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreekUnicode.h; sourceTree = "<group>"; };
+		3FC5F2CD2324727C00A07747 /* utilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utilities.c; sourceTree = "<group>"; };
+		3FC5F2CF2324728300A07747 /* utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utilities.h; sourceTree = "<group>"; };
 		3FE808EE231F894300C1A90A /* HopliteKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HopliteKeyboard.swift; sourceTree = "<group>"; };
 		4E3B5A931A0654A8003366F6 /* KeyboardInputTraits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardInputTraits.swift; sourceTree = "<group>"; };
 		4E52A6D11A06A61F006A08CE /* ImageKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageKey.swift; sourceTree = "<group>"; };
@@ -187,6 +197,19 @@
 				3FC5F29B23220C5400A07747 /* HopliteKB.swift */,
 			);
 			path = HopliteKB;
+			sourceTree = "<group>";
+		};
+		3FC5F2C52324717B00A07747 /* libmorph */ = {
+			isa = PBXGroup;
+			children = (
+				3FC5F2CF2324728300A07747 /* utilities.h */,
+				3FC5F2CD2324727C00A07747 /* utilities.c */,
+				3FC5F2CA2324725D00A07747 /* GreekUnicode.h */,
+				3FC5F2C92324725500A07747 /* accent.h */,
+				3FC5F2C72324724500A07747 /* accent.c */,
+				3FC5F2C62324724500A07747 /* Keyboard-Bridging-Header.h */,
+			);
+			path = libmorph;
 			sourceTree = "<group>";
 		};
 		4E6AEE4F19D2484B00931E8F /* Views */ = {
@@ -297,6 +320,7 @@
 		4E807DBA19461DC700D875D1 /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
+				3FC5F2C52324717B00A07747 /* libmorph */,
 				4E6AEE5219D2488B00931E8F /* Controller */,
 				4E6AEE5019D2486900931E8F /* Model */,
 				4E6AEE4F19D2484B00931E8F /* Views */,
@@ -506,6 +530,7 @@
 				3FC5F2BE2324131D00A07747 /* Shapes.swift in Sources */,
 				3FC5F2BC2324131D00A07747 /* DefaultSettings.swift in Sources */,
 				3FC5F2BA2324131D00A07747 /* KeyboardConnector.swift in Sources */,
+				3FC5F2D123247C6F00A07747 /* accent.c in Sources */,
 				3FC5F2BB2324131D00A07747 /* ExtraView.swift in Sources */,
 				3FC5F2B32324131800A07747 /* KeyboardModel.swift in Sources */,
 				4EF16F9819D255030076AFCB /* ViewController.swift in Sources */,
@@ -516,6 +541,7 @@
 				3FC5F2B72324131D00A07747 /* KeyboardKey.swift in Sources */,
 				3FC5F2C02324132200A07747 /* HopliteKB.swift in Sources */,
 				3FC5F2B22324131400A07747 /* ForwardingView.swift in Sources */,
+				3FC5F2D023247C6B00A07747 /* utilities.c in Sources */,
 				3FC5F2B52324131800A07747 /* DirectionEnum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -524,9 +550,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FC5F2CE2324727C00A07747 /* utilities.c in Sources */,
 				4E52A6D41A06A626006A08CE /* ExtraView.swift in Sources */,
 				4EC2A47019DF811E00F789E1 /* ForwardingView.swift in Sources */,
 				3FE808EF231F894300C1A90A /* HopliteKeyboard.swift in Sources */,
+				3FC5F2C82324724500A07747 /* accent.c in Sources */,
 				4EC2A46E19DF811E00F789E1 /* KeyboardLayout.swift in Sources */,
 				4E60A13A1979FA5C00854CC8 /* KeyboardKeyBackground.swift in Sources */,
 				4E5B67A2196E03B700114361 /* KeyboardModel.swift in Sources */,
@@ -706,6 +734,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Archagon.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Keyboard/libmorph/Keyboard-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -721,6 +750,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Archagon.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Keyboard/libmorph/Keyboard-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -735,6 +765,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Archagon.HostingApp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Keyboard;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Keyboard/libmorph/Keyboard-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -749,6 +780,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Archagon.HostingApp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Keyboard;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Keyboard/libmorph/Keyboard-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
