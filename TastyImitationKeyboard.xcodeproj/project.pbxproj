@@ -31,6 +31,11 @@
 		3FC5F2CE2324727C00A07747 /* utilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FC5F2CD2324727C00A07747 /* utilities.c */; };
 		3FC5F2D023247C6B00A07747 /* utilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FC5F2CD2324727C00A07747 /* utilities.c */; };
 		3FC5F2D123247C6F00A07747 /* accent.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FC5F2C72324724500A07747 /* accent.c */; };
+		3FC5F2D72326B53400A07747 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC5F2D22326B53300A07747 /* AboutViewController.swift */; };
+		3FC5F2D82326B53400A07747 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC5F2D32326B53300A07747 /* SettingsTableViewController.swift */; };
+		3FC5F2D92326B53400A07747 /* TestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC5F2D42326B53400A07747 /* TestingViewController.swift */; };
+		3FC5F2DA2326B53400A07747 /* InstallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC5F2D52326B53400A07747 /* InstallViewController.swift */; };
+		3FC5F2DE2326B70000A07747 /* newathu5.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3FC5F2DD2326B70000A07747 /* newathu5.ttf */; };
 		3FE808EF231F894300C1A90A /* HopliteKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE808EE231F894300C1A90A /* HopliteKeyboard.swift */; };
 		4E00A6E5197183EE009414F2 /* KeyboardKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E807DC81946209600D875D1 /* KeyboardKey.swift */; };
 		4E3B5A941A0654A8003366F6 /* KeyboardInputTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3B5A931A0654A8003366F6 /* KeyboardInputTraits.swift */; };
@@ -124,6 +129,13 @@
 		3FC5F2CA2324725D00A07747 /* GreekUnicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreekUnicode.h; sourceTree = "<group>"; };
 		3FC5F2CD2324727C00A07747 /* utilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utilities.c; sourceTree = "<group>"; };
 		3FC5F2CF2324728300A07747 /* utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utilities.h; sourceTree = "<group>"; };
+		3FC5F2D22326B53300A07747 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		3FC5F2D32326B53300A07747 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		3FC5F2D42326B53400A07747 /* TestingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestingViewController.swift; sourceTree = "<group>"; };
+		3FC5F2D52326B53400A07747 /* InstallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstallViewController.swift; sourceTree = "<group>"; };
+		3FC5F2DC2326B5B100A07747 /* HostingApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HostingApp.entitlements; sourceTree = "<group>"; };
+		3FC5F2DD2326B70000A07747 /* newathu5.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = newathu5.ttf; sourceTree = "<group>"; };
+		3FC5F2DF2326BA3700A07747 /* Keyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Keyboard.entitlements; sourceTree = "<group>"; };
 		3FE808EE231F894300C1A90A /* HopliteKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HopliteKeyboard.swift; sourceTree = "<group>"; };
 		4E3B5A931A0654A8003366F6 /* KeyboardInputTraits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardInputTraits.swift; sourceTree = "<group>"; };
 		4E52A6D11A06A61F006A08CE /* ImageKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageKey.swift; sourceTree = "<group>"; };
@@ -295,6 +307,12 @@
 		4E807D9519461D9000D875D1 /* HostingApp */ = {
 			isa = PBXGroup;
 			children = (
+				3FC5F2DD2326B70000A07747 /* newathu5.ttf */,
+				3FC5F2DC2326B5B100A07747 /* HostingApp.entitlements */,
+				3FC5F2D22326B53300A07747 /* AboutViewController.swift */,
+				3FC5F2D52326B53400A07747 /* InstallViewController.swift */,
+				3FC5F2D32326B53300A07747 /* SettingsTableViewController.swift */,
+				3FC5F2D42326B53400A07747 /* TestingViewController.swift */,
 				4EF16F9A19D2550D0076AFCB /* AppDelegate.swift */,
 				4EF16F9519D255030076AFCB /* ViewController.swift */,
 				4EF16F9D19D2552E0076AFCB /* Main.storyboard */,
@@ -316,6 +334,7 @@
 		4E807DBA19461DC700D875D1 /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
+				3FC5F2DF2326BA3700A07747 /* Keyboard.entitlements */,
 				3FC5F2C52324717B00A07747 /* libmorph */,
 				4E6AEE5219D2488B00931E8F /* Controller */,
 				4E6AEE5019D2486900931E8F /* Model */,
@@ -449,11 +468,21 @@
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = EFHC4XFZ38;
 						LastSwiftMigration = 1030;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					4E807DB819461DC700D875D1 = {
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = EFHC4XFZ38;
 						LastSwiftMigration = 1030;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					4E8EF38019F95D74009CBF5D = {
 						CreatedOnToolsVersion = 6.1;
@@ -490,6 +519,7 @@
 				4EF16F9F19D2552E0076AFCB /* Main.storyboard in Resources */,
 				3FC5F2BD2324131D00A07747 /* DefaultSettings.xib in Resources */,
 				4EF16F9119D254E00076AFCB /* Background.jpg in Resources */,
+				3FC5F2DE2326B70000A07747 /* newathu5.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,12 +548,15 @@
 			files = (
 				3FC5F2B02324131400A07747 /* KeyboardInputTraits.swift in Sources */,
 				3FC5F2B92324131D00A07747 /* KeyboardKeyBackground.swift in Sources */,
+				3FC5F2D72326B53400A07747 /* AboutViewController.swift in Sources */,
+				3FC5F2D92326B53400A07747 /* TestingViewController.swift in Sources */,
 				4EF16F9B19D2550D0076AFCB /* AppDelegate.swift in Sources */,
 				3FC5F2B12324131400A07747 /* KeyboardLayout.swift in Sources */,
 				3FC5F2AF2324131400A07747 /* KeyboardViewController.swift in Sources */,
 				3FC5F2BF2324132000A07747 /* Utilities.swift in Sources */,
 				3FC5F2BE2324131D00A07747 /* Shapes.swift in Sources */,
 				3FC5F2BC2324131D00A07747 /* DefaultSettings.swift in Sources */,
+				3FC5F2DA2326B53400A07747 /* InstallViewController.swift in Sources */,
 				3FC5F2BA2324131D00A07747 /* KeyboardConnector.swift in Sources */,
 				3FC5F2D123247C6F00A07747 /* accent.c in Sources */,
 				3FC5F2BB2324131D00A07747 /* ExtraView.swift in Sources */,
@@ -536,6 +569,7 @@
 				3FC5F2C02324132200A07747 /* HopliteKB.swift in Sources */,
 				3FC5F2B22324131400A07747 /* ForwardingView.swift in Sources */,
 				3FC5F2D023247C6B00A07747 /* utilities.c in Sources */,
+				3FC5F2D82326B53400A07747 /* SettingsTableViewController.swift in Sources */,
 				3FC5F2B52324131800A07747 /* DirectionEnum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -721,10 +755,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = HostingApp/HostingApp.entitlements;
 				DEVELOPMENT_TEAM = EFHC4XFZ38;
 				INFOPLIST_FILE = HostingApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.philolog.hoplitekeyboard2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.philolog.hoplitekeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Keyboard/libmorph/Keyboard-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -737,10 +772,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = HostingApp/HostingApp.entitlements;
 				DEVELOPMENT_TEAM = EFHC4XFZ38;
 				INFOPLIST_FILE = HostingApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.philolog.hoplitekeyboard2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.philolog.hoplitekeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Keyboard/libmorph/Keyboard-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -751,10 +787,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Keyboard/Keyboard.entitlements;
 				DEVELOPMENT_TEAM = EFHC4XFZ38;
 				INFOPLIST_FILE = Keyboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.philolog.hoplitekeyboard2.hoplitekeyboardext2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.philolog.hoplitekeyboard.hoplitekeyboardext;
 				PRODUCT_NAME = Keyboard;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Keyboard/libmorph/Keyboard-Bridging-Header.h";
@@ -766,10 +803,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Keyboard/Keyboard.entitlements;
 				DEVELOPMENT_TEAM = EFHC4XFZ38;
 				INFOPLIST_FILE = Keyboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.philolog.hoplitekeyboard2.hoplitekeyboardext2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.philolog.hoplitekeyboard.hoplitekeyboardext;
 				PRODUCT_NAME = Keyboard;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Keyboard/libmorph/Keyboard-Bridging-Header.h";

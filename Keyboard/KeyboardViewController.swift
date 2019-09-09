@@ -21,7 +21,8 @@ let kKeyboardClicks = "kKeyboardClicks"
 let kSmallLowercase = "kSmallLowercase"
 
 class KeyboardViewController: UIInputViewController {
-    
+    var appExt = false
+    var topRowButtonDepressNotAppExt = false
     let backspaceDelay: TimeInterval = 0.5
     let backspaceRepeat: TimeInterval = 0.07
     var keyboard: Keyboard!
