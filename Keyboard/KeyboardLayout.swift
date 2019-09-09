@@ -252,6 +252,27 @@ class GlobalColors: NSObject {
             }
         }
     }
+    
+    class func returnKey(_ darkMode: Bool, solidColorMode: Bool) -> UIColor {
+        if darkMode {
+            if solidColorMode {
+                return self.darkModeSolidColorSpecialKey
+            }
+            else {
+                return self.darkModeSpecialKey
+            }
+        }
+        else {
+            if solidColorMode {
+                //return self.lightModeSolidColorSpecialKey
+                return UIColor.init(red: 0/255.0, green: 122/255.0, blue: 255/255.0, alpha: 1.0)
+            }
+            else {
+                //return self.lightModeSpecialKey
+                return UIColor.init(red: 0/255.0, green: 122/255.0, blue: 255/255.0, alpha: 1.0)
+            }
+        }
+    }
 }
 
 //"darkShadowColor": UIColor(hue: (220/360.0), saturation: 0.04, brightness: 0.56, alpha: 1),
@@ -613,7 +634,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
             key.downTextColor = nil
         case
         Key.KeyType.return:
-            key.color = UIColor.init(red: 0/255.0, green: 122/255.0, blue: 255/255.0, alpha: 1.0)
+            key.color = self.globalColors.returnKey(darkMode, solidColorMode: solidColorMode)
             key.downColor = nil
             key.textColor = (darkMode ? self.globalColors.darkModeTextColor : self.globalColors.darkModeTextColor)
             key.downTextColor = nil
