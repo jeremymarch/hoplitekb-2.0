@@ -17,8 +17,8 @@ import UIKit
 let kCatTypeEnabled = "kCatTypeEnabled"
 
 class HopliteKB: KeyboardViewController {
-    
-    let takeDebugScreenshot: Bool = false
+    var unicodeMode = 0
+    //let takeDebugScreenshot: Bool = false
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         UserDefaults.standard.register(defaults: [kCatTypeEnabled: false])
@@ -52,45 +52,46 @@ class HopliteKB: KeyboardViewController {
         
         if key.type == .diacritic
         {
-            var whichAccent = key.lowercaseKeyCap
+            let whichAccent = (self.shiftState == .disabled) ? key.lowercaseOutput : key.uppercaseOutput
+
             var accent = -1
-            if whichAccent == "´" //acute
+            if whichAccent == "1" //acute
             {
                 accent = 1
             }
-            else if whichAccent == "˜" //circumflex
+            else if whichAccent == "2" //circumflex
             {
                 accent = 2
             }
-            else if whichAccent == "`" //grave
+            else if whichAccent == "3" //grave
             {
                 accent = 3
             }
-            else if whichAccent == "¯" //macron
+            else if whichAccent == "4" //macron
             {
                 accent = 4
             }
-            else if whichAccent == "῾" //rough breathing
+            else if whichAccent == "5" //rough breathing
             {
                 accent = 5
             }
-            else if whichAccent == "᾿" //smooth breathing
+            else if whichAccent == "6" //smooth breathing
             {
                 accent = 6
             }
-            else if whichAccent == "ͺ" //iota subscript
+            else if whichAccent == "7" //iota subscript
             {
                 accent = 7
             }
-            else if whichAccent == "()" //surrounding parentheses
+            else if whichAccent == "8" //surrounding parentheses
             {
                 accent = 8
             }
-            else if whichAccent == "¨" //diaeresis
+            else if whichAccent == "9" //diaeresis
             {
                 accent = 9
             }
-            else if whichAccent == "˘" //breve
+            else if whichAccent == "10" //breve
             {
                 accent = 10
             }
@@ -145,7 +146,7 @@ class HopliteKB: KeyboardViewController {
                 j += 1
             }
             var len16:Int32 = Int32(lenToSend)
-            let unicodeMode = 0
+
             print("len: \(len16), accent pressed, umode: \(unicodeMode)")
             
             accentSyllable(&buffer16, 0, &len16, Int32(accent), true, Int32(unicodeMode))
@@ -160,7 +161,7 @@ class HopliteKB: KeyboardViewController {
             textDocumentProxy.insertText(keyOutput)
         }
     }
-    
+    /*
     override func setupKeys() {
         super.setupKeys()
         
@@ -218,6 +219,7 @@ class HopliteKB: KeyboardViewController {
             self.view.backgroundColor = oldViewColor
         }
     }
+ */
 }
 /*
 func randomCat() -> String {

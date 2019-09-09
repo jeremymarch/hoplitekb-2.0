@@ -28,6 +28,27 @@ class HostingAppViewController: UIViewController {
             }
         }
     }
+    
+   //check whether keyboard extension is installed //https://stackoverflow.com/questions/25675628/how-to-detect-whether-custom-keyboard-is-activated-from-the-keyboards-container
+    func isKeyboardExtensionEnabled() -> Bool {
+        guard let appBundleIdentifier = Bundle.main.bundleIdentifier else {
+            fatalError("isKeyboardExtensionEnabled(): Cannot retrieve bundle identifier.")
+        }
+        
+        guard let keyboards = UserDefaults.standard.dictionaryRepresentation()["AppleKeyboards"] as? [String] else {
+            // There is no key `AppleKeyboards` in NSUserDefaults. That happens sometimes.
+            return false
+        }
+        
+        let keyboardExtensionBundleIdentifierPrefix = appBundleIdentifier + "."
+        for keyboard in keyboards {
+            if keyboard.hasPrefix(keyboardExtensionBundleIdentifierPrefix) {
+                return true
+            }
+        }
+        
+        return false
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

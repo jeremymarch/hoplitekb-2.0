@@ -1186,7 +1186,6 @@ int updateDiacritics(int letterCode, int accentToAdd, int accentBitMask, bool to
 int analyzeLetter(UCS2 *ucs2String, int i, int len, int *letterCode, int *accentBitMask)
 {
     unsigned char letterLen = 1;
-    int precomposedIndex = 0;
     
     //this needs some fixing
     if (len > 1 )
