@@ -14,7 +14,7 @@ set the name of your KeyboardViewController subclass in the Info.plist file.
 NSExtensionPrincipalClass = ${PRODUCT_MODULE_NAME}.Catboard
 */
 
-//let kCatTypeEnabled = "kCatTypeEnabled"
+let kCatTypeEnabled = "kCatTypeEnabled"
 
 class Catboard: KeyboardViewController {
     
@@ -97,7 +97,8 @@ class Catboard: KeyboardViewController {
     }
     
     override func createBanner() -> ExtraView? {
-        return CatboardBanner(globalColors: type(of: self).globalColors, darkMode: false, solidColorMode: self.solidColorMode())
+        return nil
+        //return CatboardBanner(globalColors: type(of: self).globalColors, darkMode: false, solidColorMode: self.solidColorMode())
     }
     
     @objc func takeScreenshotDelay() {

@@ -25,8 +25,6 @@
 		3FC5F2BE2324131D00A07747 /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEFD78A19E0DF15004D4974 /* Shapes.swift */; };
 		3FC5F2BF2324132000A07747 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE7599A19F75A0D00B4E6ED /* Utilities.swift */; };
 		3FC5F2C02324132200A07747 /* HopliteKB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC5F29B23220C5400A07747 /* HopliteKB.swift */; };
-		3FC5F2C12324135C00A07747 /* Catboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6AEE4B19D246D700931E8F /* Catboard.swift */; };
-		3FC5F2C22324138500A07747 /* CatboardBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEFD78819E0DC6B004D4974 /* CatboardBanner.swift */; };
 		3FC5F2C32324403500A07747 /* ImageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E52A6D11A06A61F006A08CE /* ImageKey.swift */; };
 		3FC5F2C42324403600A07747 /* ImageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E52A6D11A06A61F006A08CE /* ImageKey.swift */; };
 		3FC5F2C82324724500A07747 /* accent.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FC5F2C72324724500A07747 /* accent.c */; };
@@ -44,7 +42,6 @@
 		4E60A13A1979FA5C00854CC8 /* KeyboardKeyBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60A1391979FA5C00854CC8 /* KeyboardKeyBackground.swift */; };
 		4E60A13C1979FA8E00854CC8 /* KeyboardConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60A13B1979FA8E00854CC8 /* KeyboardConnector.swift */; };
 		4E60A13E1979FB2E00854CC8 /* DirectionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60A13D1979FB2E00854CC8 /* DirectionEnum.swift */; };
-		4E72C96819E04A7A00DFDDB0 /* Catboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6AEE4B19D246D700931E8F /* Catboard.swift */; };
 		4E807DC119461DC700D875D1 /* Keyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4E807DB919461DC700D875D1 /* Keyboard.appex */; };
 		4E8EF38619F95D75009CBF5D /* KeyboardFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E8EF38519F95D75009CBF5D /* KeyboardFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E8EF39819F95D75009CBF5D /* KeyboardFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E8EF38119F95D74009CBF5D /* KeyboardFramework.framework */; };
@@ -55,7 +52,6 @@
 		4EC2A47019DF811E00F789E1 /* ForwardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC2A46C19DF811E00F789E1 /* ForwardingView.swift */; };
 		4ECBD90219F16DC7004FA2A3 /* DefaultKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBD90119F16DC7004FA2A3 /* DefaultKeyboard.swift */; };
 		4EE7599B19F75A0D00B4E6ED /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE7599A19F75A0D00B4E6ED /* Utilities.swift */; };
-		4EEFD78919E0DC6B004D4974 /* CatboardBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEFD78819E0DC6B004D4974 /* CatboardBanner.swift */; };
 		4EEFD78B19E0DF15004D4974 /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEFD78A19E0DF15004D4974 /* Shapes.swift */; };
 		4EF16F9119D254E00076AFCB /* Background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4EF16F9019D254E00076AFCB /* Background.jpg */; };
 		4EF16F9619D255030076AFCB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EF16F9319D255030076AFCB /* Images.xcassets */; };
@@ -522,7 +518,6 @@
 			files = (
 				3FC5F2B02324131400A07747 /* KeyboardInputTraits.swift in Sources */,
 				3FC5F2B92324131D00A07747 /* KeyboardKeyBackground.swift in Sources */,
-				3FC5F2C22324138500A07747 /* CatboardBanner.swift in Sources */,
 				4EF16F9B19D2550D0076AFCB /* AppDelegate.swift in Sources */,
 				3FC5F2B12324131400A07747 /* KeyboardLayout.swift in Sources */,
 				3FC5F2AF2324131400A07747 /* KeyboardViewController.swift in Sources */,
@@ -534,7 +529,6 @@
 				3FC5F2BB2324131D00A07747 /* ExtraView.swift in Sources */,
 				3FC5F2B32324131800A07747 /* KeyboardModel.swift in Sources */,
 				4EF16F9819D255030076AFCB /* ViewController.swift in Sources */,
-				3FC5F2C12324135C00A07747 /* Catboard.swift in Sources */,
 				3FC5F2B62324131800A07747 /* HopliteKeyboard.swift in Sources */,
 				3FC5F2B42324131800A07747 /* DefaultKeyboard.swift in Sources */,
 				3FC5F2C42324403600A07747 /* ImageKey.swift in Sources */,
@@ -560,13 +554,11 @@
 				4E5B67A2196E03B700114361 /* KeyboardModel.swift in Sources */,
 				4E60A13C1979FA8E00854CC8 /* KeyboardConnector.swift in Sources */,
 				4E00A6E5197183EE009414F2 /* KeyboardKey.swift in Sources */,
-				4EEFD78919E0DC6B004D4974 /* CatboardBanner.swift in Sources */,
 				4EE7599B19F75A0D00B4E6ED /* Utilities.swift in Sources */,
 				4EEFD78B19E0DF15004D4974 /* Shapes.swift in Sources */,
 				4ECBD90219F16DC7004FA2A3 /* DefaultKeyboard.swift in Sources */,
 				4E3B5A941A0654A8003366F6 /* KeyboardInputTraits.swift in Sources */,
 				4E52A6D81A06C16C006A08CE /* DefaultSettings.swift in Sources */,
-				4E72C96819E04A7A00DFDDB0 /* Catboard.swift in Sources */,
 				3FC5F29C23220C5400A07747 /* HopliteKB.swift in Sources */,
 				3FC5F2C32324403500A07747 /* ImageKey.swift in Sources */,
 				4E60A13E1979FB2E00854CC8 /* DirectionEnum.swift in Sources */,
@@ -732,7 +724,7 @@
 				DEVELOPMENT_TEAM = EFHC4XFZ38;
 				INFOPLIST_FILE = HostingApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Archagon.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.philolog.hoplitekeyboard2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Keyboard/libmorph/Keyboard-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -748,7 +740,7 @@
 				DEVELOPMENT_TEAM = EFHC4XFZ38;
 				INFOPLIST_FILE = HostingApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Archagon.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.philolog.hoplitekeyboard2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Keyboard/libmorph/Keyboard-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -762,7 +754,7 @@
 				DEVELOPMENT_TEAM = EFHC4XFZ38;
 				INFOPLIST_FILE = Keyboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Archagon.HostingApp.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.philolog.hoplitekeyboard2.hoplitekeyboardext2;
 				PRODUCT_NAME = Keyboard;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Keyboard/libmorph/Keyboard-Bridging-Header.h";
@@ -777,7 +769,7 @@
 				DEVELOPMENT_TEAM = EFHC4XFZ38;
 				INFOPLIST_FILE = Keyboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Archagon.HostingApp.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.philolog.hoplitekeyboard2.hoplitekeyboardext2;
 				PRODUCT_NAME = Keyboard;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Keyboard/libmorph/Keyboard-Bridging-Header.h";

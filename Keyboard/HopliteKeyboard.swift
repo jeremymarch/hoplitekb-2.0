@@ -93,7 +93,14 @@ func greekKeyboard(needsInputModeSwitchKey:Bool) -> Keyboard {
         greekKeyboard.add(key: keyModel, row: 0, page: 0)
     }*/
     
-    for key in ["ς", "ε", "ρ", "τ", "υ", "θ", "ι", "ο", "π"] {
+    let l1 = Key(.character)
+    l1.uppercaseKeyCap = "!"
+    l1.lowercaseKeyCap = "ς"
+    l1.uppercaseOutput = "!"
+    l1.lowercaseOutput = "ς"
+    greekKeyboard.add(key: l1, row: 1, page: 0)
+    
+    for key in ["ε", "ρ", "τ", "υ", "θ", "ι", "ο", "π"] {
         let keyModel = Key(.character)
         keyModel.setLetter(key)
         greekKeyboard.add(key: keyModel, row: 1, page: 0)
