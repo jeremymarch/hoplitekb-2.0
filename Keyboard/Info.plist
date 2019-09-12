@@ -31,9 +31,9 @@
 			<key>PrefersRightToLeft</key>
 			<false/>
 			<key>PrimaryLanguage</key>
-			<string>en-US</string>
+			<string>el-GR</string>
 			<key>RequestsOpenAccess</key>
-			<true/>
+			<false/>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.keyboard-service</string>

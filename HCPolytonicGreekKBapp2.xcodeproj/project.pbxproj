@@ -487,7 +487,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4E807D8E19461D9000D875D1 /* Build configuration list for PBXProject "TastyImitationKeyboard" */;
+			buildConfigurationList = 4E807D8E19461D9000D875D1 /* Build configuration list for PBXProject "HCPolytonicGreekKBapp2" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -754,6 +754,7 @@
 				CODE_SIGN_ENTITLEMENTS = HostingApp/HostingApp.entitlements;
 				DEVELOPMENT_TEAM = EFHC4XFZ38;
 				INFOPLIST_FILE = HostingApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.philolog.hoplitekeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -771,6 +772,7 @@
 				CODE_SIGN_ENTITLEMENTS = HostingApp/HostingApp.entitlements;
 				DEVELOPMENT_TEAM = EFHC4XFZ38;
 				INFOPLIST_FILE = HostingApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.philolog.hoplitekeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -786,6 +788,7 @@
 				CODE_SIGN_ENTITLEMENTS = Keyboard/Keyboard.entitlements;
 				DEVELOPMENT_TEAM = EFHC4XFZ38;
 				INFOPLIST_FILE = Keyboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.philolog.hoplitekeyboard.hoplitekeyboardext;
 				PRODUCT_NAME = Keyboard;
@@ -802,6 +805,7 @@
 				CODE_SIGN_ENTITLEMENTS = Keyboard/Keyboard.entitlements;
 				DEVELOPMENT_TEAM = EFHC4XFZ38;
 				INFOPLIST_FILE = Keyboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.philolog.hoplitekeyboard.hoplitekeyboardext;
 				PRODUCT_NAME = Keyboard;
@@ -869,7 +873,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4E807D8E19461D9000D875D1 /* Build configuration list for PBXProject "TastyImitationKeyboard" */ = {
+		4E807D8E19461D9000D875D1 /* Build configuration list for PBXProject "HCPolytonicGreekKBapp2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4E807DAD19461D9000D875D1 /* Debug */,

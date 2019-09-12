@@ -54,6 +54,12 @@ class HopliteKB: KeyboardViewController {
     let HYPHEN =                     0x2010
     let COMMA =                      0x002C
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.needsInputSwitch = self.needsInputModeSwitchKey
+        super.viewWillAppear(animated)
+    }
+    
     override func keyPressed(_ key: Key) {
         let textDocumentProxy = self.textDocumentProxy
         let keyOutput = key.outputForCase(self.shiftState.uppercase())
@@ -181,6 +187,12 @@ class HopliteKB: KeyboardViewController {
             unicodeMode = 0
         }
         self.updateKeyCaps(self.shiftState.uppercase())
+    }
+    
+    // Not true: this only works if full access is enabled
+    @objc override func canPlaySound() -> Bool {
+        let defaults = UserDefaults(suiteName: appSuiteName)
+        return defaults?.bool(forKey: kKeyboardClicks) ?? true
     }
 }
 

@@ -1019,6 +1019,35 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
     func layoutSpecialKeysRow(_ row: [Key], keyWidth: CGFloat, gapWidth: CGFloat, leftSideRatio: CGFloat, rightSideRatio: CGFloat, micButtonRatio: CGFloat, isLandscape: Bool, frame: CGRect) -> [CGRect] {
         var frames = [CGRect]()
         
+        let numKeys = row.count
+        var p:[CGFloat] = []
+        
+        if numKeys == 4
+        {
+            p = [0.12,0.5,0.12,0.28]
+        }
+        else
+        {
+            p = [0.2,0.2,0.2,0.2,0.2]
+        }
+        
+        var currentOrigin = frame.origin.x
+        let fullWidth = frame.width - (CGFloat(row.count - 1) * gapWidth)
+        for (i, key) in row.enumerated() {
+            var buttonWidth = keyWidth //p[i] * fullWidth
+            if key.type == .space || key.type == .return
+            {
+                buttonWidth = p[i] * fullWidth
+            }
+            else if key.type == .modeChange
+            {
+                buttonWidth = frame.height
+            }
+            frames.append(CGRect(x: rounded(currentOrigin), y: frame.origin.y, width: buttonWidth, height: frame.height))
+            currentOrigin += (buttonWidth + gapWidth)
+        }
+        return frames
+        /*
         var keysBeforeSpace = 0
         var keysAfterSpace = 0
         var reachedSpace = false
@@ -1037,7 +1066,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
         }
         
         assert(keysBeforeSpace <= 3, "invalid number of keys before space (only max 3 currently supported)")
-        assert(keysAfterSpace == 1, "invalid number of keys after space (only default 1 currently supported)")
+        assert(keysAfterSpace <= 2, "invalid number of keys after space (only default 1 currently supported)")
         
         let hasButtonInMicButtonPosition = (keysBeforeSpace == 3)
         
@@ -1083,6 +1112,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
         }
 
         return frames
+        */
     }
     
     ////////////////

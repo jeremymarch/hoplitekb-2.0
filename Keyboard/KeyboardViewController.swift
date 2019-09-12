@@ -21,6 +21,7 @@ let kKeyboardClicks = "kKeyboardClicks"
 let kSmallLowercase = "kSmallLowercase"
 
 class KeyboardViewController: UIInputViewController {
+    var needsInputSwitch:Bool = true
     var appExt = false
     var topRowButtonDepressNotAppExt = false
     let backspaceDelay: TimeInterval = 0.5
@@ -104,18 +105,13 @@ class KeyboardViewController: UIInputViewController {
         self.currentMode = 0
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        
+
         //self.keyboard = defaultKeyboard()
-        var needGlobe:Bool = true //true for iOS < 11.0
-        if #available(iOSApplicationExtension 11.0, *) {
-            //needGlobe = self.needsInputModeSwitchKey
-            //print("input: \(self.needsInputModeSwitchKey)")
-        }
-        self.keyboard = greekKeyboard(needsInputModeSwitchKey:needGlobe)
+        self.keyboard = greekKeyboard(needsInputModeSwitchKey:self.needsInputSwitch)
         
         self.forwardingView = ForwardingView(frame: CGRect.zero)
         self.view.addSubview(self.forwardingView)
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(KeyboardViewController.defaultsChanged(_:)), name: UserDefaults.didChangeNotification, object: nil)
     }
     
@@ -218,7 +214,30 @@ class KeyboardViewController: UIInputViewController {
             return true
         }
     }
-    
+    /*
+    override func viewDidAppear(_ animated: Bool) {
+        if self.needsInputModeSwitchKey
+        {
+            self.forwardingView.backgroundColor = UIColor.brown
+        }
+    }
+    */
+    /*
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //self.keyboard = defaultKeyboard()
+        var needGlobe:Bool = true //true for iOS < 11.0
+        //if #available(iOSApplicationExtension 11.0, *) {
+        needGlobe = needsInputModeSwitchKey
+        print("input: \(needsInputModeSwitchKey)")
+        //}
+        self.keyboard = greekKeyboard(needsInputModeSwitchKey:needsInputSwitch)
+        
+        self.forwardingView = ForwardingView(frame: CGRect.zero)
+        self.view.addSubview(self.forwardingView)
+        
+    }
+    */
     var lastLayoutBounds: CGRect?
     override func viewDidLayoutSubviews() {
         if view.bounds == CGRect.zero {
@@ -257,15 +276,28 @@ class KeyboardViewController: UIInputViewController {
             self.bannerView = aBanner
         }
     }
-    
+    /*
+    override func viewDidAppear(_ animated: Bool) {
+        if #available(iOS 11.0, *) {
+            print("input2: \(self.needsInputModeSwitchKey)")
+        }
+    }
+    */
+    var alreadyInit = false
     override func viewWillAppear(_ animated: Bool) {
+        
+        if !needsInputSwitch
+        {
+            //self.forwardingView.backgroundColor = UIColor.brown
+            keyboard.pages[0].rows[4].remove(at: 1)
+            let uppercase = self.shiftState.uppercase()
+            let characterUppercase = (UserDefaults.standard.bool(forKey: kSmallLowercase) ? uppercase : true)
+            self.layout?.layoutKeys(0/*mode*/, uppercase: uppercase, characterUppercase: characterUppercase, shiftState: self.shiftState)
+            self.setupKeys()
+        }
+        
         self.bannerView?.isHidden = false
         self.keyboardHeight = self.height(orientationIsPortrait: self.isPortrait(), withTopBanner: (self.bannerView != nil))
-        
-        //not available until here:
-        if #available(iOSApplicationExtension 11.0, *) {
-            //print("input: \(needsInputModeSwitchKey)")
-        }
     }
     
     override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
@@ -854,9 +886,15 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     
+    func canPlaySound() -> Bool
+    {
+        return UserDefaults.standard.bool(forKey: kKeyboardClicks)
+    }
+    
     // this only works if full access is enabled
     @objc func playKeySound() {
-        if !UserDefaults.standard.bool(forKey: kKeyboardClicks) {
+        if !canPlaySound()
+        {
             return
         }
         

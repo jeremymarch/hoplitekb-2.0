@@ -137,18 +137,21 @@ func greekKeyboard(needsInputModeSwitchKey:Bool) -> Keyboard {
         greekKeyboard.add(key: keyboardChange!, row: 4, page: 0)
     }
     
-    let periodquestion = Key(.punctuation)
-    periodquestion.uppercaseKeyCap = ";"
-    periodquestion.lowercaseKeyCap = "."
-    periodquestion.uppercaseOutput = ";"
-    periodquestion.lowercaseOutput = "."
-    greekKeyboard.add(key: periodquestion, row: 4, page: 0)
+    //let settings = Key(.settings)
+    //greekKeyboard.add(key: Key(settings), row: 4, page: 0)
     
     let space = Key(.space)
     space.uppercaseKeyCap = "space"
     space.uppercaseOutput = " "
     space.lowercaseOutput = " "
     greekKeyboard.add(key: space, row: 4, page: 0)
+    
+    let periodquestion = Key(.punctuation)
+    periodquestion.uppercaseKeyCap = ";"
+    periodquestion.lowercaseKeyCap = "."
+    periodquestion.uppercaseOutput = ";"
+    periodquestion.lowercaseOutput = "."
+    greekKeyboard.add(key: periodquestion, row: 4, page: 0)
  
     let returnKey = Key(.return)
     returnKey.uppercaseKeyCap = "return"
