@@ -56,7 +56,11 @@ class HopliteKB: KeyboardViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        super.needsInputSwitch = self.needsInputModeSwitchKey
+        if #available(iOS 11.0, *) {
+            super.needsInputSwitch = self.needsInputModeSwitchKey
+        } else {
+            super.needsInputSwitch = true
+        }
         super.viewWillAppear(animated)
     }
     

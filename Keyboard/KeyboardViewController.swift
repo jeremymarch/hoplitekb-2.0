@@ -285,15 +285,28 @@ class KeyboardViewController: UIInputViewController {
     */
     var alreadyInit = false
     override func viewWillAppear(_ animated: Bool) {
-        
+        //adapted from setMode
         if !needsInputSwitch
         {
-            //self.forwardingView.backgroundColor = UIColor.brown
-            keyboard.pages[0].rows[4].remove(at: 1)
-            let uppercase = self.shiftState.uppercase()
-            let characterUppercase = (UserDefaults.standard.bool(forKey: kSmallLowercase) ? uppercase : true)
-            self.layout?.layoutKeys(0/*mode*/, uppercase: uppercase, characterUppercase: characterUppercase, shiftState: self.shiftState)
-            self.setupKeys()
+            /*
+            if keyboard.pages[0].rows[4][1].type == .keyboardChange
+            {
+                keyboard.pages[0].rows[4].remove(at: 1)
+            }
+            */
+            
+            //remove all .keyboardChange keys
+            for (p, page) in keyboard.pages.enumerated() {
+                for (r, rowKeys) in page.rows.enumerated() {
+                    for (k, key) in rowKeys.enumerated() {
+                        if key.type == .keyboardChange {
+                            keyboard.pages[p].rows[r].remove(at: k)
+                        }
+                    }
+                }
+            }
+            
+            self.setMode(0)
         }
         
         self.bannerView?.isHidden = false
