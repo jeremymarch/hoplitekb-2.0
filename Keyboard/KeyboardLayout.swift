@@ -901,7 +901,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                 
                 // basic character row: only typable characters
                 if self.characterRowHeuristic(row) {
-                    frames = self.layoutCharacterRow(row, keyWidth: letterKeyWidth, gapWidth: keyGap, frame: frame)
+                    frames = self.layoutCharacterRow(row, keyWidth: letterKeyWidth, gapWidth: keyGap, frame: frame, isLandscape: isLandscape)
                 }
                     
                     // character row with side buttons: shift, backspace, etc.
@@ -929,7 +929,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
         return (row.count >= 3 && !row[0].isCharacter && row[1].isCharacter)
     }
     
-    func layoutCharacterRow(_ row: [Key], keyWidth: CGFloat, gapWidth: CGFloat, frame: CGRect) -> [CGRect] {
+    func layoutCharacterRow(_ row: [Key], keyWidth: CGFloat, gapWidth: CGFloat, frame: CGRect, isLandscape: Bool) -> [CGRect] {
         var frames = [CGRect]()
         
         let keySpace = CGFloat(row.count) * keyWidth + CGFloat(row.count - 1) * gapWidth
@@ -945,18 +945,28 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
         
         var currentOrigin = frame.origin.x + sideSpace
         
-        for (_, _) in row.enumerated() {
+        var keyW = keyWidth
+        for (_, key) in row.enumerated() {
             let roundedOrigin = rounded(currentOrigin)
+            
+            if key.type == .backspace && !isLandscape
+            {
+                keyW = frame.height //make backspace key square
+            }
+            else
+            {
+                keyW = keyWidth
+            }
             
             // avoiding rounding errors
             if roundedOrigin + keyWidth > frame.origin.x + frame.width {
-                frames.append(CGRect(x: rounded(frame.origin.x + frame.width - keyWidth), y: frame.origin.y, width: keyWidth, height: frame.height))
+                frames.append(CGRect(x: rounded(frame.origin.x + frame.width - keyWidth), y: frame.origin.y, width: keyW, height: frame.height))
             }
             else {
-                frames.append(CGRect(x: rounded(currentOrigin), y: frame.origin.y, width: keyWidth, height: frame.height))
+                frames.append(CGRect(x: rounded(currentOrigin), y: frame.origin.y, width: keyW, height: frame.height))
             }
             
-            currentOrigin += (keyWidth + actualGapWidth)
+            currentOrigin += (keyW + actualGapWidth)
         }
         
         return frames
@@ -1019,100 +1029,47 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
     func layoutSpecialKeysRow(_ row: [Key], keyWidth: CGFloat, gapWidth: CGFloat, leftSideRatio: CGFloat, rightSideRatio: CGFloat, micButtonRatio: CGFloat, isLandscape: Bool, frame: CGRect) -> [CGRect] {
         var frames = [CGRect]()
         
-        let numKeys = row.count
-        var p:[CGFloat] = []
-        
-        if numKeys == 4
+        var hasGlobe = false
+        if row[2].type == .keyboardChange
         {
-            p = [0.12,0.5,0.12,0.28]
-        }
-        else
-        {
-            p = [0.2,0.2,0.2,0.2,0.2]
+            hasGlobe = true
         }
         
         var currentOrigin = frame.origin.x
-        let fullWidth = frame.width - (CGFloat(row.count - 1) * gapWidth)
-        for (i, key) in row.enumerated() {
-            var buttonWidth = keyWidth //p[i] * fullWidth
-            if key.type == .space || key.type == .return
+        var fullWidth = frame.width - (CGFloat(row.count - 1) * gapWidth)
+        if hasGlobe
+        {
+            fullWidth -= (frame.height + gapWidth)
+        }
+        
+        let returnWidth = (keyWidth * 2) + gapWidth
+        let spaceWidth =  frame.width - (((isLandscape ? keyWidth : frame.height) * (hasGlobe ? 3 : 2)) + keyWidth + returnWidth + (gapWidth * (hasGlobe ? 5 : 4)))
+        
+        for key in row {
+            var buttonWidth = keyWidth
+            switch key.type
             {
-                buttonWidth = p[i] * fullWidth
+            case .punctuation,
+                 .character:
+                buttonWidth = keyWidth
+            case .return:
+                buttonWidth = returnWidth
+            case .space:
+                buttonWidth = spaceWidth
+            default:
+                if isLandscape {
+                    buttonWidth = keyWidth
+                }
+                else
+                {
+                    buttonWidth = frame.height
+                }
             }
-            else if key.type == .modeChange
-            {
-                buttonWidth = frame.height
-            }
+            
             frames.append(CGRect(x: rounded(currentOrigin), y: frame.origin.y, width: buttonWidth, height: frame.height))
             currentOrigin += (buttonWidth + gapWidth)
         }
         return frames
-        /*
-        var keysBeforeSpace = 0
-        var keysAfterSpace = 0
-        var reachedSpace = false
-        for key in row {
-            if key.type == Key.KeyType.space {
-                reachedSpace = true
-            }
-            else {
-                if !reachedSpace {
-                    keysBeforeSpace += 1
-                }
-                else {
-                    keysAfterSpace += 1
-                }
-            }
-        }
-        
-        assert(keysBeforeSpace <= 3, "invalid number of keys before space (only max 3 currently supported)")
-        assert(keysAfterSpace <= 2, "invalid number of keys after space (only default 1 currently supported)")
-        
-        let hasButtonInMicButtonPosition = (keysBeforeSpace == 3)
-        
-        var leftSideAreaWidth = frame.width * leftSideRatio
-        let rightSideAreaWidth = frame.width * rightSideRatio
-        var leftButtonWidth = (leftSideAreaWidth - (gapWidth * CGFloat(2 - 1))) / CGFloat(2)
-        leftButtonWidth = rounded(leftButtonWidth)
-        var rightButtonWidth = (rightSideAreaWidth - (gapWidth * CGFloat(keysAfterSpace - 1))) / CGFloat(keysAfterSpace)
-        rightButtonWidth = rounded(rightButtonWidth)
-        
-        let micButtonWidth = (isLandscape ? leftButtonWidth : leftButtonWidth * micButtonRatio)
-        
-        // special case for mic button
-        if hasButtonInMicButtonPosition {
-            leftSideAreaWidth = leftSideAreaWidth + gapWidth + micButtonWidth
-        }
-        
-        var spaceWidth = frame.width - leftSideAreaWidth - rightSideAreaWidth - gapWidth * CGFloat(2)
-        spaceWidth = rounded(spaceWidth)
-        
-        var currentOrigin = frame.origin.x
-        var beforeSpace: Bool = true
-        for (k, key) in row.enumerated() {
-            if key.type == Key.KeyType.space {
-                frames.append(CGRect(x: rounded(currentOrigin), y: frame.origin.y, width: spaceWidth, height: frame.height))
-                currentOrigin += (spaceWidth + gapWidth)
-                beforeSpace = false
-            }
-            else if beforeSpace {
-                if hasButtonInMicButtonPosition && k == 2 { //mic button position
-                    frames.append(CGRect(x: rounded(currentOrigin), y: frame.origin.y, width: micButtonWidth, height: frame.height))
-                    currentOrigin += (micButtonWidth + gapWidth)
-                }
-                else {
-                    frames.append(CGRect(x: rounded(currentOrigin), y: frame.origin.y, width: leftButtonWidth, height: frame.height))
-                    currentOrigin += (leftButtonWidth + gapWidth)
-                }
-            }
-            else {
-                frames.append(CGRect(x: rounded(currentOrigin), y: frame.origin.y, width: rightButtonWidth, height: frame.height))
-                currentOrigin += (rightButtonWidth + gapWidth)
-            }
-        }
-
-        return frames
-        */
     }
     
     ////////////////

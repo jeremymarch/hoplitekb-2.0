@@ -36,6 +36,8 @@
 		3FC5F2D92326B53400A07747 /* TestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC5F2D42326B53400A07747 /* TestingViewController.swift */; };
 		3FC5F2DA2326B53400A07747 /* InstallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC5F2D52326B53400A07747 /* InstallViewController.swift */; };
 		3FC5F2E12326CB0400A07747 /* newathu5_5.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3FC5F2E02326CB0400A07747 /* newathu5_5.ttf */; };
+		3FD24053232A42B200E922AE /* kludge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD24052232A42B200E922AE /* kludge.swift */; };
+		3FD24054232A42B200E922AE /* kludge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD24052232A42B200E922AE /* kludge.swift */; };
 		3FE808EF231F894300C1A90A /* HopliteKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE808EE231F894300C1A90A /* HopliteKeyboard.swift */; };
 		4E00A6E5197183EE009414F2 /* KeyboardKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E807DC81946209600D875D1 /* KeyboardKey.swift */; };
 		4E3B5A941A0654A8003366F6 /* KeyboardInputTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3B5A931A0654A8003366F6 /* KeyboardInputTraits.swift */; };
@@ -135,6 +137,7 @@
 		3FC5F2DC2326B5B100A07747 /* HostingApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HostingApp.entitlements; sourceTree = "<group>"; };
 		3FC5F2DF2326BA3700A07747 /* Keyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Keyboard.entitlements; sourceTree = "<group>"; };
 		3FC5F2E02326CB0400A07747 /* newathu5_5.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = newathu5_5.ttf; sourceTree = "<group>"; };
+		3FD24052232A42B200E922AE /* kludge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kludge.swift; sourceTree = "<group>"; };
 		3FE808EE231F894300C1A90A /* HopliteKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HopliteKeyboard.swift; sourceTree = "<group>"; };
 		4E3B5A931A0654A8003366F6 /* KeyboardInputTraits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardInputTraits.swift; sourceTree = "<group>"; };
 		4E52A6D11A06A61F006A08CE /* ImageKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageKey.swift; sourceTree = "<group>"; };
@@ -251,6 +254,7 @@
 				4E3B5A931A0654A8003366F6 /* KeyboardInputTraits.swift */,
 				4EC2A46A19DF811E00F789E1 /* KeyboardLayout.swift */,
 				4EC2A46C19DF811E00F789E1 /* ForwardingView.swift */,
+				3FD24052232A42B200E922AE /* kludge.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -567,6 +571,7 @@
 				3FC5F2D023247C6B00A07747 /* utilities.c in Sources */,
 				3FC5F2D82326B53400A07747 /* SettingsTableViewController.swift in Sources */,
 				3FC5F2B52324131800A07747 /* DirectionEnum.swift in Sources */,
+				3FD24053232A42B200E922AE /* kludge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,6 +598,7 @@
 				3FC5F2C32324403500A07747 /* ImageKey.swift in Sources */,
 				4E60A13E1979FB2E00854CC8 /* DirectionEnum.swift in Sources */,
 				4EC2A46D19DF811E00F789E1 /* KeyboardViewController.swift in Sources */,
+				3FD24054232A42B200E922AE /* kludge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -105,10 +105,10 @@ class KeyboardViewController: UIInputViewController {
         self.currentMode = 0
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-
+        //self.inputView = KludgeView()
         //self.keyboard = defaultKeyboard()
         self.keyboard = greekKeyboard(needsInputModeSwitchKey:self.needsInputSwitch)
-        
+        //self.preferredContentSize = CGSize(width: self.view.frame.size.width, height: 356)
         self.forwardingView = ForwardingView(frame: CGRect.zero)
         self.view.addSubview(self.forwardingView)
 
@@ -136,6 +136,7 @@ class KeyboardViewController: UIInputViewController {
     func setupKludge() {
         if self.kludge == nil {
             let kludge = UIView()
+            //kludge.intrinsicContentSize = CGSize(width: UIViewNoIntrinsicMetric, height: 0)
             self.view.addSubview(kludge)
             kludge.translatesAutoresizingMaskIntoConstraints = false
             kludge.isHidden = true
@@ -512,8 +513,10 @@ class KeyboardViewController: UIInputViewController {
     
     func setHeight(_ height: CGFloat) {
         if self.heightConstraint == nil {
+            //this fixes constraint conflict, but now touches aren't seen
+            //self.inputView!.translatesAutoresizingMaskIntoConstraints = false
             self.heightConstraint = NSLayoutConstraint(
-                item:self.view!,
+                item:self.inputView!,
                 attribute:NSLayoutConstraint.Attribute.height,
                 relatedBy:NSLayoutConstraint.Relation.equal,
                 toItem:nil,

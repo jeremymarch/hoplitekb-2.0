@@ -11,7 +11,13 @@ import UIKit
 class ForwardingView: UIView {
     
     var touchToView: [UITouch:UIView] = [:]
-    
+/*
+     //doesn't do anything
+//https://stackoverflow.com/questions/42723179/ios-puts-a-required-height-constraint-on-custom-keyboard
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: UIView.noIntrinsicMetric, height: 0)
+    }
+ */
     override init(frame: CGRect) {
         super.init(frame: frame)
         

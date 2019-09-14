@@ -16,13 +16,7 @@
 
 func greekKeyboard(needsInputModeSwitchKey:Bool) -> Keyboard {
     let greekKeyboard = Keyboard()
-/*
-    for key in ["῾", "᾿", "´", "˜", "`", "¯", "ͺ"] {
-        let keyModel = Key(.diacritic)
-        keyModel.setLetter(key)
-        greekKeyboard.add(key: keyModel, row: 0, page: 0)
-    }
-    */
+
     //rough
     let d1 = Key(.diacritic)
     d1.uppercaseKeyCap = "῾"
@@ -112,9 +106,6 @@ func greekKeyboard(needsInputModeSwitchKey:Bool) -> Keyboard {
         greekKeyboard.add(key: keyModel, row: 2, page: 0)
     }
     
-    let keyModel = Key(.shift)
-    greekKeyboard.add(key: keyModel, row: 3, page: 0)
-    
     for key in ["ζ", "χ", "ψ", "ω", "β", "ν", "μ"] {
         let keyModel = Key(.character)
         keyModel.setLetter(key)
@@ -123,6 +114,9 @@ func greekKeyboard(needsInputModeSwitchKey:Bool) -> Keyboard {
     
     let backspace = Key(.backspace)
     greekKeyboard.add(key: backspace, row: 3, page: 0)
+    
+    let keyModel = Key(.shift)
+    greekKeyboard.add(key: keyModel, row: 4, page: 0)
     
     let keyModeChangeNumbers = Key(.modeChange)
     keyModeChangeNumbers.uppercaseKeyCap = "123"
@@ -165,38 +159,44 @@ func greekKeyboard(needsInputModeSwitchKey:Bool) -> Keyboard {
         greekKeyboard.add(key: keyModel, row: 0, page: 1)
     }
     
-    for key in ["-", "/", ":", ";", "(", ")", "$", "&", "@", "\""] {
+    for key in ["ϲ", "ϙ", "ϝ", "ϛ", "ϟ", "ϡ", "ϻ", "ͷ", "ͳ"] { //["-", "/", ":", ";", "(", ")", "$", "&", "@", "\""] {
         let keyModel = Key(.specialCharacter)
         keyModel.setLetter(key)
         greekKeyboard.add(key: keyModel, row: 1, page: 1)
     }
     
-    let keyModeChangeSpecialCharacters = Key(.modeChange)
-    keyModeChangeSpecialCharacters.uppercaseKeyCap = "#+="
-    keyModeChangeSpecialCharacters.toMode = 2
-    greekKeyboard.add(key: keyModeChangeSpecialCharacters, row: 2, page: 1)
-    
-    for key in [".", ",", "?", "!", "'"] {
+    for key in ["ͱ", "ϸ", "ͻ", "ͼ", "ϵ", "ϐ", "Ϗ", "ʹ", "/"] { //[".", ",", "?", "!", "'"] {
         let keyModel = Key(.specialCharacter)
         keyModel.setLetter(key)
         greekKeyboard.add(key: keyModel, row: 2, page: 1)
     }
     
-    greekKeyboard.add(key: Key(backspace), row: 2, page: 1)
+    let keyModeChangeSpecialCharacters = Key(.modeChange)
+    keyModeChangeSpecialCharacters.uppercaseKeyCap = "#+="
+    keyModeChangeSpecialCharacters.toMode = 2
+    greekKeyboard.add(key: keyModeChangeSpecialCharacters, row: 3, page: 1)
+    
+    for key in ["+", "*", "\"", "(", ")", "[", "]"] { //[".", ",", "?", "!", "'"] {
+        let keyModel = Key(.specialCharacter)
+        keyModel.setLetter(key)
+        greekKeyboard.add(key: keyModel, row: 3, page: 1)
+    }
+    
+    greekKeyboard.add(key: Key(backspace), row: 3, page: 1)
     
     let keyModeChangeLetters = Key(.modeChange)
     keyModeChangeLetters.uppercaseKeyCap = "ABC"
     keyModeChangeLetters.toMode = 0
-    greekKeyboard.add(key: keyModeChangeLetters, row: 3, page: 1)
+    greekKeyboard.add(key: keyModeChangeLetters, row: 4, page: 1)
     if needsInputModeSwitchKey
     {
-        greekKeyboard.add(key: Key(keyboardChange!), row: 3, page: 1)
+        greekKeyboard.add(key: Key(keyboardChange!), row: 4, page: 1)
     }
     //greekKeyboard.add(key: Key(settings), row: 3, page: 1)
     
-    greekKeyboard.add(key: Key(space), row: 3, page: 1)
+    greekKeyboard.add(key: Key(space), row: 4, page: 1)
     
-    greekKeyboard.add(key: Key(returnKey), row: 3, page: 1)
+    greekKeyboard.add(key: Key(returnKey), row: 4, page: 1)
     
     for key in ["[", "]", "{", "}", "#", "%", "^", "*", "+", "="] {
         let keyModel = Key(.specialCharacter)
