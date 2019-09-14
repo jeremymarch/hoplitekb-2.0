@@ -105,6 +105,12 @@ class KeyboardViewController: UIInputViewController {
         self.currentMode = 0
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+        //http://stackoverflow.com/questions/26120043/unable-to-change-uiinputview-height
+        //for ios 9.0+, this is required when embedded, doesn't matter if run as app extension
+        if #available(iOS 9.0, *) {
+            self.inputView?.allowsSelfSizing = true
+        }
         //self.inputView = KludgeView()
         //self.keyboard = defaultKeyboard()
         self.keyboard = greekKeyboard(needsInputModeSwitchKey:self.needsInputSwitch)
