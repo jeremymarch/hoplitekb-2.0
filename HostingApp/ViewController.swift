@@ -86,7 +86,7 @@ class ViewController: UIViewController {
         {
             //textView!.inputView = nil
             //to include keyboard in container app
-            kb = HopliteKB() //kb needs to be member variable, can't be local to just this function
+            kb = HopliteKB(isAppExtension:false) //kb needs to be member variable, can't be local to just this function
             kb?.inputView?.translatesAutoresizingMaskIntoConstraints = false
             kb?.appExt = false
             kb?.topRowButtonDepressNotAppExt = false //prevent top row button expansion in app, to simulate app extension behavior

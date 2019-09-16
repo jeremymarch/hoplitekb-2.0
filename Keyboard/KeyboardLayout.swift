@@ -324,8 +324,10 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
     var darkMode: Bool
     var solidColorMode: Bool
     var initialized: Bool
+    var extraBottomPadding:CGFloat = 0.0
     
-    required init(model: Keyboard, superview: UIView, layoutConstants: LayoutConstants.Type, globalColors: GlobalColors.Type, darkMode: Bool, solidColorMode: Bool) {
+    required init(model: Keyboard, superview: UIView, layoutConstants: LayoutConstants.Type, globalColors: GlobalColors.Type, darkMode: Bool, solidColorMode: Bool, extraBottomPadding:CGFloat) {
+        self.extraBottomPadding = extraBottomPadding
         self.layoutConstants = layoutConstants
         self.globalColors = globalColors
         
@@ -876,7 +878,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
             
             let keyHeight: CGFloat = {
                 let totalGaps = bottomEdge + topEdge + rowGapTotal
-                let returnHeight = (bounds.height - totalGaps) / CGFloat(numRows)
+                let returnHeight = (bounds.height - totalGaps - extraBottomPadding) / CGFloat(numRows)
                 return self.rounded(returnHeight)
                 }()
             

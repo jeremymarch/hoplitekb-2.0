@@ -19,6 +19,11 @@ class HopliteKB: KeyboardViewController {
     let unicodeModeKey = "UnicodeAccents"
     var unicodeMode = 0
     
+    convenience init(isAppExtension:Bool) {
+        self.init(nibName: nil, bundle: nil)
+        self.appExt = isAppExtension
+    }
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         //UserDefaults.standard.register(defaults: [kCatTypeEnabled: false])
         let defaults = UserDefaults(suiteName: appSuiteName)

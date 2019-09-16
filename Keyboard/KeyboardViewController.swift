@@ -22,7 +22,7 @@ let kSmallLowercase = "kSmallLowercase"
 
 class KeyboardViewController: UIInputViewController {
     var needsInputSwitch:Bool = true
-    var appExt = false
+    var appExt = true
     var topRowButtonDepressNotAppExt = false
     let backspaceDelay: TimeInterval = 0.5
     let backspaceRepeat: TimeInterval = 0.07
@@ -90,8 +90,9 @@ class KeyboardViewController: UIInputViewController {
     }
     
     // TODO: why does the app crash if this isn't here?
-    convenience init() {
+    convenience init(isAppExtension:Bool) {
         self.init(nibName: nil, bundle: nil)
+        self.appExt = isAppExtension
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -111,15 +112,22 @@ class KeyboardViewController: UIInputViewController {
         if #available(iOS 9.0, *) {
             self.inputView?.allowsSelfSizing = true
         }
+
+    }
+/*
+     override func viewDidLoad() {
+     super.viewDidLoad()
+
         //self.inputView = KludgeView()
         //self.keyboard = defaultKeyboard()
         self.keyboard = greekKeyboard(needsInputModeSwitchKey:self.needsInputSwitch)
         //self.preferredContentSize = CGSize(width: self.view.frame.size.width, height: 356)
         self.forwardingView = ForwardingView(frame: CGRect.zero)
         self.view.addSubview(self.forwardingView)
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(KeyboardViewController.defaultsChanged(_:)), name: UserDefaults.didChangeNotification, object: nil)
-    }
+     }
+*/
     
     required init?(coder: NSCoder) {
         fatalError("NSCoding not supported")
@@ -179,7 +187,12 @@ class KeyboardViewController: UIInputViewController {
     var constraintsAdded: Bool = false
     func setupLayout() {
         if !constraintsAdded {
-            self.layout = type(of: self).layoutClass.init(model: self.keyboard, superview: self.forwardingView, layoutConstants: type(of: self).layoutConstants, globalColors: type(of: self).globalColors, darkMode: self.darkMode(), solidColorMode: self.solidColorMode())
+            var extraP:CGFloat = 0.0
+            if !appExt && !needsInputSwitch
+            {
+                extraP = 50.0
+            }
+            self.layout = type(of: self).layoutClass.init(model: self.keyboard, superview: self.forwardingView, layoutConstants: type(of: self).layoutConstants, globalColors: type(of: self).globalColors, darkMode: self.darkMode(), solidColorMode: self.solidColorMode(), extraBottomPadding: extraP)
             
             self.layout?.initialize()
             self.setMode(0)
@@ -229,22 +242,7 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     */
-    /*
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //self.keyboard = defaultKeyboard()
-        var needGlobe:Bool = true //true for iOS < 11.0
-        //if #available(iOSApplicationExtension 11.0, *) {
-        needGlobe = needsInputModeSwitchKey
-        print("input: \(needsInputModeSwitchKey)")
-        //}
-        self.keyboard = greekKeyboard(needsInputModeSwitchKey:needsInputSwitch)
-        
-        self.forwardingView = ForwardingView(frame: CGRect.zero)
-        self.view.addSubview(self.forwardingView)
-        
-    }
-    */
+
     var lastLayoutBounds: CGRect?
     override func viewDidLayoutSubviews() {
         if view.bounds == CGRect.zero {
@@ -276,6 +274,15 @@ class KeyboardViewController: UIInputViewController {
     
     override func loadView() {
         super.loadView()
+        
+        //self.inputView = KludgeView()
+        //self.keyboard = defaultKeyboard()
+        self.keyboard = greekKeyboard(needsInputModeSwitchKey:self.needsInputSwitch)
+        //self.preferredContentSize = CGSize(width: self.view.frame.size.width, height: 356)
+        self.forwardingView = ForwardingView(frame: CGRect.zero)
+        self.view.addSubview(self.forwardingView)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(KeyboardViewController.defaultsChanged(_:)), name: UserDefaults.didChangeNotification, object: nil)
         
         if let aBanner = self.createBanner() {
             aBanner.isHidden = true
@@ -354,8 +361,8 @@ class KeyboardViewController: UIInputViewController {
         
         //TODO: hardcoded stuff
         let actualScreenWidth = (UIScreen.main.nativeBounds.size.width / UIScreen.main.nativeScale)
-        let canonicalPortraitHeight: CGFloat
-        let canonicalLandscapeHeight: CGFloat
+        var canonicalPortraitHeight: CGFloat
+        var canonicalLandscapeHeight: CGFloat
         if isPad {
             canonicalPortraitHeight = 264
             canonicalLandscapeHeight = 352
@@ -363,6 +370,11 @@ class KeyboardViewController: UIInputViewController {
         else {
             canonicalPortraitHeight = isPortrait && actualScreenWidth >= 400 ? 266 : 256
             canonicalLandscapeHeight = 162
+            if !appExt && !needsInputSwitch
+            {
+                canonicalPortraitHeight += 50
+                canonicalLandscapeHeight += 30
+            }
         }
         
         let topBannerHeight = (withTopBanner ? metric("topBanner") : 0)
