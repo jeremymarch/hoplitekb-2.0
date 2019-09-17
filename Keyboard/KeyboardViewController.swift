@@ -187,12 +187,12 @@ class KeyboardViewController: UIInputViewController {
     var constraintsAdded: Bool = false
     func setupLayout() {
         if !constraintsAdded {
-            var extraP:CGFloat = 0.0
+            var extraP = false
             if !appExt && !needsInputSwitch
             {
-                extraP = 50.0
+                extraP = true
             }
-            self.layout = type(of: self).layoutClass.init(model: self.keyboard, superview: self.forwardingView, layoutConstants: type(of: self).layoutConstants, globalColors: type(of: self).globalColors, darkMode: self.darkMode(), solidColorMode: self.solidColorMode(), extraBottomPadding: extraP)
+            self.layout = type(of: self).layoutClass.init(model: self.keyboard, superview: self.forwardingView, layoutConstants: type(of: self).layoutConstants, globalColors: type(of: self).globalColors, darkMode: self.darkMode(), solidColorMode: self.solidColorMode(), needsExtraBottomPadding: extraP)
             
             self.layout?.initialize()
             self.setMode(0)

@@ -324,10 +324,11 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
     var darkMode: Bool
     var solidColorMode: Bool
     var initialized: Bool
-    var extraBottomPadding:CGFloat = 0.0
+    var needsExtraBottomPadding:Bool = false
     
-    required init(model: Keyboard, superview: UIView, layoutConstants: LayoutConstants.Type, globalColors: GlobalColors.Type, darkMode: Bool, solidColorMode: Bool, extraBottomPadding:CGFloat) {
-        self.extraBottomPadding = extraBottomPadding
+    required init(model: Keyboard, superview: UIView, layoutConstants: LayoutConstants.Type, globalColors: GlobalColors.Type, darkMode: Bool, solidColorMode: Bool, needsExtraBottomPadding:Bool) {
+        self.needsExtraBottomPadding = needsExtraBottomPadding
+        
         self.layoutConstants = layoutConstants
         self.globalColors = globalColors
         
@@ -875,6 +876,19 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
             let rowGapTotal = CGFloat(numRows - 1 - 1) * rowGap + lastRowGap
             
             let keyGap: CGFloat = (isLandscape ? self.layoutConstants.keyGapLandscape(bounds.width, rowCharacterCount: mostKeysInRow) : self.layoutConstants.keyGapPortrait(bounds.width, rowCharacterCount: mostKeysInRow))
+            
+            var extraBottomPadding:CGFloat = 0.0
+            if self.needsExtraBottomPadding
+            {
+                if isLandscape
+                {
+                    extraBottomPadding = 18.0
+                }
+                else
+                {
+                    extraBottomPadding = 50.0
+                }
+            }
             
             let keyHeight: CGFloat = {
                 let totalGaps = bottomEdge + topEdge + rowGapTotal
