@@ -162,7 +162,7 @@ class GlobalColors: NSObject {
     class var darkModeRegularKey: UIColor { get { return UIColor.white.withAlphaComponent(CGFloat(0.3)) }}
     class var darkModeSolidColorRegularKey: UIColor { get { return UIColor(red: CGFloat(83)/CGFloat(255), green: CGFloat(83)/CGFloat(255), blue: CGFloat(83)/CGFloat(255), alpha: 1) }}
     class var lightModeSpecialKey: UIColor { get { return GlobalColors.lightModeSolidColorSpecialKey }}
-    class var lightModeSolidColorSpecialKey: UIColor { get { return UIColor(red: CGFloat(177)/CGFloat(255), green: CGFloat(177)/CGFloat(255), blue: CGFloat(177)/CGFloat(255), alpha: 1) }}
+    class var lightModeSolidColorSpecialKey: UIColor { get { return UIColor(red: CGFloat(168)/CGFloat(255), green: CGFloat(174)/CGFloat(255), blue: CGFloat(183)/CGFloat(255), alpha: 1) }}
     class var darkModeSpecialKey: UIColor { get { return UIColor.gray.withAlphaComponent(CGFloat(0.3)) }}
     class var darkModeSolidColorSpecialKey: UIColor { get { return UIColor(red: CGFloat(45)/CGFloat(255), green: CGFloat(45)/CGFloat(255), blue: CGFloat(45)/CGFloat(255), alpha: 1) }}
     class var darkModeShiftKeyDown: UIColor { get { return UIColor(red: CGFloat(214)/CGFloat(255), green: CGFloat(220)/CGFloat(255), blue: CGFloat(208)/CGFloat(255), alpha: 1) }}
@@ -176,6 +176,8 @@ class GlobalColors: NSObject {
     class var darkModeTextColor: UIColor { get { return UIColor.white }}
     class var lightModeBorderColor: UIColor { get { return UIColor(hue: (214/360.0), saturation: 0.04, brightness: 0.65, alpha: 1.0) }}
     class var darkModeBorderColor: UIColor { get { return UIColor.clear }}
+    class var returnBlueColor: UIColor { get { return UIColor.init(red: 0/255.0, green: 122/255.0, blue: 255/255.0, alpha: 1.0) }}
+    
     
     class func regularKey(_ darkMode: Bool, solidColorMode: Bool) -> UIColor {
         if darkMode {
@@ -265,11 +267,11 @@ class GlobalColors: NSObject {
         else {
             if solidColorMode {
                 //return self.lightModeSolidColorSpecialKey
-                return UIColor.init(red: 0/255.0, green: 122/255.0, blue: 255/255.0, alpha: 1.0)
+                return self.returnBlueColor
             }
             else {
                 //return self.lightModeSpecialKey
-                return UIColor.init(red: 0/255.0, green: 122/255.0, blue: 255/255.0, alpha: 1.0)
+                return self.returnBlueColor
             }
         }
     }
