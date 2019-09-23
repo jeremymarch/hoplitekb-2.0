@@ -39,7 +39,6 @@ class TestingViewController: UIViewController, UITextViewDelegate {
                 let n:Int32 = m as! Int32
                 if n >= 0 && n <= 2
                 {
-                    /*
                     if n == UnicodeMode.PreComposedNoPUA.rawValue
                     {
                         modeLabel?.text = "Mode: Precomposed"
@@ -52,7 +51,6 @@ class TestingViewController: UIViewController, UITextViewDelegate {
                     {
                         modeLabel?.text = "Mode: Combining Only"
                     }
-                    */
                 }
             }
  

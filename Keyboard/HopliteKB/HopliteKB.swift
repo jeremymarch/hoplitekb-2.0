@@ -14,6 +14,12 @@ import UIKit
  NSExtensionPrincipalClass = ${PRODUCT_MODULE_NAME}.HopliteKB
  */
 
+public enum UnicodeMode:Int32 {
+    case PreComposedNoPUA = 0
+    case PreComposedPUA = 1
+    case CombiningOnly = 2
+}
+
 class HopliteKB: KeyboardViewController {
     let appSuiteName = "group.com.philolog.hoplitekeyboard"
     let unicodeModeKey = "UnicodeAccents"
