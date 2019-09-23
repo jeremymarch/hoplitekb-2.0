@@ -32,7 +32,8 @@ extension KeyboardViewController {
         let proxy = self.textDocumentProxy
         
         if let layout = self.layout {
-            let appearanceIsDark = (proxy.keyboardAppearance == UIKeyboardAppearance.dark)
+            let appearanceIsDark = (proxy.keyboardAppearance == UIKeyboardAppearance.dark || self.uiIsDarkMode)
+            //print("ppp: \(String(describing: proxy.keyboardAppearance)) \(self.uiIsDarkMode)")
             if appearanceIsDark != layout.darkMode {
                 self.updateAppearances(appearanceIsDark)
             }

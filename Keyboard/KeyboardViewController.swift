@@ -21,6 +21,7 @@ let kKeyboardClicks = "kKeyboardClicks"
 let kSmallLowercase = "kSmallLowercase"
 
 class KeyboardViewController: UIInputViewController {
+    var uiIsDarkMode:Bool = false
     var needsInputSwitch:Bool = true
     var appExt = true
     var topRowButtonDepressNotAppExt = false
@@ -248,7 +249,7 @@ class KeyboardViewController: UIInputViewController {
         if view.bounds == CGRect.zero {
             return
         }
-        
+        getUIDarkMode()
         self.setupLayout()
         
         let orientationSavvyBounds = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.height(orientationIsPortrait: self.isPortrait(), withTopBanner: false))
@@ -522,6 +523,7 @@ class KeyboardViewController: UIInputViewController {
     // TODO: this is currently not working as intended; only called when selection changed -- iOS bug
     override func textDidChange(_ textInput: UITextInput?) {
         self.contextChanged()
+        pollTraits()
     }
     
     func contextChanged() {
@@ -853,6 +855,21 @@ class KeyboardViewController: UIInputViewController {
             }
         }
         return true
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        getUIDarkMode()
+    }
+    
+    func getUIDarkMode()
+    {
+        if #available(iOS 12.0, *) {
+            uiIsDarkMode = (traitCollection.userInterfaceStyle == .dark)
+        } else {
+            uiIsDarkMode = false
+        }
     }
     
     func shouldAutoCapitalize() -> Bool {
