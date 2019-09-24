@@ -35,6 +35,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //override Dark Mode
+        textView?.backgroundColor = .white
+        textView?.textColor = .black
         /*
          let defaults = UserDefaults(suiteName: "group.com.philolog.hoplitekeyboard")
          if defaults != nil

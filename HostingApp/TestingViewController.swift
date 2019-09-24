@@ -21,6 +21,9 @@ class TestingViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //override Dark Mode
+        textView?.backgroundColor = .white
+        textView?.textColor = .black
         
         kb = HopliteKB() //kb needs to be member variable, can't be local to just this function
         kb?.inputView?.translatesAutoresizingMaskIntoConstraints = false
@@ -58,26 +61,7 @@ class TestingViewController: UIViewController, UITextViewDelegate {
         modeLabel?.sizeToFit()
     }
     
-    func textViewDidChange(_ textView: UITextView) { //Handle the text changes here
-        /*
-        let COMBINING_GRAVE =            0x0300
-        let COMBINING_ACUTE =            0x0301
-        let COMBINING_CIRCUMFLEX =       0x0342//0x0302
-        let COMBINING_MACRON =           0x0304
-        let COMBINING_DIAERESIS =        0x0308
-        let COMBINING_SMOOTH_BREATHING = 0x0313
-        let COMBINING_ROUGH_BREATHING =  0x0314
-        let COMBINING_IOTA_SUBSCRIPT =   0x0345
-        let EM_DASH =                    0x2014
-        let LEFT_PARENTHESIS =           0x0028
-        let RIGHT_PARENTHESIS =          0x0029
-        let SPACE =                      0x0020
-        let EN_DASH =                    0x2013
-        let HYPHEN =                     0x2010
-        let COMMA =                      0x002C
-        
-        let combiningChars = [COMBINING_GRAVE,COMBINING_ACUTE,COMBINING_CIRCUMFLEX,COMBINING_MACRON,COMBINING_DIAERESIS,COMBINING_SMOOTH_BREATHING,COMBINING_ROUGH_BREATHING,COMBINING_IOTA_SUBSCRIPT]
-        */
+    func textViewDidChange(_ textView: UITextView) {
         
         let s = textView.text
         HexLabel?.text = "Unicode Code Points:\n" + textToCodePoints(text: s!, separator: " - ")
