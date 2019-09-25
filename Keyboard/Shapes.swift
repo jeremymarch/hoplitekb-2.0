@@ -32,6 +32,12 @@ class ShiftShape: Shape {
     }
 }
 
+class AcuteShape: Shape {
+    override func drawCall(_ color: UIColor) {
+        drawAcute(self.bounds, color: color)
+    }
+}
+
 class GlobeShape: Shape {
     override func drawCall(_ color: UIColor) {
         drawGlobe(self.bounds, color: color)
@@ -350,6 +356,39 @@ func drawGlobe(_ bounds: CGRect, color: UIColor) {
     color.setStroke()
     bezier6Path.lineWidth = 1 * lineWidthScalingFactor
     bezier6Path.stroke()
+    
+    endCenter()
+}
+
+func drawAcute(_ bounds: CGRect, color: UIColor) {
+    let withRect = false
+    let factors = getFactors(CGSize(width: 38, height: (withRect ? 34 + 4 : 32)), toRect: bounds)
+    let xScalingFactor = factors.xScalingFactor
+    let yScalingFactor = factors.yScalingFactor
+    _ = factors.lineWidthScalingFactor
+    print(bounds)
+    centerShape(CGSize(width: 38 * xScalingFactor, height: (withRect ? 34 + 4 : 32) * yScalingFactor), toRect: bounds)
+    
+    
+    //// Color Declarations
+    let color2 = color
+    
+    //// Bezier Drawing
+    let bezierPath = UIBezierPath()
+    //starting point
+    bezierPath.move(to: CGPoint(x: 26 * xScalingFactor, y: 4 * yScalingFactor))
+    //upper line down and to the left
+    bezierPath.addLine(to: CGPoint(x: 2 * xScalingFactor, y: 32 * yScalingFactor))
+    //bottom curve
+    bezierPath.addCurve(to: CGPoint(x: 4 * xScalingFactor, y: 33 * yScalingFactor), controlPoint1: CGPoint(x: 3 * xScalingFactor, y: 34 * yScalingFactor), controlPoint2: CGPoint(x: 4 * xScalingFactor, y: 34 * yScalingFactor))
+    //lower line going up
+    bezierPath.addLine(to: CGPoint(x: 33 * xScalingFactor, y: 7 * yScalingFactor))
+    //top curve around to the left
+    bezierPath.addCurve(to: CGPoint(x: 26 * xScalingFactor, y: 4 * yScalingFactor), controlPoint1: CGPoint(x: 31 * xScalingFactor, y: 3 * yScalingFactor), controlPoint2: CGPoint(x: 28 * xScalingFactor, y: 2 * yScalingFactor))
+
+    bezierPath.close()
+    color2.setFill()
+    bezierPath.fill()
     
     endCenter()
 }

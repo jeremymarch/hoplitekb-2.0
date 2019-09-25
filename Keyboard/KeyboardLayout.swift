@@ -506,6 +506,14 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
             
             // shapes
             switch model.type {
+            case Key.KeyType.diacritic:
+                if key.shape == nil {
+                    if model.lowercaseOutput == "1"
+                    {
+                    let acuteShape = self.getShape(AcuteShape.self)
+                    key.shape = acuteShape
+                    }
+                }
             case Key.KeyType.shift:
                 if key.shape == nil {
                     let shiftShape = self.getShape(ShiftShape.self)
