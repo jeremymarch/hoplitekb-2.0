@@ -513,6 +513,11 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                     let acuteShape = self.getShape(AcuteShape.self)
                     key.shape = acuteShape
                     }
+                    else if model.lowercaseOutput == "3"
+                    {
+                    let graveShape = self.getShape(GraveShape.self)
+                    key.shape = graveShape
+                    }
                 }
             case Key.KeyType.shift:
                 if key.shape == nil {

@@ -40,8 +40,8 @@ func greekKeyboard(needsInputModeSwitchKey:Bool) -> Keyboard {
     greekKeyboard.add(key: d3, row: 0, page: 0)
     //grave
     let d5 = Key(.diacritic)
-    d5.uppercaseKeyCap = "`"
-    d5.lowercaseKeyCap = "`"
+    d5.uppercaseKeyCap = ""
+    d5.lowercaseKeyCap = ""
     d5.uppercaseOutput = "3"
     d5.lowercaseOutput = "3"
     greekKeyboard.add(key: d5, row: 0, page: 0)

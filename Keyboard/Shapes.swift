@@ -38,6 +38,12 @@ class AcuteShape: Shape {
     }
 }
 
+class GraveShape: Shape {
+    override func drawCall(_ color: UIColor) {
+        drawGrave(self.bounds, color: color)
+    }
+}
+
 class GlobeShape: Shape {
     override func drawCall(_ color: UIColor) {
         drawGlobe(self.bounds, color: color)
@@ -375,36 +381,26 @@ func getPointOnLine(slope:CGFloat, point:CGPoint, distance:CGFloat) -> CGPoint
     return newPoint
 }
 
-func drawAcute(_ bounds: CGRect, color: UIColor) {
+func getAcuteGravePath(_ bounds: CGRect, startX:CGFloat) -> UIBezierPath {
     let factors = getFactors(CGSize(width: 38, height: 32), toRect: bounds)
     let xScalingFactor = factors.xScalingFactor
     let yScalingFactor = factors.yScalingFactor
     //_ = factors.lineWidthScalingFactor
-    print("b: \(bounds)")
+    //print("b: \(bounds)")
     centerShape(CGSize(width: 38 * xScalingFactor, height: 32 * yScalingFactor), toRect: bounds)
     
-    //let slope = 0.33
-    //let angle = 0.09
-    let bottomTruncation = 0.0
+    //let bottomTruncation = 0.0
     let height:CGFloat = 10.0
     let fullHeight:CGFloat = 20.0
-    let topPadding = 0.0
-    
+    //let topPadding = 0.0
     let slope2:CGFloat = -1.9
     let slope3:CGFloat = slope2 + 0.6
     
-    
-    
-    let startPoint = CGPoint(x: 20 * xScalingFactor, y: 4 * yScalingFactor)
+    let startPoint = CGPoint(x: startX * xScalingFactor, y: 4 * yScalingFactor)
     let p2 = getPointOnLine(slope:slope2, point:startPoint, distance:height * -1.0)
     let f2 = getPointOnLine(slope:slope2, point:startPoint, distance:fullHeight * -1.0)
     let f3 = getPointOnLine(slope:slope3, point:f2, distance:fullHeight - height)
     let p3 = getPointOnLine(slope:slope3, point:f3, distance:height)
-    //let p2 = CGPoint(x: 2 * xScalingFactor, y: 32 * yScalingFactor)
-    //let slope = getSlope(p1: startPoint, p2: p2)
-    //print("slope: \(slope)")
-    //// Color Declarations
-    let color2 = color
     
     //// Bezier Drawing
     let bezierPath = UIBezierPath()
@@ -412,18 +408,42 @@ func drawAcute(_ bounds: CGRect, color: UIColor) {
     bezierPath.move(to: startPoint)
     //upper line down and to the left
     bezierPath.addLine(to: p2)
-    //bezierPath.addLine(to: f3)
-    bezierPath.addCurve(to: f3, controlPoint1: getPointOnLine(slope:slope2, point:p2, distance:-4.0), controlPoint2: getPointOnLine(slope:slope3, point:f3, distance:-4.0))
+    //bezierPath.addLine(to: f3) //for testing: a line straight across to f3
     //bottom curve
-    //bezierPath.addCurve(to: CGPoint(x: 4 * xScalingFactor, y: 33 * yScalingFactor), controlPoint1: CGPoint(x: 3 * xScalingFactor, y: 34 * yScalingFactor), controlPoint2: CGPoint(x: 4 * xScalingFactor, y: 34 * yScalingFactor))
+    bezierPath.addCurve(to: f3, controlPoint1: getPointOnLine(slope:slope2, point:p2, distance:-4.0), controlPoint2: getPointOnLine(slope:slope3, point:f3, distance:-4.0))
+    
     //lower line going up
     bezierPath.addLine(to: p3)
     //top curve around to the left
     bezierPath.addCurve(to: startPoint, controlPoint1: getPointOnLine(slope:slope3, point:p3, distance:4.0), controlPoint2: getPointOnLine(slope:slope2, point:startPoint, distance:4.0))
 
     bezierPath.close()
+    
+    return bezierPath
+}
+
+func drawAcute(_ bounds: CGRect, color: UIColor) {
+    let bezierPath = getAcuteGravePath(bounds, startX: 20.0)
+    //// Color Declarations
+    let color2 = color
     color2.setFill()
     color2.setStroke()
+    bezierPath.fill()
+    //bezierPath.stroke()
+    endCenter()
+}
+
+func drawGrave(_ bounds: CGRect, color: UIColor) {
+    let bezierPath = getAcuteGravePath(bounds, startX: 36.0)
+    //// Color Declarations
+    let color2 = color
+    color2.setFill()
+    color2.setStroke()
+    
+    bezierPath.apply(CGAffineTransform(translationX: -bounds.origin.x, y: 0))
+    bezierPath.apply(CGAffineTransform(scaleX: -1.0, y: 1.0))
+    bezierPath.apply(CGAffineTransform(translationX: bounds.origin.x + bounds.width, y: 0))
+    
     bezierPath.fill()
     //bezierPath.stroke()
     endCenter()
