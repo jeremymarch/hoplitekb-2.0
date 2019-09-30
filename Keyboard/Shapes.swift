@@ -360,35 +360,66 @@ func drawGlobe(_ bounds: CGRect, color: UIColor) {
     endCenter()
 }
 
+func getSlope(p1:CGPoint, p2:CGPoint) -> CGFloat
+{
+    return (p2.y - p1.y) / (p2.x - p1.x)
+}
+
+func getPointOnLine(slope:CGFloat, point:CGPoint, distance:CGFloat) -> CGPoint
+{
+    var newPoint = CGPoint()
+    newPoint.x = distance * cos(atan(slope)) + point.x
+    newPoint.y = distance * sin(atan(slope)) + point.y
+    
+    print("x: \(newPoint.x), y: \(newPoint.y)")
+    return newPoint
+}
+
 func drawAcute(_ bounds: CGRect, color: UIColor) {
-    let withRect = false
-    let factors = getFactors(CGSize(width: 38, height: (withRect ? 34 + 4 : 32)), toRect: bounds)
+    let factors = getFactors(CGSize(width: 38, height: 32), toRect: bounds)
     let xScalingFactor = factors.xScalingFactor
     let yScalingFactor = factors.yScalingFactor
-    _ = factors.lineWidthScalingFactor
-    print(bounds)
-    centerShape(CGSize(width: 38 * xScalingFactor, height: (withRect ? 34 + 4 : 32) * yScalingFactor), toRect: bounds)
+    //_ = factors.lineWidthScalingFactor
+    print("b: \(bounds)")
+    centerShape(CGSize(width: 38 * xScalingFactor, height: 32 * yScalingFactor), toRect: bounds)
+    
+    //let slope = 0.33
+    //let angle = 0.09
+    let bottomTruncation = 0.0
+    let height:CGFloat = -15.0
+    let topPadding = 0.0
+    
+    let slope2:CGFloat = -1.9
+    let slope3:CGFloat = slope2 + 0.6
     
     
+    
+    let startPoint = CGPoint(x: 20 * xScalingFactor, y: 4 * yScalingFactor)
+    let p2 = getPointOnLine(slope:slope2, point:startPoint, distance:height)
+    let p3 = getPointOnLine(slope:slope3, point:p2, distance:height * -1.0)
+    //let p2 = CGPoint(x: 2 * xScalingFactor, y: 32 * yScalingFactor)
+    //let slope = getSlope(p1: startPoint, p2: p2)
+    //print("slope: \(slope)")
     //// Color Declarations
     let color2 = color
     
     //// Bezier Drawing
     let bezierPath = UIBezierPath()
     //starting point
-    bezierPath.move(to: CGPoint(x: 26 * xScalingFactor, y: 4 * yScalingFactor))
+    bezierPath.move(to: startPoint)
     //upper line down and to the left
-    bezierPath.addLine(to: CGPoint(x: 2 * xScalingFactor, y: 32 * yScalingFactor))
+    bezierPath.addLine(to: p2)
     //bottom curve
-    bezierPath.addCurve(to: CGPoint(x: 4 * xScalingFactor, y: 33 * yScalingFactor), controlPoint1: CGPoint(x: 3 * xScalingFactor, y: 34 * yScalingFactor), controlPoint2: CGPoint(x: 4 * xScalingFactor, y: 34 * yScalingFactor))
+    //bezierPath.addCurve(to: CGPoint(x: 4 * xScalingFactor, y: 33 * yScalingFactor), controlPoint1: CGPoint(x: 3 * xScalingFactor, y: 34 * yScalingFactor), controlPoint2: CGPoint(x: 4 * xScalingFactor, y: 34 * yScalingFactor))
     //lower line going up
-    bezierPath.addLine(to: CGPoint(x: 33 * xScalingFactor, y: 7 * yScalingFactor))
+    bezierPath.addLine(to: p3)
     //top curve around to the left
-    bezierPath.addCurve(to: CGPoint(x: 26 * xScalingFactor, y: 4 * yScalingFactor), controlPoint1: CGPoint(x: 31 * xScalingFactor, y: 3 * yScalingFactor), controlPoint2: CGPoint(x: 28 * xScalingFactor, y: 2 * yScalingFactor))
+    bezierPath.addCurve(to: startPoint, controlPoint1: getPointOnLine(slope:slope3, point:p3, distance:4.0), controlPoint2: getPointOnLine(slope:slope2, point:startPoint, distance:4.0))
 
     bezierPath.close()
     color2.setFill()
+    color2.setStroke()
     bezierPath.fill()
-    
+    //bezierPath.stroke()
     endCenter()
 }
