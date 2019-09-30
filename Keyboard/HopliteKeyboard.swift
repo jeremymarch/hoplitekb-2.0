@@ -19,15 +19,15 @@ func greekKeyboard(needsInputModeSwitchKey:Bool) -> Keyboard {
 
     //rough
     let d1 = Key(.diacritic)
-    d1.uppercaseKeyCap = "῾"
-    d1.lowercaseKeyCap = "῾"
+    d1.uppercaseKeyCap = "" //῾
+    d1.lowercaseKeyCap = ""
     d1.uppercaseOutput = "5"
     d1.lowercaseOutput = "5"
     greekKeyboard.add(key: d1, row: 0, page: 0)
     //smooth
     let d2 = Key(.diacritic)
-    d2.uppercaseKeyCap = "᾿"
-    d2.lowercaseKeyCap = "᾿"
+    d2.uppercaseKeyCap = "" //᾿
+    d2.lowercaseKeyCap = ""
     d2.uppercaseOutput = "6"
     d2.lowercaseOutput = "6"
     greekKeyboard.add(key: d2, row: 0, page: 0)
