@@ -386,7 +386,8 @@ func drawAcute(_ bounds: CGRect, color: UIColor) {
     //let slope = 0.33
     //let angle = 0.09
     let bottomTruncation = 0.0
-    let height:CGFloat = -15.0
+    let height:CGFloat = 10.0
+    let fullHeight:CGFloat = 20.0
     let topPadding = 0.0
     
     let slope2:CGFloat = -1.9
@@ -395,8 +396,10 @@ func drawAcute(_ bounds: CGRect, color: UIColor) {
     
     
     let startPoint = CGPoint(x: 20 * xScalingFactor, y: 4 * yScalingFactor)
-    let p2 = getPointOnLine(slope:slope2, point:startPoint, distance:height)
-    let p3 = getPointOnLine(slope:slope3, point:p2, distance:height * -1.0)
+    let p2 = getPointOnLine(slope:slope2, point:startPoint, distance:height * -1.0)
+    let f2 = getPointOnLine(slope:slope2, point:startPoint, distance:fullHeight * -1.0)
+    let f3 = getPointOnLine(slope:slope3, point:f2, distance:fullHeight - height)
+    let p3 = getPointOnLine(slope:slope3, point:f3, distance:height)
     //let p2 = CGPoint(x: 2 * xScalingFactor, y: 32 * yScalingFactor)
     //let slope = getSlope(p1: startPoint, p2: p2)
     //print("slope: \(slope)")
@@ -409,6 +412,8 @@ func drawAcute(_ bounds: CGRect, color: UIColor) {
     bezierPath.move(to: startPoint)
     //upper line down and to the left
     bezierPath.addLine(to: p2)
+    //bezierPath.addLine(to: f3)
+    bezierPath.addCurve(to: f3, controlPoint1: getPointOnLine(slope:slope2, point:p2, distance:-4.0), controlPoint2: getPointOnLine(slope:slope3, point:f3, distance:-4.0))
     //bottom curve
     //bezierPath.addCurve(to: CGPoint(x: 4 * xScalingFactor, y: 33 * yScalingFactor), controlPoint1: CGPoint(x: 3 * xScalingFactor, y: 34 * yScalingFactor), controlPoint2: CGPoint(x: 4 * xScalingFactor, y: 34 * yScalingFactor))
     //lower line going up
