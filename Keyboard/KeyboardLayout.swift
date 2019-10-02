@@ -518,7 +518,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                         //let acuteShape = self.getShape(AcuteShape.self)
                         //key.shape = acuteShape
                         
-                        if let f = UIFont(name: "Georgia", size: 36.0)
+                        if let f = UIFont(name: "Vusillus", size: 40.0)
                         {
                             key.label.font = f
                             key.label.insets = UIEdgeInsets(top: 14, left: 0, bottom: 0, right: 0)
@@ -530,7 +530,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                         //let graveShape = self.getShape(GraveShape.self)
                         //key.shape = graveShape
                         
-                        if let f = UIFont(name: "Georgia", size: 36.0)
+                        if let f = UIFont(name: "Vusillus", size: 40.0)
                         {
                             key.label.font = f
                             key.label.insets = UIEdgeInsets(top: 14, left: 0, bottom: 0, right: 0)
@@ -541,7 +541,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                     {
                         //let roughShape = self.getShape(RoughShape.self)
                         //key.shape = roughShape
-                        if let f = UIFont(name: "IFAO-Grec-Unicode", size: 32.0)
+                        if let f = UIFont(name: "IFAO-Grec-Unicode", size: 38.0)
                         {
                             key.label.font = f
                             key.label.insets = UIEdgeInsets(top: 12, left: 0, bottom: 0, right: 0)
@@ -551,7 +551,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                     {
                         //let smoothShape = self.getShape(SmoothShape.self)
                         //key.shape = smoothShape
-                        if let f = UIFont(name: "IFAO-Grec-Unicode", size: 32.0)
+                        if let f = UIFont(name: "IFAO-Grec-Unicode", size: 38.0)
                         {
                             key.label.font = f
                             key.label.insets = UIEdgeInsets(top: 12, left: 0, bottom: 0, right: 0)
@@ -559,7 +559,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                     }
                     else if model.lowercaseOutput == "2" //circumflex
                     {
-                        if let f = UIFont(name: "IFAO-Grec-Unicode", size: 32.0)
+                        if let f = UIFont(name: "IFAO-Grec-Unicode", size: 38.0)
                         {
                             key.label.font = f
                             //flip it
@@ -578,23 +578,23 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                     }
                     else if model.lowercaseOutput == "9" //diaeresis
                     {
-                        key.label.font = key.label.font.withSize(32)
+                        key.label.font = key.label.font.withSize(38)
                         key.label.insets = UIEdgeInsets(top: 0, left: 0, bottom: -28, right: 0)
                     }
                     else if model.lowercaseOutput == "4" //macron
                     {
-                        key.label.font = key.label.font.withSize(32)
+                        key.label.font = key.label.font.withSize(38)
                         key.label.insets = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
                     }
                     else if model.lowercaseOutput == "10" //breve
                     {
-                        key.label.font = key.label.font.withSize(32)
+                        key.label.font = key.label.font.withSize(38)
                         key.label.insets = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
                     }
                     else if model.lowercaseOutput == "7" //iota subscript
                     {
-                        key.label.font = key.label.font.withSize(32)
-                        key.label.insets = UIEdgeInsets(top: 0, left: 0, bottom: 22, right: 0)
+                        key.label.font = key.label.font.withSize(38)
+                        key.label.insets = UIEdgeInsets(top: 0, left: 0, bottom: 28, right: 0)
                     }
                 }
             case Key.KeyType.shift:

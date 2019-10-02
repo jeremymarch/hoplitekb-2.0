@@ -40,6 +40,8 @@
 		3FC5F2E12326CB0400A07747 /* newathu5_5.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3FC5F2E02326CB0400A07747 /* newathu5_5.ttf */; };
 		3FD24053232A42B200E922AE /* kludge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD24052232A42B200E922AE /* kludge.swift */; };
 		3FD24054232A42B200E922AE /* kludge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD24052232A42B200E922AE /* kludge.swift */; };
+		3FD3E9EF2345401000C27D76 /* vu3r.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3FD3E9EE2345400F00C27D76 /* vu3r.ttf */; };
+		3FD3E9F02345404300C27D76 /* vu3r.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3FD3E9EE2345400F00C27D76 /* vu3r.ttf */; };
 		3FE808EF231F894300C1A90A /* HopliteKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE808EE231F894300C1A90A /* HopliteKeyboard.swift */; };
 		4E00A6E5197183EE009414F2 /* KeyboardKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E807DC81946209600D875D1 /* KeyboardKey.swift */; };
 		4E3B5A941A0654A8003366F6 /* KeyboardInputTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3B5A931A0654A8003366F6 /* KeyboardInputTraits.swift */; };
@@ -141,6 +143,7 @@
 		3FC5F2DF2326BA3700A07747 /* Keyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Keyboard.entitlements; sourceTree = "<group>"; };
 		3FC5F2E02326CB0400A07747 /* newathu5_5.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = newathu5_5.ttf; sourceTree = "<group>"; };
 		3FD24052232A42B200E922AE /* kludge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kludge.swift; sourceTree = "<group>"; };
+		3FD3E9EE2345400F00C27D76 /* vu3r.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = vu3r.ttf; sourceTree = "<group>"; };
 		3FE808EE231F894300C1A90A /* HopliteKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HopliteKeyboard.swift; sourceTree = "<group>"; };
 		4E3B5A931A0654A8003366F6 /* KeyboardInputTraits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardInputTraits.swift; sourceTree = "<group>"; };
 		4E52A6D11A06A61F006A08CE /* ImageKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageKey.swift; sourceTree = "<group>"; };
@@ -206,6 +209,7 @@
 		3FC5F29A23220C3500A07747 /* HopliteKB */ = {
 			isa = PBXGroup;
 			children = (
+				3FD3E9EE2345400F00C27D76 /* vu3r.ttf */,
 				3F0E0A282343302B004042EB /* IFAOGrec.ttf */,
 				3FC5F29B23220C5400A07747 /* HopliteKB.swift */,
 			);
@@ -522,6 +526,7 @@
 			files = (
 				4EF16F9619D255030076AFCB /* Images.xcassets in Resources */,
 				3F0E0A2A2343343E004042EB /* IFAOGrec.ttf in Resources */,
+				3FD3E9F02345404300C27D76 /* vu3r.ttf in Resources */,
 				4EF16F9F19D2552E0076AFCB /* Main.storyboard in Resources */,
 				3FC5F2BD2324131D00A07747 /* DefaultSettings.xib in Resources */,
 				3FC5F2E12326CB0400A07747 /* newathu5_5.ttf in Resources */,
@@ -532,6 +537,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FD3E9EF2345401000C27D76 /* vu3r.ttf in Resources */,
 				4E52A6DA1A06C198006A08CE /* DefaultSettings.xib in Resources */,
 				4E52A6D61A06BADA006A08CE /* Media.xcassets in Resources */,
 				3F0E0A292343302B004042EB /* IFAOGrec.ttf in Resources */,
