@@ -483,6 +483,11 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
     
     func updateKeyCap(_ key: KeyboardKey, model: Key, fullReset: Bool, uppercase: Bool, characterUppercase: Bool, shiftState: ShiftState) {
         if fullReset {
+            //reset
+            key.label.insets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) //clear
+            key.label.transform = .identity //clear
+            key.label.font = .systemFont(ofSize: 22)
+            
             // font size
             switch model.type {
             case
@@ -508,25 +513,88 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
             switch model.type {
             case Key.KeyType.diacritic:
                 if key.shape == nil {
-                    if model.lowercaseOutput == "1"
+                    if model.lowercaseOutput == "1" //acute
                     {
-                        let acuteShape = self.getShape(AcuteShape.self)
-                        key.shape = acuteShape
+                        //let acuteShape = self.getShape(AcuteShape.self)
+                        //key.shape = acuteShape
+                        
+                        if let f = UIFont(name: "Georgia", size: 36.0)
+                        {
+                            key.label.font = f
+                            key.label.insets = UIEdgeInsets(top: 14, left: 0, bottom: 0, right: 0)
+                        }
+                        //key.label.font.withSize(32)
                     }
-                    else if model.lowercaseOutput == "3"
+                    else if model.lowercaseOutput == "3" //grave
                     {
-                        let graveShape = self.getShape(GraveShape.self)
-                        key.shape = graveShape
+                        //let graveShape = self.getShape(GraveShape.self)
+                        //key.shape = graveShape
+                        
+                        if let f = UIFont(name: "Georgia", size: 36.0)
+                        {
+                            key.label.font = f
+                            key.label.insets = UIEdgeInsets(top: 14, left: 0, bottom: 0, right: 0)
+                        }
+                        //key.label.font.withSize(32)
                     }
-                    else if model.lowercaseOutput == "5"
+                    else if model.lowercaseOutput == "5" //rough
                     {
-                        let roughShape = self.getShape(RoughShape.self)
-                        key.shape = roughShape
+                        //let roughShape = self.getShape(RoughShape.self)
+                        //key.shape = roughShape
+                        if let f = UIFont(name: "IFAO-Grec-Unicode", size: 32.0)
+                        {
+                            key.label.font = f
+                            key.label.insets = UIEdgeInsets(top: 12, left: 0, bottom: 0, right: 0)
+                        }
                     }
-                    else if model.lowercaseOutput == "6"
+                    else if model.lowercaseOutput == "6" //smooth
                     {
-                        let smoothShape = self.getShape(SmoothShape.self)
-                        key.shape = smoothShape
+                        //let smoothShape = self.getShape(SmoothShape.self)
+                        //key.shape = smoothShape
+                        if let f = UIFont(name: "IFAO-Grec-Unicode", size: 32.0)
+                        {
+                            key.label.font = f
+                            key.label.insets = UIEdgeInsets(top: 12, left: 0, bottom: 0, right: 0)
+                        }
+                    }
+                    else if model.lowercaseOutput == "2" //circumflex
+                    {
+                        if let f = UIFont(name: "IFAO-Grec-Unicode", size: 32.0)
+                        {
+                            key.label.font = f
+                            //flip it
+                            key.label.transform = CGAffineTransform(scaleX: 1, y: -1);
+                            key.label.insets = UIEdgeInsets(top: 0, left: 0, bottom: -28, right: 0)
+                            
+                            /*
+                             for family: String in UIFont.familyNames{
+                               print("\(family)")
+                                 for names: String in UIFont.fontNames(forFamilyName: family){
+                                   print("== \(names)")
+                               }
+                             }
+                             */
+                        }
+                    }
+                    else if model.lowercaseOutput == "9" //diaeresis
+                    {
+                        key.label.font = key.label.font.withSize(32)
+                        key.label.insets = UIEdgeInsets(top: 0, left: 0, bottom: -28, right: 0)
+                    }
+                    else if model.lowercaseOutput == "4" //macron
+                    {
+                        key.label.font = key.label.font.withSize(32)
+                        key.label.insets = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
+                    }
+                    else if model.lowercaseOutput == "10" //breve
+                    {
+                        key.label.font = key.label.font.withSize(32)
+                        key.label.insets = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
+                    }
+                    else if model.lowercaseOutput == "7" //iota subscript
+                    {
+                        key.label.font = key.label.font.withSize(32)
+                        key.label.insets = UIEdgeInsets(top: 0, left: 0, bottom: 22, right: 0)
                     }
                 }
             case Key.KeyType.shift:

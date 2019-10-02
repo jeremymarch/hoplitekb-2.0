@@ -24,6 +24,14 @@ enum VibrancyType {
     case darkRegular
 }
 
+class KeyLabel: UILabel {
+    //allow adjustment of vertical alignment of key label
+    var insets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    override func drawText(in rect: CGRect) {
+        super.drawText(in: rect.inset(by: insets))
+    }
+}
+
 class KeyboardKey: UIControl {
     
     weak var delegate: KeyboardKeyProtocol?
@@ -90,7 +98,7 @@ class KeyboardKey: UIControl {
         }
     }
     
-    var label: UILabel
+    var label: KeyLabel
     var popupLabel: UILabel?
     var shape: Shape? {
         didSet {
@@ -123,7 +131,7 @@ class KeyboardKey: UIControl {
         self.shadowLayer = CAShapeLayer()
         self.shadowView = UIView()
         
-        self.label = UILabel()
+        self.label = KeyLabel()//UILabel()
         self.text = ""
         
         self.color = UIColor.white

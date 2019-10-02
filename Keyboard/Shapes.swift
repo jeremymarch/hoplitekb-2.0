@@ -481,26 +481,19 @@ func getBreathingPath(_ bounds: CGRect, startX:CGFloat) -> UIBezierPath {
     let slope2:CGFloat = -1.9
     let slope3:CGFloat = slope2 + 0.6
     
-    let startPoint = CGPoint(x: startX * xScalingFactor, y: 4 * yScalingFactor)
-    let p2 = getPointOnLine(slope:slope2, point:startPoint, distance:height * -1.0)
-    let f2 = getPointOnLine(slope:slope2, point:startPoint, distance:fullHeight * -1.0)
-    let f3 = getPointOnLine(slope:slope3, point:f2, distance:fullHeight - height)
-    let p3 = getPointOnLine(slope:slope3, point:f3, distance:height)
-    
-    //// Bezier Drawing
+    // Bezier Drawing
     let bezierPath = UIBezierPath()
     //starting point
-    bezierPath.move(to: startPoint)
-    //upper line down and to the left
-    bezierPath.addLine(to: p2)
-    //bezierPath.addLine(to: f3) //for testing: a line straight across to f3
+    var point = CGPoint(x: startX * xScalingFactor, y: 4 * yScalingFactor)
+    bezierPath.move(to: point)
+
     //bottom curve
-    bezierPath.addCurve(to: f3, controlPoint1: getPointOnLine(slope:slope2, point:p2, distance:-4.0), controlPoint2: getPointOnLine(slope:slope3, point:f3, distance:-4.0))
+    point.y += 20
+    //bezierPath.addCurve(to: point, controlPoint1: getPointOnLine(slope:slope2, point:p2, distance:-4.0), controlPoint2: getPointOnLine(slope:slope3, point:f3, distance:-4.0))
     
-    //lower line going up
-    bezierPath.addLine(to: p3)
+
     //top curve around to the left
-    bezierPath.addCurve(to: startPoint, controlPoint1: getPointOnLine(slope:slope3, point:p3, distance:4.0), controlPoint2: getPointOnLine(slope:slope2, point:startPoint, distance:4.0))
+    //bezierPath.addCurve(to: point, controlPoint1: getPointOnLine(slope:slope3, point:p3, distance:4.0), controlPoint2: getPointOnLine(slope:slope2, point:startPoint, distance:4.0))
 
     bezierPath.close()
     
