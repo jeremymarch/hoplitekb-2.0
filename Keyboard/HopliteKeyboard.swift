@@ -48,7 +48,8 @@ func greekKeyboard(needsInputModeSwitchKey:Bool) -> Keyboard {
     //circumflex, diaeresis
     let d4 = Key(.diacritic)
     d4.uppercaseKeyCap = "¨"
-    d4.lowercaseKeyCap = "˘"//"˜" //a breve which we flip
+    d4.lowercaseKeyCap = "~"
+    //d4.lowercaseKeyCap = "˘"//"˜" //a breve which we flip
     d4.uppercaseOutput = "9"
     d4.lowercaseOutput = "2"
     greekKeyboard.add(key: d4, row: 0, page: 0)
