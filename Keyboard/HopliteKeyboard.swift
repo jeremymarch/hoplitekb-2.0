@@ -180,15 +180,15 @@ func greekKeyboard(needsInputModeSwitchKey:Bool) -> Keyboard {
     
     greekKeyboard.add(key: Key(backspace), row: 3, page: 1)
     
-    let keyModeChangeLetters = Key(.modeChange)
-    keyModeChangeLetters.uppercaseKeyCap = "αβγ"
-    keyModeChangeLetters.toMode = 0
-    greekKeyboard.add(key: keyModeChangeLetters, row: 4, page: 1)
-    
     let keyModeChangeSpecialCharacters = Key(.modeChange)
     keyModeChangeSpecialCharacters.uppercaseKeyCap = "#+="
     keyModeChangeSpecialCharacters.toMode = 2
     greekKeyboard.add(key: keyModeChangeSpecialCharacters, row: 4, page: 1)
+    
+    let keyModeChangeLetters = Key(.modeChange)
+    keyModeChangeLetters.uppercaseKeyCap = "αβγ"
+    keyModeChangeLetters.toMode = 0
+    greekKeyboard.add(key: keyModeChangeLetters, row: 4, page: 1)
     
     if needsInputModeSwitchKey
     {
@@ -234,9 +234,8 @@ func greekKeyboard(needsInputModeSwitchKey:Bool) -> Keyboard {
     
     greekKeyboard.add(key: Key(backspace), row: 3, page: 2)
     
-    greekKeyboard.add(key: Key(keyModeChangeLetters), row: 4, page: 2)
-    
     greekKeyboard.add(key: Key(keyModeChangeNumbers), row: 4, page: 2)
+    greekKeyboard.add(key: Key(keyModeChangeLetters), row: 4, page: 2)
     
     if needsInputModeSwitchKey
     {
