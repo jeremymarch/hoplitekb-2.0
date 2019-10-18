@@ -84,43 +84,43 @@ class HopliteKB: KeyboardViewController {
             let whichAccent = (self.shiftState == .disabled) ? key.lowercaseOutput : key.uppercaseOutput
 
             var accent = -1
-            if whichAccent == "1" //acute
+            if whichAccent == "acute" //1 acute
             {
                 accent = 1
             }
-            else if whichAccent == "2" //circumflex
+            else if whichAccent == "circum" //2 circumflex
             {
                 accent = 2
             }
-            else if whichAccent == "3" //grave
+            else if whichAccent == "grave" //3 grave
             {
                 accent = 3
             }
-            else if whichAccent == "4" //macron
+            else if whichAccent == "macron" //macron
             {
                 accent = 4
             }
-            else if whichAccent == "5" //rough breathing
+            else if whichAccent == "rough" //rough breathing
             {
                 accent = 5
             }
-            else if whichAccent == "6" //smooth breathing
+            else if whichAccent == "smooth" //smooth breathing
             {
                 accent = 6
             }
-            else if whichAccent == "7" //iota subscript
+            else if whichAccent == "iotasub" //iota subscript
             {
                 accent = 7
             }
-            else if whichAccent == "8" //surrounding parentheses
+            else if whichAccent == "parens" //surrounding parentheses
             {
                 accent = 8
             }
-            else if whichAccent == "9" //diaeresis
+            else if whichAccent == "diaeresis" //diaeresis
             {
                 accent = 9
             }
-            else if whichAccent == "10" //breve
+            else if whichAccent == "breve" //breve
             {
                 accent = 10
             }

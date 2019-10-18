@@ -21,51 +21,51 @@ func greekKeyboard(needsInputModeSwitchKey:Bool) -> Keyboard {
     let d1 = Key(.diacritic)
     d1.uppercaseKeyCap = "῾" //῾
     d1.lowercaseKeyCap = "῾"
-    d1.uppercaseOutput = "5"
-    d1.lowercaseOutput = "5"
+    d1.uppercaseOutput = "rough"
+    d1.lowercaseOutput = "rough"
     greekKeyboard.add(key: d1, row: 0, page: 0)
     //smooth
     let d2 = Key(.diacritic)
     d2.uppercaseKeyCap = "᾿" //᾿
     d2.lowercaseKeyCap = "᾿"
-    d2.uppercaseOutput = "6"
-    d2.lowercaseOutput = "6"
+    d2.uppercaseOutput = "smooth"
+    d2.lowercaseOutput = "smooth"
     greekKeyboard.add(key: d2, row: 0, page: 0)
     //acute
     let d3 = Key(.diacritic)
     d3.uppercaseKeyCap = "´"
     d3.lowercaseKeyCap = "´"
-    d3.uppercaseOutput = "1"
-    d3.lowercaseOutput = "1"
+    d3.uppercaseOutput = "acute"
+    d3.lowercaseOutput = "acute"
     greekKeyboard.add(key: d3, row: 0, page: 0)
     //grave
     let d5 = Key(.diacritic)
     d5.uppercaseKeyCap = "`"
     d5.lowercaseKeyCap = "`"
-    d5.uppercaseOutput = "3"
-    d5.lowercaseOutput = "3"
+    d5.uppercaseOutput = "grave"
+    d5.lowercaseOutput = "grave"
     greekKeyboard.add(key: d5, row: 0, page: 0)
     //circumflex, diaeresis
     let d4 = Key(.diacritic)
     d4.uppercaseKeyCap = "¨"
     d4.lowercaseKeyCap = "~"
     //d4.lowercaseKeyCap = "˘"//"˜" //a breve which we flip
-    d4.uppercaseOutput = "9"
-    d4.lowercaseOutput = "2"
+    d4.uppercaseOutput = "diaeresis" //9
+    d4.lowercaseOutput = "circum"
     greekKeyboard.add(key: d4, row: 0, page: 0)
     //macron, breve
     let d6 = Key(.diacritic)
     d6.uppercaseKeyCap = "˘"
     d6.lowercaseKeyCap = "¯"
-    d6.uppercaseOutput = "10"
-    d6.lowercaseOutput = "4"
+    d6.uppercaseOutput = "breve"
+    d6.lowercaseOutput = "macron"
     greekKeyboard.add(key: d6, row: 0, page: 0)
     //iota subscript
     let d7 = Key(.diacritic)
     d7.uppercaseKeyCap = "ͺ"
     d7.lowercaseKeyCap = "ͺ"
-    d7.uppercaseOutput = "7"
-    d7.lowercaseOutput = "7"
+    d7.uppercaseOutput = "iotasub"
+    d7.lowercaseOutput = "iotasub"
     greekKeyboard.add(key: d7, row: 0, page: 0)
     //comma, apostrophe
     let d8 = Key(.punctuation)
