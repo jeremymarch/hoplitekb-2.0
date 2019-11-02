@@ -559,6 +559,22 @@ class KeyboardViewController: UIInputViewController {
         
         self.bannerView?.darkMode = appearanceIsDark
         self.settingsView?.darkMode = appearanceIsDark
+        
+    //https://github.com/archagon/tasty-imitation-keyboard/pull/130/commits/e15486c8f00c10af849dd29739f4b4ce1a2420aa
+        //Fix for iOS12 update bugs where touches on the forwarding view are not being handled properly
+        //Fix just updates the background color of the forwarding view to blend in with the keyboard background view,
+        //so that it can respond to touches
+        /*
+        if #available(iOSApplicationExtension 10.0, *){
+            if(!appearanceIsDark){
+                self.forwardingView?.backgroundColor = UIColor(red: (203/255), green: (206/255), blue: (226/255), alpha: 0.1)
+            }else{
+                self.forwardingView?.backgroundColor = UIColor(red: (42/255), green: (43/255), blue: (53/255), alpha: 0.1)
+            }
+
+        } else {
+            // Fallback on earlier versions
+        }*/
     }
     
     @objc func highlightKey(_ sender: KeyboardKey) {
