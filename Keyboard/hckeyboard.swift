@@ -5,7 +5,6 @@
 //  Created by Jeremy on 9/4/19.
 //  Copyright © 2019 Apple. All rights reserved.
 //
-
 //
 //  DefaultKeyboard.swift
 //  TransliteratingKeyboard
@@ -17,6 +16,13 @@
 func hcKeyboard(needsInputModeSwitchKey:Bool) -> Keyboard {
     let greekKeyboard = Keyboard()
 
+    let mf = Key(.diacritic)
+    mf.uppercaseKeyCap = "MF" //῾
+    mf.lowercaseKeyCap = "MF"
+    mf.uppercaseOutput = "MF"
+    mf.lowercaseOutput = "MF"
+    greekKeyboard.add(key: mf, row: 0, page: 0)
+    
     //rough
     let d1 = Key(.diacritic)
     d1.uppercaseKeyCap = "῾" //῾
@@ -122,6 +128,13 @@ func hcKeyboard(needsInputModeSwitchKey:Bool) -> Keyboard {
         keyModel.setLetter(key)
         greekKeyboard.add(key: keyModel, row: 3, page: 0)
     }
+    
+    let parens = Key(.diacritic)
+    parens.uppercaseKeyCap = "( )"
+    parens.lowercaseKeyCap = "( )"
+    parens.uppercaseOutput = "parens"
+    parens.lowercaseOutput = "parens"
+    greekKeyboard.add(key: parens, row: 3, page: 0)
     
     let backspace = Key(.backspace)
     greekKeyboard.add(key: backspace, row: 3, page: 0)
