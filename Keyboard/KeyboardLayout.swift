@@ -1036,7 +1036,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                 
                 // basic character row: only typable characters
                 if self.characterRowHeuristic(row) {
-                    frames = self.layoutCharacterRow(row, keyWidth: letterKeyWidth, gapWidth: keyGap, frame: frame, isLandscape: isLandscape)
+                    frames = self.layoutCharacterRow(row, keyWidth: letterKeyWidth, gapWidth: keyGap, frame: frame, isLandscape: isLandscape, mostKeysInRow: mostKeysInRow)
                 }
                     
                     // character row with side buttons: shift, backspace, etc.
@@ -1064,7 +1064,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
         return (row.count >= 3 && !row[0].isCharacter && row[1].isCharacter)
     }
     
-    func layoutCharacterRow(_ row: [Key], keyWidth: CGFloat, gapWidth: CGFloat, frame: CGRect, isLandscape: Bool) -> [CGRect] {
+    func layoutCharacterRow(_ row: [Key], keyWidth: CGFloat, gapWidth: CGFloat, frame: CGRect, isLandscape: Bool, mostKeysInRow: Int) -> [CGRect] {
         var frames = [CGRect]()
         
         let keySpace = CGFloat(row.count) * keyWidth + CGFloat(row.count - 1) * gapWidth
@@ -1081,10 +1081,10 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
         var currentOrigin = frame.origin.x + sideSpace
         
         var keyW = keyWidth
-        for (_, key) in row.enumerated() {
+        for (i, key) in row.enumerated() {
             let roundedOrigin = rounded(currentOrigin)
             
-            if key.type == .backspace && !isLandscape
+            if key.type == .backspace && !isLandscape && (i+1) != mostKeysInRow
             {
                 keyW = frame.height //make backspace key square
             }
