@@ -38,6 +38,25 @@ class HopliteChallengeKB: KeyboardViewController {
         
     }
     
+    override func loadView() {
+        super.loadView()
+        
+        //self.inputView = KludgeView()
+        //self.keyboard = defaultKeyboard()
+        self.keyboard = hcKeyboard(needsInputModeSwitchKey:self.needsInputSwitch)
+        //self.preferredContentSize = CGSize(width: self.view.frame.size.width, height: 356)
+        self.forwardingView = ForwardingView(frame: CGRect.zero)
+        self.view.addSubview(self.forwardingView)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(KeyboardViewController.defaultsChanged(_:)), name: UserDefaults.didChangeNotification, object: nil)
+        
+        if let aBanner = self.createBanner() {
+            aBanner.isHidden = true
+            self.view.insertSubview(aBanner, belowSubview: self.forwardingView)
+            self.bannerView = aBanner
+        }
+    }
+    
     convenience init(isAppExtension:Bool) {
         self.init(nibName: nil, bundle: nil)
         self.appExt = isAppExtension
