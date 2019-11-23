@@ -31,6 +31,8 @@ class KeyboardViewController: UIInputViewController {
     var forwardingView: ForwardingView!
     var layout: KeyboardLayout?
     var heightConstraint: NSLayoutConstraint?
+    var portraitHeightOverride:CGFloat = 0.0
+    var landscapeHeightOverride:CGFloat = 0.0
     
     var bannerView: ExtraView?
     var settingsView: ExtraView?
@@ -371,6 +373,16 @@ class KeyboardViewController: UIInputViewController {
         else {
             canonicalPortraitHeight = isPortrait && actualScreenWidth >= 400 ? 266 : 256
             canonicalLandscapeHeight = 162
+            
+            if portraitHeightOverride > 0
+            {
+                canonicalPortraitHeight = portraitHeightOverride
+            }
+            if landscapeHeightOverride > 0
+            {
+                canonicalLandscapeHeight = landscapeHeightOverride
+            }
+            
             if !appExt && !needsInputSwitch
             {
                 canonicalPortraitHeight += 50

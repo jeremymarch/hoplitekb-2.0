@@ -70,6 +70,7 @@ class Key: Hashable {
         case other
         case diacritic
         case punctuation
+        case multipleforms
     }
     
     var type: KeyType

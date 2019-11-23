@@ -16,8 +16,8 @@
 func hcKeyboard(needsInputModeSwitchKey:Bool) -> Keyboard {
     let greekKeyboard = Keyboard()
 
-    let mf = Key(.diacritic)
-    mf.uppercaseKeyCap = "MF" //῾
+    let mf = Key(.multipleforms)
+    mf.uppercaseKeyCap = "MF"
     mf.lowercaseKeyCap = "MF"
     mf.uppercaseOutput = "MF"
     mf.lowercaseOutput = "MF"
@@ -77,7 +77,7 @@ func hcKeyboard(needsInputModeSwitchKey:Bool) -> Keyboard {
     greekKeyboard.add(key: d7, row: 0, page: 0)
     
     let returnKey = Key(.return)
-    returnKey.uppercaseKeyCap = "return"
+    returnKey.uppercaseKeyCap = "enter"
     returnKey.uppercaseOutput = "\n"
     returnKey.lowercaseOutput = "\n"
     greekKeyboard.add(key: returnKey, row: 0, page: 0)

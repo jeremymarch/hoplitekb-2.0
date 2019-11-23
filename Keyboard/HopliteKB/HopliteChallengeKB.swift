@@ -23,8 +23,6 @@ public enum UnicodeMode:Int32 {
 class HopliteChallengeKB: KeyboardViewController {
     let appSuiteName = "group.com.philolog.hoplitekeyboard"
     let unicodeModeKey = "UnicodeAccents"
-    var portraitHeightOverride:CGFloat = 0.0
-    var landscapeHeightOverride:CGFloat = 0.0
     var forceLowercase = false
     var unicodeMode = 0
     

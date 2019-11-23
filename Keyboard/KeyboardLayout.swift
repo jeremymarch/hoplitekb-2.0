@@ -275,6 +275,27 @@ class GlobalColors: NSObject {
             }
         }
     }
+    
+    class func hcmfKey(_ darkMode: Bool, solidColorMode: Bool) -> UIColor {
+        if darkMode {
+            if solidColorMode {
+                return self.darkModeSolidColorSpecialKey
+            }
+            else {
+                return self.darkModeSpecialKey
+            }
+        }
+        else {
+            if solidColorMode {
+                //return self.lightModeSolidColorSpecialKey
+                return self.returnBlueColor
+            }
+            else {
+                //return self.lightModeSpecialKey
+                return self.returnBlueColor
+            }
+        }
+    }
 }
 
 //"darkShadowColor": UIColor(hue: (220/360.0), saturation: 0.04, brightness: 0.56, alpha: 1),
@@ -742,6 +763,12 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
             key.textColor = (darkMode ? self.globalColors.darkModeTextColor : self.globalColors.darkModeTextColor)
             key.downTextColor = nil
         case
+        Key.KeyType.multipleforms:
+                key.color = self.globalColors.hcmfKey(darkMode, solidColorMode: solidColorMode)
+                key.downColor = nil
+                key.textColor = (darkMode ? self.globalColors.darkModeTextColor : self.globalColors.darkModeTextColor)
+                key.downTextColor = nil
+        case
         Key.KeyType.keyboardChange,
         Key.KeyType.settings:
             key.color = self.globalColors.specialKey(darkMode, solidColorMode: solidColorMode)
@@ -1038,11 +1065,15 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                 if self.characterRowHeuristic(row) {
                     frames = self.layoutCharacterRow(row, keyWidth: letterKeyWidth, gapWidth: keyGap, frame: frame, isLandscape: isLandscape, mostKeysInRow: mostKeysInRow)
                 }
-                    
+                // hc multiple forms row
+                else if self.hcmfRowHeuristic(row) {
+                            frames = self.layoutHCMFRow(row, frame: frame, isLandscape: isLandscape, keyWidth: letterKeyWidth, keyGap: keyGap)
+                        }
                     // character row with side buttons: shift, backspace, etc.
                 else if self.doubleSidedRowHeuristic(row) {
                     frames = self.layoutCharacterWithSidesRow(row, frame: frame, isLandscape: isLandscape, keyWidth: letterKeyWidth, keyGap: keyGap)
                 }
+
                     
                     // bottom row with things like space, return, etc.
                 else {
@@ -1062,6 +1093,10 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
     
     func doubleSidedRowHeuristic(_ row: [Key]) -> Bool {
         return (row.count >= 3 && !row[0].isCharacter && row[1].isCharacter)
+    }
+    
+    func hcmfRowHeuristic(_ row: [Key]) -> Bool {
+        return row[0].type == .multipleforms
     }
     
     func layoutCharacterRow(_ row: [Key], keyWidth: CGFloat, gapWidth: CGFloat, frame: CGRect, isLandscape: Bool, mostKeysInRow: Int) -> [CGRect] {
@@ -1104,6 +1139,61 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
             currentOrigin += (keyW + actualGapWidth)
         }
         
+        return frames
+    }
+
+    // TODO: pass in actual widths instead
+    func layoutHCMFRow(_ row: [Key], frame: CGRect, isLandscape: Bool, keyWidth: CGFloat, keyGap: CGFloat) -> [CGRect] {
+        var frames = [CGRect]()
+
+        let standardFullKeyCount = Int(self.layoutConstants.keyCompressedThreshhold) - 1
+        let standardGap = (isLandscape ? self.layoutConstants.keyGapLandscape : self.layoutConstants.keyGapPortrait)(frame.width, standardFullKeyCount)
+        let sideEdges = (isLandscape ? self.layoutConstants.sideEdgesLandscape : self.layoutConstants.sideEdgesPortrait(frame.width))
+        var standardKeyWidth = (frame.width - sideEdges - (standardGap * CGFloat(standardFullKeyCount - 1)) - sideEdges)
+        standardKeyWidth /= CGFloat(standardFullKeyCount)
+        let standardKeyCount = self.layoutConstants.flexibleEndRowMinimumStandardCharacterWidth
+        
+        let standardWidth = CGFloat(standardKeyWidth * standardKeyCount + standardGap * (standardKeyCount - 1))
+        let currentWidth = CGFloat(row.count - 2) * keyWidth + CGFloat(row.count - 3) * keyGap
+        
+        let isStandardWidth = (currentWidth < standardWidth)
+        let actualWidth = (isStandardWidth ? standardWidth : currentWidth)
+        let actualGap = (isStandardWidth ? standardGap : keyGap)
+        let actualKeyWidth = (actualWidth - CGFloat(row.count - 3) * actualGap) / CGFloat(row.count - 2)
+        
+        let sideSpace = (frame.width - actualWidth) / CGFloat(2)
+        
+        let m = (isLandscape ? self.layoutConstants.flexibleEndRowTotalWidthToKeyWidthMLandscape : self.layoutConstants.flexibleEndRowTotalWidthToKeyWidthMPortrait)
+        let c = (isLandscape ? self.layoutConstants.flexibleEndRowTotalWidthToKeyWidthCLandscape : self.layoutConstants.flexibleEndRowTotalWidthToKeyWidthCPortrait)
+        
+        var specialCharacterWidth = sideSpace * m + c
+        specialCharacterWidth = max(specialCharacterWidth, keyWidth)
+        specialCharacterWidth = rounded(specialCharacterWidth)
+        let specialCharacterGap = sideSpace - specialCharacterWidth
+        
+        var currentOrigin = frame.origin.x
+        for (k, _) in row.enumerated() {
+            if k == 0 {
+                frames.append(CGRect(x: rounded(currentOrigin), y: frame.origin.y, width: frame.height, height: frame.height))
+                currentOrigin += (frame.height + keyGap)
+            }
+            else if k == row.count - 1 {
+                //currentOrigin += specialCharacterGap
+                frames.append(CGRect(x: rounded(currentOrigin), y: frame.origin.y, width: (frame.size.width - rounded(currentOrigin)) + sideEdges, height: frame.height))
+                currentOrigin += specialCharacterWidth
+            }
+            else {
+                frames.append(CGRect(x: rounded(currentOrigin), y: frame.origin.y, width: actualKeyWidth, height: frame.height))
+                if k == row.count - 2 {
+                    //currentOrigin += (actualKeyWidth)
+                    currentOrigin += (actualKeyWidth + keyGap)
+                }
+                else {
+                    currentOrigin += (actualKeyWidth + keyGap)
+                }
+            }
+        }
+
         return frames
     }
     
