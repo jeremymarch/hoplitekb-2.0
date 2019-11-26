@@ -20,6 +20,7 @@ public enum UnicodeMode:Int32 {
     case CombiningOnly = 2
 }
 */
+
 class HopliteChallengeKB: KeyboardViewController {
     let appSuiteName = "group.com.philolog.hoplitekeyboard"
     let unicodeModeKey = "UnicodeAccents"
@@ -33,7 +34,16 @@ class HopliteChallengeKB: KeyboardViewController {
     
     func resetMFButton()
     {
+        //mfButton?.setTitle("MF", for: [])
+        print("reset mf button")
+        let key = keyboard.pages[0].rows[0][0]
         
+        if let view = self.layout?.viewForKey(key)
+        {
+            key.lowercaseKeyCap = "MF"
+            key.lowercaseOutput = "MF"
+            self.layout?.updateKeyCap(view, model: key, fullReset: false, uppercase: false, characterUppercase: false, shiftState: .disabled)
+        }
     }
     
     override func loadView() {
@@ -214,6 +224,17 @@ class HopliteChallengeKB: KeyboardViewController {
             
             (textDocumentProxy as UIKeyInput).deleteBackward() //seems to include any combining chars, but not in MSWord!
             (textDocumentProxy as UIKeyInput).insertText("\(newLetter)")
+        }
+        else if key.type == .multipleforms
+        {
+            print("multiple forms pressed")
+            if let keyView = self.layout?.viewForKey(key)
+            {
+                key.lowercaseKeyCap = ","
+                key.lowercaseOutput = ", "
+                self.layout?.updateKeyCap(keyView, model: key, fullReset: false, uppercase: false, characterUppercase: false, shiftState: .disabled)
+            }
+            textDocumentProxy.insertText(keyOutput)
         }
         else
         {
