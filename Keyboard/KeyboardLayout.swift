@@ -348,9 +348,11 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
     var solidColorMode: Bool
     var initialized: Bool
     var needsExtraBottomPadding:Bool = false
+    var constrainPopupToKeyboardBounds = false
     
-    required init(model: Keyboard, superview: UIView, layoutConstants: LayoutConstants.Type, globalColors: GlobalColors.Type, darkMode: Bool, solidColorMode: Bool, needsExtraBottomPadding:Bool) {
+    required init(model: Keyboard, superview: UIView, layoutConstants: LayoutConstants.Type, globalColors: GlobalColors.Type, darkMode: Bool, solidColorMode: Bool, needsExtraBottomPadding:Bool, constrainPopupToKeyboardBounds:Bool) {
         self.needsExtraBottomPadding = needsExtraBottomPadding
+        self.constrainPopupToKeyboardBounds = constrainPopupToKeyboardBounds
         
         self.layoutConstants = layoutConstants
         self.globalColors = globalColors
@@ -1319,18 +1321,20 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
             
             var localFrame = actualSuperview.convert(popup.frame, from: popup.superview)
             
-            if localFrame.origin.y < 3 {
-                localFrame.origin.y = 3
-                
-                key.background.attached = Direction.down
-                key.connector?.startDir = Direction.down
-                key.background.hideDirectionIsOpposite = true
+            if constrainPopupToKeyboardBounds //whether popups can go over top
+            {
+                if localFrame.origin.y < 3 {
+                    localFrame.origin.y = 3
+                    
+                    key.background.attached = Direction.down
+                    key.connector?.startDir = Direction.down
+                    key.background.hideDirectionIsOpposite = true
+                }
+                else {
+                    // TODO: this needs to be reset somewhere
+                    key.background.hideDirectionIsOpposite = false
+                }
             }
-            else {
-                // TODO: this needs to be reset somewhere
-                key.background.hideDirectionIsOpposite = false
-            }
-            
             if localFrame.origin.x < 3 {
                 localFrame.origin.x = key.frame.origin.x
             }

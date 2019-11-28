@@ -68,6 +68,7 @@ class HopliteChallengeKB: KeyboardViewController {
     convenience init(isAppExtension:Bool) {
         self.init(nibName: nil, bundle: nil)
         self.appExt = isAppExtension
+        self.topRowButtonDepressNotAppExt = true
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

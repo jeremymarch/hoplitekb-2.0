@@ -24,7 +24,7 @@ class KeyboardViewController: UIInputViewController {
     var uiIsDarkMode:Bool = false
     var needsInputSwitch:Bool = true
     var appExt = true
-    var topRowButtonDepressNotAppExt = false
+    var topRowButtonDepressNotAppExt = false //false to prevent key popup in top row
     let backspaceDelay: TimeInterval = 0.5
     let backspaceRepeat: TimeInterval = 0.07
     var keyboard: Keyboard!
@@ -195,7 +195,7 @@ class KeyboardViewController: UIInputViewController {
             {
                 extraP = true
             }
-            self.layout = type(of: self).layoutClass.init(model: self.keyboard, superview: self.forwardingView, layoutConstants: type(of: self).layoutConstants, globalColors: type(of: self).globalColors, darkMode: self.darkMode(), solidColorMode: self.solidColorMode(), needsExtraBottomPadding: extraP)
+            self.layout = type(of: self).layoutClass.init(model: self.keyboard, superview: self.forwardingView, layoutConstants: type(of: self).layoutConstants, globalColors: type(of: self).globalColors, darkMode: self.darkMode(), solidColorMode: self.solidColorMode(), needsExtraBottomPadding: extraP, constrainPopupToKeyboardBounds: appExt)
             
             self.layout?.initialize()
             self.setMode(0)
@@ -395,6 +395,21 @@ class KeyboardViewController: UIInputViewController {
         return CGFloat(isPortrait ? canonicalPortraitHeight + topBannerHeight : canonicalLandscapeHeight + topBannerHeight)
     }
     
+    func isInTopRow(key:Key) -> Bool
+    {
+        for p in self.keyboard.pages //look in each page
+        {
+            for k in p.rows[0] //just look in top row
+            {
+                if k == key
+                {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    
     /*
     BUG NOTE
 
@@ -452,17 +467,21 @@ class KeyboardViewController: UIInputViewController {
                             break
                         }
                         
-                        if key.isCharacter && key.type != .diacritic && key.type != .punctuation {
-                            if UIDevice.current.userInterfaceIdiom != UIUserInterfaceIdiom.pad {
-                                keyView.addTarget(self,
-                                                  action: #selector(KeyboardViewController.showPopup(_:)),
-                                                  for: [.touchDown, .touchDragInside, .touchDragEnter])
-                                keyView.addTarget(keyView,
-                                                  action: #selector(KeyboardKey.hidePopup),
-                                                  for: [.touchDragExit, .touchCancel])
-                                keyView.addTarget(self,
-                                                  action: #selector(KeyboardViewController.hidePopupDelay(_:)),
-                                                  for: [.touchUpInside, .touchUpOutside, .touchDragOutside])
+                        if key.isCharacter /*&& key.type != .diacritic && key.type != .punctuation*/ {
+
+                            if topRowButtonDepressNotAppExt || !isInTopRow(key: key)
+                            {
+                                if UIDevice.current.userInterfaceIdiom != UIUserInterfaceIdiom.pad {
+                                    keyView.addTarget(self,
+                                                      action: #selector(KeyboardViewController.showPopup(_:)),
+                                                      for: [.touchDown, .touchDragInside, .touchDragEnter])
+                                    keyView.addTarget(keyView,
+                                                      action: #selector(KeyboardKey.hidePopup),
+                                                      for: [.touchDragExit, .touchCancel])
+                                    keyView.addTarget(self,
+                                                      action: #selector(KeyboardViewController.hidePopupDelay(_:)),
+                                                      for: [.touchUpInside, .touchUpOutside, .touchDragOutside])
+                                }
                             }
                         }
                         
