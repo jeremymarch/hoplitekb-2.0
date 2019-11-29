@@ -716,12 +716,21 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
             key.color = self.globalColors.diacriticKey(darkMode, solidColorMode: solidColorMode)
             if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad {
                 key.downColor = self.globalColors.specialKey(darkMode, solidColorMode: solidColorMode)
+                key.downTextColor = UIColor.white
             }
             else {
                 key.downColor = UIColor.black
+                if !constrainPopupToKeyboardBounds
+                {
+                    key.downTextColor = (darkMode ? UIColor.white : UIColor.black)
+                }
+                else
+                {
+                    key.downTextColor = UIColor.white
+                }
+                
             }
             key.textColor = (darkMode ? self.globalColors.darkModeTextColor : self.globalColors.lightModeTextColor)
-            key.downTextColor = UIColor.white
         case
         Key.KeyType.punctuation:
             key.color = self.globalColors.punctuationKey(darkMode, solidColorMode: solidColorMode)
@@ -781,8 +790,14 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
         default:
             break
         }
-        
-        key.popupColor = self.globalColors.popup(darkMode, solidColorMode: solidColorMode)
+        if model.type == .diacritic && !darkMode
+        {
+            key.popupColor = self.globalColors.diacriticKey(darkMode, solidColorMode: solidColorMode)
+        }
+        else
+        {
+            key.popupColor = self.globalColors.popup(darkMode, solidColorMode: solidColorMode)
+        }
         key.underColor = (self.darkMode ? self.globalColors.darkModeUnderColor : self.globalColors.lightModeUnderColor)
         key.borderColor = (self.darkMode ? self.globalColors.darkModeBorderColor : self.globalColors.lightModeBorderColor)
     }
