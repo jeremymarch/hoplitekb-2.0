@@ -177,7 +177,7 @@ class GlobalColors: NSObject {
     class var lightModeBorderColor: UIColor { get { return UIColor(hue: (214/360.0), saturation: 0.04, brightness: 0.65, alpha: 1.0) }}
     class var darkModeBorderColor: UIColor { get { return UIColor.clear }}
     class var returnBlueColor: UIColor { get { return UIColor.init(red: 0/255.0, green: 122/255.0, blue: 255/255.0, alpha: 1.0) }}
-    
+    class var hcmfOrangeColor: UIColor { get { return UIColor(red: 1.0, green: 0.2196, blue: 0.0, alpha: 1.0) }}
     
     class func regularKey(_ darkMode: Bool, solidColorMode: Bool) -> UIColor {
         if darkMode {
@@ -288,11 +288,11 @@ class GlobalColors: NSObject {
         else {
             if solidColorMode {
                 //return self.lightModeSolidColorSpecialKey
-                return self.returnBlueColor
+                return UIColor.white
             }
             else {
                 //return self.lightModeSpecialKey
-                return self.returnBlueColor
+                return UIColor.white
             }
         }
     }
@@ -603,7 +603,12 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                 if key.shape == nil {
                     let backspaceShape = self.getShape(BackspaceShape.self)
                     key.shape = backspaceShape
-                }
+                }/*
+            case Key.KeyType.multipleforms:
+                if key.shape == nil {
+                    let backspaceShape = self.getShape(hcmfShape.self)
+                    key.shape = backspaceShape
+                }*/
             case Key.KeyType.keyboardChange:
                 if key.shape == nil {
                     let globeShape = self.getShape(GlobeShape.self)
@@ -770,15 +775,15 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
         case
         Key.KeyType.return:
             key.color = self.globalColors.returnKey(darkMode, solidColorMode: solidColorMode)
-            key.downColor = nil
+            key.downColor = (darkMode ? UIColor.white : UIColor.white)
             key.textColor = (darkMode ? self.globalColors.darkModeTextColor : self.globalColors.darkModeTextColor)
-            key.downTextColor = nil
+            key.downTextColor = (darkMode ? UIColor.black : self.globalColors.returnKey(false, solidColorMode: solidColorMode))
         case
         Key.KeyType.multipleforms:
                 key.color = self.globalColors.hcmfKey(darkMode, solidColorMode: solidColorMode)
-                key.downColor = nil
-                key.textColor = (darkMode ? self.globalColors.darkModeTextColor : self.globalColors.darkModeTextColor)
-                key.downTextColor = nil
+                key.downColor = (darkMode ? UIColor.white : self.globalColors.hcmfOrangeColor)
+                key.textColor = (darkMode ? UIColor.white : self.globalColors.hcmfOrangeColor)
+                key.downTextColor = (darkMode ? UIColor.black : UIColor.white)
         case
         Key.KeyType.keyboardChange,
         Key.KeyType.settings:
@@ -800,6 +805,22 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
         }
         key.underColor = (self.darkMode ? self.globalColors.darkModeUnderColor : self.globalColors.lightModeUnderColor)
         key.borderColor = (self.darkMode ? self.globalColors.darkModeBorderColor : self.globalColors.lightModeBorderColor)
+        
+        if model.type == .multipleforms
+        {
+            key.borderColor = (darkMode ? UIColor.white : self.globalColors.hcmfOrangeColor)
+            key.downBorderColor = (darkMode ? UIColor.black : UIColor.white)
+            key.borderView?.lineWidth = (darkMode ? 3.0 : 4.0)
+            key.borderView?.isHidden = false
+            print("HHHHHHHHHHHHHHHH")
+        }/*
+        else if model.type == .return
+        {
+            key.borderColor = (darkMode ? UIColor.white : UIColor.orange)
+            key.downBorderColor = (darkMode ? UIColor.black : UIColor.white)
+            key.borderView?.lineWidth = (darkMode ? 3.0 : 4.0)
+            key.borderView?.isHidden = false
+        }*/
     }
     
     func setAppearanceForOtherKey(_ key: KeyboardKey, model: Key, darkMode: Bool, solidColorMode: Bool) { /* override this to handle special keys */ }

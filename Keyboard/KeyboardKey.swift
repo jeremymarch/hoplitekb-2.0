@@ -309,6 +309,11 @@ class KeyboardKey: UIControl {
         else {
             self.shadowView.isHidden = true
             self.borderView?.isHidden = true
+            if self.label.text == "MF" || self.label.text == ","
+            {
+                print("GGGG")
+                self.borderView?.isHidden = false
+            }
         }
     }
     
