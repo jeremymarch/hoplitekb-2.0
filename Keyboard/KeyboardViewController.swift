@@ -369,6 +369,15 @@ class KeyboardViewController: UIInputViewController {
         if isPad {
             canonicalPortraitHeight = 264
             canonicalLandscapeHeight = 352
+            
+            if portraitHeightOverride > 0
+            {
+                canonicalPortraitHeight = portraitHeightOverride
+            }
+            if landscapeHeightOverride > 0
+            {
+                canonicalLandscapeHeight = landscapeHeightOverride
+            }
         }
         else {
             canonicalPortraitHeight = isPortrait && actualScreenWidth >= 400 ? 266 : 256

@@ -1078,6 +1078,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                 var returnWidth:CGFloat = 0.0
                 if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad
                 {
+                    //fix me, this could overlap of keys if keyboard height is too high.  Should provide a check for that...
                     returnWidth = keyHeight * 1.5
                 }
                 else
