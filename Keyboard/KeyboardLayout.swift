@@ -203,7 +203,8 @@ class GlobalColors: NSObject {
         }
         else {
             //Hoplite Keyboard diacritic orange color
-            return UIColor.init(red: 255/255.0, green: 96/255.0, blue: 70/255.0, alpha: 1.0)
+            //return UIColor.init(red: 255/255.0, green: 96/255.0, blue: 70/255.0, alpha: 1.0)
+            return UIColor.init(red: 51/255.0, green: 88/255.0, blue: 137/255.0, alpha: 1.0)
         }
     }
     
@@ -727,7 +728,8 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                 key.downColor = UIColor.black
                 if !constrainPopupToKeyboardBounds
                 {
-                    key.downTextColor = (darkMode ? UIColor.white : UIColor.black)
+                    key.downTextColor = UIColor.white
+                    //key.downTextColor = (darkMode ? UIColor.white : UIColor.black)
                 }
                 else
                 {
@@ -735,7 +737,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                 }
                 
             }
-            key.textColor = (darkMode ? self.globalColors.darkModeTextColor : self.globalColors.lightModeTextColor)
+            key.textColor = (darkMode ? self.globalColors.darkModeTextColor : UIColor.white)
         case
         Key.KeyType.punctuation:
             key.color = self.globalColors.punctuationKey(darkMode, solidColorMode: solidColorMode)
@@ -810,7 +812,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
         {
             key.borderColor = (darkMode ? UIColor.white : self.globalColors.hcmfOrangeColor)
             key.downBorderColor = (darkMode ? UIColor.black : UIColor.white)
-            key.borderView?.lineWidth = (darkMode ? 3.0 : 4.0)
+            key.borderView?.lineWidth = (darkMode ? 1.0 : 3.0)
             key.borderView?.isHidden = false
             print("HHHHHHHHHHHHHHHH")
         }/*
