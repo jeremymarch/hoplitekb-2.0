@@ -18,7 +18,7 @@ class LayoutConstants: NSObject {
     class var sideEdgesLandscape: CGFloat { get { return 3 }}
     
     // top edges decrease on various devices in portrait
-    class var topEdgePortraitArray: [CGFloat] { get { return [12, 10, 8] }}
+    class var topEdgePortraitArray: [CGFloat] { get { return [6, 6, 8] }}
     class var topEdgePortraitWidthThreshholds: [CGFloat] { get { return [350, 400] }}
     class var topEdgeLandscape: CGFloat { get { return 6 }}
     
@@ -28,7 +28,7 @@ class LayoutConstants: NSObject {
     class var keyboardShrunkSizeBaseWidthThreshhold: CGFloat { get { return 600 }}
     
     // row gaps are weird on 6 in portrait
-    class var rowGapPortraitArray: [CGFloat] { get { return [15, 11, 10] }}
+    class var rowGapPortraitArray: [CGFloat] { get { return [6, 10, 10] }}
     class var rowGapPortraitThreshholds: [CGFloat] { get { return [350, 400] }}
     class var rowGapPortraitLastRow: CGFloat { get { return 9 }}
     class var rowGapPortraitLastRowIndex: Int { get { return 1 }}

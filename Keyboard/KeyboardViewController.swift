@@ -351,6 +351,7 @@ class KeyboardViewController: UIInputViewController {
 
         self.bannerView?.isHidden = false
         self.keyboardHeight = self.height(orientationIsPortrait: self.isPortrait(), withTopBanner: (self.bannerView != nil))
+        //self.updateAppearances(self.uiIsDarkMode)
     }
     
     override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
@@ -944,6 +945,7 @@ class KeyboardViewController: UIInputViewController {
         super.traitCollectionDidChange(previousTraitCollection)
 
         getUIDarkMode()
+        self.updateAppearances(uiIsDarkMode)
     }
     
     func getUIDarkMode()
