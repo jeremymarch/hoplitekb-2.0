@@ -117,10 +117,15 @@ class KeyboardViewController: UIInputViewController {
         }
 
     }
+    
+    //this is a hack, but solves a problem where isPortrait reported wrong
+    //values and thus keyboard height was wrong when relaunching app
+    @objc func keyboardWillShow(_ notification: Notification) {
+        self.keyboardHeight = self.height(orientationIsPortrait: self.isPortrait(), withTopBanner: (self.bannerView != nil))
+    }
 /*
      override func viewDidLoad() {
      super.viewDidLoad()
-
         //self.inputView = KludgeView()
         //self.keyboard = defaultKeyboard()
         self.keyboard = greekKeyboard(needsInputModeSwitchKey:self.needsInputSwitch)
@@ -226,10 +231,17 @@ class KeyboardViewController: UIInputViewController {
         return UIAccessibility.isReduceTransparencyEnabled
     }
     
+    /*
+     
+     problem seems to be that before view disappears it switches to portrait,
+     when it reappears it renders at portrait height even when landscape.
+     this can be tested because problem disappears when portrait height override in HopliteChallenge.swift is set to be the same as landscape.
+     */
     func isPortrait() -> Bool
     {
         let size = UIScreen.main.bounds.size
-        if size.width > size.height {
+        //let size = UIScreen.main.nativeBounds.size
+        if UIApplication.shared.statusBarOrientation.isLandscape {
             //print("Landscape: \(size.width) X \(size.height)")
             return false
         } else {
@@ -300,8 +312,19 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     */
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification , object: nil)
+    }
+    
     var alreadyInit = false
     override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
         //adapted from setMode
         if !needsInputSwitch
         {
@@ -325,7 +348,7 @@ class KeyboardViewController: UIInputViewController {
             
             self.setMode(0)
         }
-        
+
         self.bannerView?.isHidden = false
         self.keyboardHeight = self.height(orientationIsPortrait: self.isPortrait(), withTopBanner: (self.bannerView != nil))
     }
@@ -401,7 +424,9 @@ class KeyboardViewController: UIInputViewController {
         
         let topBannerHeight = (withTopBanner ? metric("topBanner") : 0)
         
-        return CGFloat(isPortrait ? canonicalPortraitHeight + topBannerHeight : canonicalLandscapeHeight + topBannerHeight)
+        let a = CGFloat(isPortrait ? canonicalPortraitHeight + topBannerHeight : canonicalLandscapeHeight + topBannerHeight)
+        //print("heightaa: \(a)")
+        return a
     }
     
     func isInTopRow(key:Key) -> Bool
@@ -572,22 +597,24 @@ class KeyboardViewController: UIInputViewController {
     }
     
     func setHeight(_ height: CGFloat) {
+        
         if self.heightConstraint == nil {
             //this fixes constraint conflict, but now touches aren't seen
             //self.inputView!.translatesAutoresizingMaskIntoConstraints = false
             self.heightConstraint = NSLayoutConstraint(
-                item:self.inputView!,
-                attribute:NSLayoutConstraint.Attribute.height,
-                relatedBy:NSLayoutConstraint.Relation.equal,
+                item:self.view!,
+                attribute:.height,
+                relatedBy:.equal,
                 toItem:nil,
-                attribute:NSLayoutConstraint.Attribute.notAnAttribute,
-                multiplier:0,
+                attribute:.notAnAttribute,
+                multiplier:1.0,
                 constant:height)
-            self.heightConstraint!.priority = UILayoutPriority(rawValue: 1000)
-            
+            self.heightConstraint!.priority = UILayoutPriority(rawValue: 999.0)
+            self.heightConstraint!.isActive = true
             self.view.addConstraint(self.heightConstraint!) // TODO: what if view already has constraint added?
         }
         else {
+            //problem is wrong # being passed in here when relaunching in landscape
             self.heightConstraint?.constant = height
         }
     }

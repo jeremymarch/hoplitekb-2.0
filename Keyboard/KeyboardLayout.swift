@@ -813,6 +813,9 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
             key.borderColor = (darkMode ? UIColor.white : self.globalColors.hcmfOrangeColor)
             key.downBorderColor = (darkMode ? UIColor.black : UIColor.white)
             key.borderView?.lineWidth = (darkMode ? 1.0 : 3.0)
+            
+            //there is an issue where this gets overwritten
+            //in KeyboardKey layoutPopupIfNeeded unless specifically blocked for multipleforms button. fix me
             key.borderView?.isHidden = false
             print("HHHHHHHHHHHHHHHH")
         }/*
