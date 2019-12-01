@@ -721,7 +721,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
         Key.KeyType.diacritic:
             key.color = self.globalColors.diacriticKey(darkMode, solidColorMode: solidColorMode)
             if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad {
-                key.downColor = self.globalColors.specialKey(darkMode, solidColorMode: solidColorMode)
+                key.downColor = self.globalColors.regularKey(darkMode, solidColorMode: solidColorMode)
                 key.downTextColor = UIColor.white
             }
             else {
