@@ -21,28 +21,47 @@ public enum UnicodeMode:Int32 {
 }
 */
 
+/*
+class hcColors:GlobalColors
+{
+    override class var hcmfOrangeColor: UIColor { get { return UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0) }}
+    
+    override class func diacriticKey(_ darkMode: Bool, solidColorMode: Bool) -> UIColor {
+        if darkMode {
+            if solidColorMode {
+                return self.darkModeSolidColorSpecialKey //self.darkModeSolidColorRegularKey
+            }
+            else {
+                return self.darkModeSpecialKey//self.darkModeRegularKey
+            }
+        }
+        else {
+            //Hoplite Keyboard diacritic orange color
+            //return UIColor.init(red: 255/255.0, green: 96/255.0, blue: 70/255.0, alpha: 1.0)
+            return UIColor.green //init(red: 51/255.0, green: 88/255.0, blue: 137/255.0, alpha: 1.0)
+        }
+    }
+}
+*/
 class HopliteChallengeKB: KeyboardViewController {
     let appSuiteName = "group.com.philolog.hoplitekeyboard"
     let unicodeModeKey = "UnicodeAccents"
     var forceLowercase = false
     var unicodeMode = 0
     
-    func setButtons(keys:[[String]])
-    {
+    //override class var globalColors: GlobalColors.Type { get { return hcColors.self }}
     
-    }
+    func setButtons(keys:[[String]]) { }
     
     func resetMFButton()
     {
-        //mfButton?.setTitle("MF", for: [])
-        print("reset mf button")
-        let key = keyboard.pages[0].rows[0][0]
+        let mfkey = keyboard.pages[0].rows[0][0]
         
-        if let view = self.layout?.viewForKey(key)
+        if let keyview = self.layout?.viewForKey(mfkey)
         {
-            key.lowercaseKeyCap = "MF"
-            key.lowercaseOutput = "MF"
-            self.layout?.updateKeyCap(view, model: key, fullReset: false, uppercase: false, characterUppercase: false, shiftState: .disabled)
+            mfkey.lowercaseKeyCap = "MF"
+            mfkey.lowercaseOutput = "MF"
+            self.layout?.updateKeyCap(keyview, model: mfkey, fullReset: false, uppercase: false, characterUppercase: false, shiftState: .disabled)
         }
     }
     
