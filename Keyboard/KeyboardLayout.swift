@@ -1227,13 +1227,13 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                 currentOrigin += specialCharacterWidth
             }
             else {
-                frames.append(CGRect(x: rounded(currentOrigin), y: frame.origin.y, width: actualKeyWidth, height: frame.height))
+                frames.append(CGRect(x: rounded(currentOrigin), y: frame.origin.y, width: keyWidth, height: frame.height))
                 if k == row.count - 2 {
                     //currentOrigin += (actualKeyWidth)
-                    currentOrigin += (actualKeyWidth + keyGap)
+                    currentOrigin += (keyWidth + keyGap)
                 }
                 else {
-                    currentOrigin += (actualKeyWidth + keyGap)
+                    currentOrigin += (keyWidth + keyGap)
                 }
             }
         }
