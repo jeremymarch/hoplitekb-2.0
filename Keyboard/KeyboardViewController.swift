@@ -173,6 +173,13 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     
+    //https://stackoverflow.com/questions/52652956/how-to-detect-if-the-device-iphone-has-physical-home-button
+    func needExtraBottomPadding() -> Bool
+    {
+        if #available(iOS 11.0, *), let keyWindow = UIApplication.shared.keyWindow, keyWindow.safeAreaInsets.bottom > 0 { return true }
+        return false
+    }
+    
     /*
     BUG NOTE
 
@@ -195,12 +202,17 @@ class KeyboardViewController: UIInputViewController {
     var constraintsAdded: Bool = false
     func setupLayout() {
         if !constraintsAdded {
-            var extraP = false
+            /*
+             var extraP = false
             if !appExt && !needsInputSwitch
             {
                 extraP = true
-            }
-            self.layout = type(of: self).layoutClass.init(model: self.keyboard, superview: self.forwardingView, layoutConstants: type(of: self).layoutConstants, globalColors: type(of: self).globalColors, darkMode: self.darkMode(), solidColorMode: self.solidColorMode(), needsExtraBottomPadding: extraP, constrainPopupToKeyboardBounds: appExt)
+            }*/
+        
+            let extraBottomPadding = needExtraBottomPadding()
+            
+            //print("EEEEEEEEEEEE \(extraP) \(appExt) \(needsInputSwitch)")
+            self.layout = type(of: self).layoutClass.init(model: self.keyboard, superview: self.forwardingView, layoutConstants: type(of: self).layoutConstants, globalColors: type(of: self).globalColors, darkMode: self.darkMode(), solidColorMode: self.solidColorMode(), needsExtraBottomPadding: extraBottomPadding, constrainPopupToKeyboardBounds: appExt)
             
             self.layout?.initialize()
             self.setMode(0)
