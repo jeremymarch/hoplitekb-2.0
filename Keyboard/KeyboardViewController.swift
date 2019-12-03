@@ -228,6 +228,8 @@ class KeyboardViewController: UIInputViewController {
     }
     
     func solidColorMode() -> Bool {
+        //setting this to true fixes odd issue when transitioning from
+        //dark mode to light mode
         return UIAccessibility.isReduceTransparencyEnabled
     }
     
@@ -239,7 +241,7 @@ class KeyboardViewController: UIInputViewController {
      */
     func isPortrait() -> Bool
     {
-        let size = UIScreen.main.bounds.size
+        //let size = UIScreen.main.bounds.size
         //let size = UIScreen.main.nativeBounds.size
         if UIApplication.shared.statusBarOrientation.isLandscape {
             //print("Landscape: \(size.width) X \(size.height)")

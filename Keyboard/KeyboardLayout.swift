@@ -192,6 +192,24 @@ class GlobalColors: NSObject {
             return self.lightModeRegularKey
         }
     }
+    class func diacriticKeyDown(_ darkMode: Bool, solidColorMode: Bool) -> UIColor {
+        if darkMode {
+            if solidColorMode {
+                return self.darkModeSolidColorRegularKey
+            }
+            else {
+                return self.darkModeRegularKey
+            }
+        }
+        else {
+            if solidColorMode {
+                return self.lightModeSolidColorSpecialKey
+            }
+            else {
+                return self.lightModeSpecialKey
+            }
+        }
+    }
     class func diacriticKey(_ darkMode: Bool, solidColorMode: Bool) -> UIColor {
         if darkMode {
             if solidColorMode {
@@ -721,7 +739,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
         Key.KeyType.diacritic:
             key.color = self.globalColors.diacriticKey(darkMode, solidColorMode: solidColorMode)
             if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad {
-                key.downColor = self.globalColors.regularKey(darkMode, solidColorMode: solidColorMode)
+                key.downColor = self.globalColors.diacriticKeyDown(darkMode, solidColorMode: solidColorMode)
                 key.downTextColor = UIColor.white
             }
             else {
@@ -1081,8 +1099,12 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                 var returnWidth:CGFloat = 0.0
                 if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad
                 {
-                    //fix me, this could overlap of keys if keyboard height is too high.  Should provide a check for that...
-                    returnWidth = keyHeight * 1.5
+                    let maxRowWidth = min(bounds.width, 924)
+                    var maxKeyWidth:CGFloat = 0.0
+                    let totalGaps = (sideEdges * CGFloat(2)) + (keyGap * CGFloat(mostKeysInRow - 1))
+                    maxKeyWidth = (maxRowWidth - totalGaps) / CGFloat(mostKeysInRow)
+                    
+                    returnWidth = min(keyHeight * 1.5, maxKeyWidth)
                 }
                 else
                 {
@@ -1189,6 +1211,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
     // TODO: pass in actual widths instead
     func layoutHCMFRow(_ row: [Key], frame: CGRect, isLandscape: Bool, keyWidth: CGFloat, keyGap: CGFloat) -> [CGRect] {
         var frames = [CGRect]()
+        let isPad = UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad
 
         let standardFullKeyCount = Int(self.layoutConstants.keyCompressedThreshhold) - 1
         let standardGap = (isLandscape ? self.layoutConstants.keyGapLandscape : self.layoutConstants.keyGapPortrait)(frame.width, standardFullKeyCount)
@@ -1205,7 +1228,12 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
         let actualGap = (isStandardWidth ? standardGap : keyGap)
         let actualKeyWidth = (actualWidth - CGFloat(row.count - 3) * actualGap) / CGFloat(row.count - 2)
         
-        let sideSpace = (frame.width - actualWidth) / CGFloat(2)
+        //let sideSpace = (frame.width - actualWidth) / CGFloat(2)
+        
+        let keySpace = CGFloat(9) * keyWidth + CGFloat(8) * keyGap
+        //var actualGapWidth = gapWidth
+        var sideSpace = (frame.width - keySpace) / CGFloat(2)
+        
         
         let m = (isLandscape ? self.layoutConstants.flexibleEndRowTotalWidthToKeyWidthMLandscape : self.layoutConstants.flexibleEndRowTotalWidthToKeyWidthMPortrait)
         let c = (isLandscape ? self.layoutConstants.flexibleEndRowTotalWidthToKeyWidthCLandscape : self.layoutConstants.flexibleEndRowTotalWidthToKeyWidthCPortrait)
@@ -1215,16 +1243,18 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
         specialCharacterWidth = rounded(specialCharacterWidth)
         let specialCharacterGap = sideSpace - specialCharacterWidth
         
-        var currentOrigin = frame.origin.x
+        var currentOrigin = (isPad) ? frame.origin.x + sideSpace : frame.origin.x
         for (k, _) in row.enumerated() {
             if k == 0 {
-                frames.append(CGRect(x: rounded(currentOrigin), y: frame.origin.y, width: frame.height, height: frame.height))
-                currentOrigin += (frame.height + keyGap)
+                let w = (isPad) ? keyWidth : frame.height
+                frames.append(CGRect(x: rounded(currentOrigin), y: frame.origin.y, width: w, height: frame.height))
+                currentOrigin += (w + keyGap)
             }
             else if k == row.count - 1 {
                 //currentOrigin += specialCharacterGap
-                frames.append(CGRect(x: rounded(currentOrigin), y: frame.origin.y, width: (frame.size.width - rounded(currentOrigin)) + sideEdges, height: frame.height))
-                currentOrigin += specialCharacterWidth
+                let w = (isPad) ? (keyWidth * 2) + keyGap : (frame.size.width - rounded(currentOrigin)) + sideEdges
+                frames.append(CGRect(x: rounded(currentOrigin), y: frame.origin.y, width: w, height: frame.height))
+                currentOrigin += w
             }
             else {
                 frames.append(CGRect(x: rounded(currentOrigin), y: frame.origin.y, width: keyWidth, height: frame.height))
