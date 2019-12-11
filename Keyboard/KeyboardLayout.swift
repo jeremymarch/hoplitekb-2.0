@@ -10,7 +10,7 @@ import UIKit
 
 // TODO: need to rename, consolidate, and define terms
 class LayoutConstants: NSObject {
-    class var landscapeRatio: CGFloat { get { return 2 }}
+    class var landscapeRatio: CGFloat { get { return 2.08 }}
     
     // side edges increase on 6 in portrait
     class var sideEdgesPortraitArray: [CGFloat] { get { return [3, 4] }}
@@ -1184,6 +1184,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
         var keyW = keyWidth
         for (i, key) in row.enumerated() {
             let roundedOrigin = rounded(currentOrigin)
+            
             
             if key.type == .backspace && !isLandscape && (i+1) != mostKeysInRow
             {

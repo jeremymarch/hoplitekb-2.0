@@ -70,7 +70,7 @@ class HopliteChallengeKB: KeyboardViewController {
         
         //self.inputView = KludgeView()
         //self.keyboard = defaultKeyboard()
-        self.keyboard = hcKeyboard(needsInputModeSwitchKey:self.needsInputSwitch)
+        self.keyboard = hcKeyboard(needsInputModeSwitchKey:needsInputSwitch)
         //self.preferredContentSize = CGSize(width: self.view.frame.size.width, height: 356)
         self.forwardingView = ForwardingView(frame: CGRect.zero)
         self.view.addSubview(self.forwardingView)
@@ -88,6 +88,7 @@ class HopliteChallengeKB: KeyboardViewController {
         self.init(nibName: nil, bundle: nil)
         self.appExt = isAppExtension
         self.topRowButtonDepressNotAppExt = true
+        self.needsInputSwitch = false
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

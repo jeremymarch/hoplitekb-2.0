@@ -210,7 +210,6 @@ class KeyboardViewController: UIInputViewController {
             }*/
         
             let extraBottomPadding = needExtraBottomPadding()
-            
             //print("EEEEEEEEEEEE \(extraP) \(appExt) \(needsInputSwitch)")
             self.layout = type(of: self).layoutClass.init(model: self.keyboard, superview: self.forwardingView, layoutConstants: type(of: self).layoutConstants, globalColors: type(of: self).globalColors, darkMode: self.darkMode(), solidColorMode: self.solidColorMode(), needsExtraBottomPadding: extraBottomPadding, constrainPopupToKeyboardBounds: appExt)
             
@@ -429,12 +428,16 @@ class KeyboardViewController: UIInputViewController {
             {
                 canonicalLandscapeHeight = landscapeHeightOverride
             }
-            
+            /*
+            //we get this from needsextrabottompadding now
             if !appExt && !needsInputSwitch
             {
                 canonicalPortraitHeight += 50
                 canonicalLandscapeHeight += 30
             }
+            */
+            print("app \(appExt) nee \(needsInputSwitch)")
+            
         }
         
         let topBannerHeight = (withTopBanner ? metric("topBanner") : 0)
