@@ -33,6 +33,8 @@ class KeyboardViewController: UIInputViewController {
     var heightConstraint: NSLayoutConstraint?
     var portraitHeightOverride:CGFloat = 0.0
     var landscapeHeightOverride:CGFloat = 0.0
+    var extraBottomPaddingPortrait:CGFloat = 0.0
+    var extraBottomPaddingLandscape:CGFloat = 0.0
     
     var bannerView: ExtraView?
     var settingsView: ExtraView?
@@ -210,8 +212,14 @@ class KeyboardViewController: UIInputViewController {
             }*/
         
             let extraBottomPadding = needExtraBottomPadding()
-            //print("EEEEEEEEEEEE \(extraP) \(appExt) \(needsInputSwitch)")
+            print("EEEEEEEEEEEE \(extraBottomPadding) \(appExt) \(needsInputSwitch)")
             self.layout = type(of: self).layoutClass.init(model: self.keyboard, superview: self.forwardingView, layoutConstants: type(of: self).layoutConstants, globalColors: type(of: self).globalColors, darkMode: self.darkMode(), solidColorMode: self.solidColorMode(), needsExtraBottomPadding: extraBottomPadding, constrainPopupToKeyboardBounds: appExt)
+            
+            if extraBottomPadding
+            {
+                extraBottomPaddingLandscape = (self.layout?.layoutConstants.extraBottomPaddingLandscape)!
+                extraBottomPaddingPortrait = (self.layout?.layoutConstants.extraBottomPaddingPortrait)!
+            }
             
             self.layout?.initialize()
             self.setMode(0)
@@ -428,6 +436,8 @@ class KeyboardViewController: UIInputViewController {
             {
                 canonicalLandscapeHeight = landscapeHeightOverride
             }
+            canonicalPortraitHeight += extraBottomPaddingPortrait
+            canonicalLandscapeHeight += extraBottomPaddingLandscape
             /*
             //we get this from needsextrabottompadding now
             if !appExt && !needsInputSwitch
@@ -437,13 +447,14 @@ class KeyboardViewController: UIInputViewController {
             }
             */
             print("app \(appExt) nee \(needsInputSwitch)")
+            //self.layout?.layoutConstants.getKeyboardHeightForScreen()
             
         }
         
         let topBannerHeight = (withTopBanner ? metric("topBanner") : 0)
         
         let a = CGFloat(isPortrait ? canonicalPortraitHeight + topBannerHeight : canonicalLandscapeHeight + topBannerHeight)
-        //print("heightaa: \(a)")
+        print("heightaa: \(a)")
         return a
     }
     

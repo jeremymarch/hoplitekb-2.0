@@ -46,10 +46,17 @@ class hcColors:GlobalColors
 class HopliteChallengeKB: KeyboardViewController {
     let appSuiteName = "group.com.philolog.hoplitekeyboard"
     let unicodeModeKey = "UnicodeAccents"
-    var forceLowercase = false
-    var unicodeMode = 0
+    var forceLowercase = true
+    var unicodeMode = 3 //hoplite challenge mode
+    var screenTypes = ["iPhone SE", "iPhone 6", "iPhone XR", "iPhone 6 Plus", "iPhone X", "iPhone XS Max"]
+    var nativeHeightThresholds:[CGFloat] = [1136.0, 1334.0, 1792.0, 1920.0, 2436.0, 2688.0]
     
     //override class var globalColors: GlobalColors.Type { get { return hcColors.self }}
+    
+    func getHeightForScreen()
+    {
+        let actualScreenHeight = (UIScreen.main.nativeBounds.size.height / UIScreen.main.nativeScale)
+    }
     
     func setButtons(keys:[[String]]) { }
     

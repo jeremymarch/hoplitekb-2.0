@@ -11,7 +11,8 @@ import UIKit
 // TODO: need to rename, consolidate, and define terms
 class LayoutConstants: NSObject {
     class var landscapeRatio: CGFloat { get { return 2.08 }}
-    
+    class var extraBottomPaddingPortrait: CGFloat { get { return 50.0 }}
+    class var extraBottomPaddingLandscape: CGFloat { get { return 18.0 }}
     // side edges increase on 6 in portrait
     class var sideEdgesPortraitArray: [CGFloat] { get { return [3, 4] }}
     class var sideEdgesPortraitWidthThreshholds: [CGFloat] { get { return [400] }}
@@ -89,6 +90,12 @@ class LayoutConstants: NSObject {
         else {
             return self.rowGapPortraitArray[index]
         }
+    }
+    
+    class func getKeyboardHeightForScreen() ->CGFloat
+    {
+        
+        return 0.0
     }
     
     class func keyGapPortrait(_ width: CGFloat, rowCharacterCount: Int) -> CGFloat {
@@ -1070,11 +1077,11 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
             {
                 if isLandscape
                 {
-                    extraBottomPadding = 18.0
+                    extraBottomPadding = self.layoutConstants.extraBottomPaddingLandscape
                 }
                 else
                 {
-                    extraBottomPadding = 50.0
+                    extraBottomPadding = self.layoutConstants.extraBottomPaddingPortrait
                 }
             }
             
