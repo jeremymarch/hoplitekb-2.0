@@ -48,6 +48,7 @@ class HopliteChallengeKB: KeyboardViewController {
     let unicodeModeKey = "UnicodeAccents"
     var forceLowercase = true
     var unicodeMode = 3 //hoplite challenge mode
+    //https://www.paintcodeapp.com/news/ultimate-guide-to-iphone-resolutions
     var screenTypes = ["Less than 4s", "iPhone 4s", "iPhone 5s/SE", "iPhone 6/7/8", "iPhone 6/7/8 Plus", "iPhone X/XS", "iPhone XR/iPhone XS Max"]
     //var nativeHeightThresholds:[CGFloat] = [1136.0, 1334.0, 1792.0, 1920.0, 2436.0, 2688.0]
     var iPhoneHeightThresholds:[CGFloat] = [480.0, 568.0, 667.0, 736.0, 812.0, 896.0]
@@ -61,7 +62,7 @@ class HopliteChallengeKB: KeyboardViewController {
         
         if UIDevice.current.userInterfaceIdiom == .pad
         {
-            return 240.0
+            return 270.0
             //landscapeHeight = 290.0
             
             //canonicalPortraitHeight = 264
@@ -79,7 +80,7 @@ class HopliteChallengeKB: KeyboardViewController {
         
         if UIDevice.current.userInterfaceIdiom == .pad
         {
-            return 290.0
+            return 280.0
             
         }
         else

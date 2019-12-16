@@ -25,6 +25,7 @@ class minimalGreekKB: KeyboardViewController {
     let unicodeModeKey = "UnicodeAccents"
     var forceLowercase = false
     var unicodeMode = 3 //hoplite challenge mode
+    //https://www.paintcodeapp.com/news/ultimate-guide-to-iphone-resolutions
     var screenTypes = ["Less than 4s", "iPhone 4s", "iPhone 5s/SE", "iPhone 6/7/8", "iPhone 6/7/8 Plus", "iPhone X/XS", "iPhone XR/iPhone XS Max"]
     //var nativeHeightThresholds:[CGFloat] = [1136.0, 1334.0, 1792.0, 1920.0, 2436.0, 2688.0]
     var iPhoneHeightThresholds:[CGFloat] = [480.0, 568.0, 667.0, 736.0, 812.0, 896.0]
@@ -32,44 +33,13 @@ class minimalGreekKB: KeyboardViewController {
     
     //override class var globalColors: GlobalColors.Type { get { return hcColors.self }}
     
-    /*
-     
-     var portraitHeight:CGFloat = 250.0
-     var landscapeHeight:CGFloat = 250.0
-     if UIDevice.current.userInterfaceIdiom == .pad
-     {
-         portraitHeight = 266.0
-         landscapeHeight = 266.0
-     }
-     else
-     {
-         //iPhone X, XS
-         if UIScreen.main.nativeBounds.height == 2436.0 && UIScreen.main.nativeBounds.width == 1125.0
-         {
-             portraitHeight = 184.0
-             landscapeHeight = portraitHeight
-         }
-         else if UIScreen.main.nativeBounds.width < 641
-         {
-             //for iphone 5s and narrower
-             portraitHeight = 174.0
-             landscapeHeight = portraitHeight
-         }
-         else //larger iPhones
-         {
-             portraitHeight = 182.0
-             landscapeHeight = portraitHeight
-         }
-     }
-     */
-    
     func getPortraitHeightForScreen() -> CGFloat
     {
         let actualScreenHeight = (UIScreen.main.nativeBounds.size.height / UIScreen.main.nativeScale)
         
         if UIDevice.current.userInterfaceIdiom == .pad
         {
-            return 266.0
+            return 270.0
             //landscapeHeight = 290.0
             
             //canonicalPortraitHeight = 264
@@ -87,7 +57,7 @@ class minimalGreekKB: KeyboardViewController {
         
         if UIDevice.current.userInterfaceIdiom == .pad
         {
-            return 266.0
+            return 270.0
             
         }
         else

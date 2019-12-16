@@ -12,7 +12,7 @@ import UIKit
 class LayoutConstants: NSObject {
     class var landscapeRatio: CGFloat { get { return 2.08 }}
     class var extraBottomPaddingPortrait: CGFloat { get { return 50.0 }}
-    class var extraBottomPaddingLandscape: CGFloat { get { return 18.0 }}
+    class var extraBottomPaddingLandscape: CGFloat { get { return 26.0 }}
     // side edges increase on 6 in portrait
     class var sideEdgesPortraitArray: [CGFloat] { get { return [3, 4] }}
     class var sideEdgesPortraitWidthThreshholds: [CGFloat] { get { return [400] }}
