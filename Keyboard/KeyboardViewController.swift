@@ -117,7 +117,21 @@ class KeyboardViewController: UIInputViewController {
         if #available(iOS 9.0, *) {
             self.inputView?.allowsSelfSizing = true
         }
-
+    }
+    
+    //these two functions taken from keyboardlayout.swift
+    func findThreshhold(_ elements: [CGFloat], threshholds: [CGFloat], measurement: CGFloat) -> CGFloat {
+        assert(elements.count == threshholds.count + 1, "elements and threshholds do not match")
+        return elements[self.findThreshholdIndex(threshholds, measurement: measurement)]
+    }
+    func findThreshholdIndex(_ threshholds: [CGFloat], measurement: CGFloat) -> Int {
+        for (i, threshhold) in Array(threshholds.reversed()).enumerated() {
+            if measurement >= threshhold {
+                let actualIndex = threshholds.count - i
+                return actualIndex
+            }
+        }
+        return 0
     }
     
     //this is a hack, but solves a problem where isPortrait reported wrong

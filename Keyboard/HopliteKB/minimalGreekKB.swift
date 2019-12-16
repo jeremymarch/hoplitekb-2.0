@@ -24,7 +24,77 @@ class minimalGreekKB: KeyboardViewController {
     let appSuiteName = "group.com.philolog.hoplitekeyboard"
     let unicodeModeKey = "UnicodeAccents"
     var forceLowercase = false
-    var unicodeMode = 0
+    var unicodeMode = 3 //hoplite challenge mode
+    var screenTypes = ["Less than 4s", "iPhone 4s", "iPhone 5s/SE", "iPhone 6/7/8", "iPhone 6/7/8 Plus", "iPhone X/XS", "iPhone XR/iPhone XS Max"]
+    //var nativeHeightThresholds:[CGFloat] = [1136.0, 1334.0, 1792.0, 1920.0, 2436.0, 2688.0]
+    var iPhoneHeightThresholds:[CGFloat] = [480.0, 568.0, 667.0, 736.0, 812.0, 896.0]
+    var keyboardHeights:[CGFloat] = [170.0, 170.0, 170.0, 190.0, 220.0, 190.0, 220.0]
+    
+    //override class var globalColors: GlobalColors.Type { get { return hcColors.self }}
+    
+    /*
+     
+     var portraitHeight:CGFloat = 250.0
+     var landscapeHeight:CGFloat = 250.0
+     if UIDevice.current.userInterfaceIdiom == .pad
+     {
+         portraitHeight = 266.0
+         landscapeHeight = 266.0
+     }
+     else
+     {
+         //iPhone X, XS
+         if UIScreen.main.nativeBounds.height == 2436.0 && UIScreen.main.nativeBounds.width == 1125.0
+         {
+             portraitHeight = 184.0
+             landscapeHeight = portraitHeight
+         }
+         else if UIScreen.main.nativeBounds.width < 641
+         {
+             //for iphone 5s and narrower
+             portraitHeight = 174.0
+             landscapeHeight = portraitHeight
+         }
+         else //larger iPhones
+         {
+             portraitHeight = 182.0
+             landscapeHeight = portraitHeight
+         }
+     }
+     */
+    
+    func getPortraitHeightForScreen() -> CGFloat
+    {
+        let actualScreenHeight = (UIScreen.main.nativeBounds.size.height / UIScreen.main.nativeScale)
+        
+        if UIDevice.current.userInterfaceIdiom == .pad
+        {
+            return 266.0
+            //landscapeHeight = 290.0
+            
+            //canonicalPortraitHeight = 264
+            //canonicalLandscapeHeight = 352
+        }
+        else
+        {
+            return self.findThreshhold(self.keyboardHeights, threshholds: self.iPhoneHeightThresholds, measurement: actualScreenHeight)
+        }
+    }
+    
+    func getLandscapeHeightForScreen() -> CGFloat
+    {
+        //let actualScreenHeight = (UIScreen.main.nativeBounds.size.height / UIScreen.main.nativeScale)
+        
+        if UIDevice.current.userInterfaceIdiom == .pad
+        {
+            return 266.0
+            
+        }
+        else
+        {
+            return 157.0
+        }
+    }
     
     func setButtons(keys:[[String]])
     {
@@ -58,21 +128,21 @@ class minimalGreekKB: KeyboardViewController {
     convenience init(isAppExtension:Bool) {
         self.init(nibName: nil, bundle: nil)
         self.appExt = isAppExtension
-        self.topRowButtonDepressNotAppExt = true
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        //UserDefaults.standard.register(defaults: [kCatTypeEnabled: false])
-        let defaults = UserDefaults(suiteName: appSuiteName)
-        if let umode = defaults?.integer(forKey: unicodeModeKey)
-        {
-            unicodeMode = umode
-        }
-        else
-        {
-            unicodeMode = 0
-        }
+
+        unicodeMode = 3
+
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+        self.view.translatesAutoresizingMaskIntoConstraints = false
+        self.appExt = false
+        self.topRowButtonDepressNotAppExt = true
+        self.needsInputSwitch = false
+
+        self.portraitHeightOverride = self.getPortraitHeightForScreen()
+        self.landscapeHeightOverride = self.getLandscapeHeightForScreen()
     }
     
     required init?(coder: NSCoder) {

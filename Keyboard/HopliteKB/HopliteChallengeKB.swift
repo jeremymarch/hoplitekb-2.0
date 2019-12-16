@@ -48,14 +48,44 @@ class HopliteChallengeKB: KeyboardViewController {
     let unicodeModeKey = "UnicodeAccents"
     var forceLowercase = true
     var unicodeMode = 3 //hoplite challenge mode
-    var screenTypes = ["iPhone SE", "iPhone 6", "iPhone XR", "iPhone 6 Plus", "iPhone X", "iPhone XS Max"]
-    var nativeHeightThresholds:[CGFloat] = [1136.0, 1334.0, 1792.0, 1920.0, 2436.0, 2688.0]
+    var screenTypes = ["Less than 4s", "iPhone 4s", "iPhone 5s/SE", "iPhone 6/7/8", "iPhone 6/7/8 Plus", "iPhone X/XS", "iPhone XR/iPhone XS Max"]
+    //var nativeHeightThresholds:[CGFloat] = [1136.0, 1334.0, 1792.0, 1920.0, 2436.0, 2688.0]
+    var iPhoneHeightThresholds:[CGFloat] = [480.0, 568.0, 667.0, 736.0, 812.0, 896.0]
+    var keyboardHeights:[CGFloat] = [200.0, 200.0, 200.0, 228.0, 250.0, 228.0, 250.0]
     
     //override class var globalColors: GlobalColors.Type { get { return hcColors.self }}
     
-    func getHeightForScreen()
+    func getPortraitHeightForScreen() -> CGFloat
     {
         let actualScreenHeight = (UIScreen.main.nativeBounds.size.height / UIScreen.main.nativeScale)
+        
+        if UIDevice.current.userInterfaceIdiom == .pad
+        {
+            return 240.0
+            //landscapeHeight = 290.0
+            
+            //canonicalPortraitHeight = 264
+            //canonicalLandscapeHeight = 352
+        }
+        else
+        {
+            return self.findThreshhold(self.keyboardHeights, threshholds: self.iPhoneHeightThresholds, measurement: actualScreenHeight)
+        }
+    }
+    
+    func getLandscapeHeightForScreen() -> CGFloat
+    {
+        //let actualScreenHeight = (UIScreen.main.nativeBounds.size.height / UIScreen.main.nativeScale)
+        
+        if UIDevice.current.userInterfaceIdiom == .pad
+        {
+            return 290.0
+            
+        }
+        else
+        {
+            return 157.0
+        }
     }
     
     func setButtons(keys:[[String]]) { }
@@ -94,22 +124,16 @@ class HopliteChallengeKB: KeyboardViewController {
     convenience init(isAppExtension:Bool) {
         self.init(nibName: nil, bundle: nil)
         self.appExt = isAppExtension
-        self.topRowButtonDepressNotAppExt = true
-        self.needsInputSwitch = false
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        //UserDefaults.standard.register(defaults: [kCatTypeEnabled: false])
-        let defaults = UserDefaults(suiteName: appSuiteName)
-        if let umode = defaults?.integer(forKey: unicodeModeKey)
-        {
-            unicodeMode = umode
-        }
-        else
-        {
-            unicodeMode = 0
-        }
+        self.unicodeMode = 3
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.topRowButtonDepressNotAppExt = true
+        self.needsInputSwitch = false //this should be true
+        self.view.translatesAutoresizingMaskIntoConstraints = false
+        self.portraitHeightOverride = self.getPortraitHeightForScreen()
+        self.landscapeHeightOverride = self.getLandscapeHeightForScreen()
     }
     
     required init?(coder: NSCoder) {
@@ -142,19 +166,17 @@ class HopliteChallengeKB: KeyboardViewController {
         }
         super.viewWillAppear(animated)
     }
-    
+    /*
+    //would be nice if we could see the button press down
     func sendButton(button:Int)
     {
         if button > 0 && button < 10
         {
-            print("a")
             let key = self.layout?.viewForKey(self.keyboard.pages[0].rows[0][button])
-            print("b")
             key!.sendActions(for: .touchUpInside)
-            print("c")
         }
     }
-    
+    */
     func diacriticPressed(accent:Int, context:String) -> String
     {
         assert(context.count > 0, "Cannot accent empty string")
