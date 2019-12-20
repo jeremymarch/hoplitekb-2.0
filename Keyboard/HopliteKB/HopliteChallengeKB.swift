@@ -108,7 +108,7 @@ class HopliteChallengeKB: KeyboardViewController {
         
         //self.inputView = KludgeView()
         //self.keyboard = defaultKeyboard()
-        self.keyboard = hcKeyboard(needsInputModeSwitchKey:needsInputSwitch)
+        self.keyboard = hcKeyboard(needsInputModeSwitchKey:false)//needsInputSwitch)
         //self.preferredContentSize = CGSize(width: self.view.frame.size.width, height: 356)
         self.forwardingView = ForwardingView(frame: CGRect.zero)
         self.view.addSubview(self.forwardingView)
@@ -161,7 +161,7 @@ class HopliteChallengeKB: KeyboardViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         if #available(iOS 11.0, *) {
-            super.needsInputSwitch = self.needsInputModeSwitchKey
+            super.needsInputSwitch = true//self.needsInputModeSwitchKey //this one caused warning
         } else {
             super.needsInputSwitch = true
         }
