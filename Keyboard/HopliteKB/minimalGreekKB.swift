@@ -29,7 +29,7 @@ class minimalGreekKB: KeyboardViewController {
     var screenTypes = ["Less than 4s", "iPhone 4s", "iPhone 5s/SE", "iPhone 6/7/8", "iPhone 6/7/8 Plus", "iPhone X/XS", "iPhone XR/iPhone XS Max"]
     //var nativeHeightThresholds:[CGFloat] = [1136.0, 1334.0, 1792.0, 1920.0, 2436.0, 2688.0]
     var iPhoneHeightThresholds:[CGFloat] = [480.0, 568.0, 667.0, 736.0, 812.0, 896.0]
-    var keyboardHeights:[CGFloat] = [170.0, 170.0, 170.0, 190.0, 220.0, 190.0, 220.0]
+    var keyboardHeights:[CGFloat] = [170.0, 170.0, 170.0, 190.0, 220.0, 190.0, 200.0]
     
     //override class var globalColors: GlobalColors.Type { get { return hcColors.self }}
     
