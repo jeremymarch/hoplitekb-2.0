@@ -227,8 +227,10 @@ class HopliteChallengeKB: KeyboardViewController {
         var len16:Int32 = Int32(lenToSend)
 
         print("len: \(len16), accent pressed, umode: \(unicodeMode)")
-        
-        accentSyllable(&buffer16, 0, &len16, Int32(accent), true, Int32(unicodeMode))
+        let localUnicodeMode = 3
+        assert(localUnicodeMode == 3)
+        assert(unicodeMode == 3)
+        accentSyllable(&buffer16, 0, &len16, Int32(accent), true, Int32(localUnicodeMode) )
         
         return String(utf16CodeUnits: buffer16, count: Int(len16))
     }
@@ -275,7 +277,7 @@ class HopliteChallengeKB: KeyboardViewController {
             textDocumentProxy.insertText(keyOutput)
         }
     }
-    
+    /*
     @objc override func defaultsChanged(_ notification: Notification) {
         let defaults = UserDefaults(suiteName: appSuiteName)
         if let umode = defaults?.integer(forKey: unicodeModeKey)
@@ -288,7 +290,7 @@ class HopliteChallengeKB: KeyboardViewController {
         }
         self.updateKeyCaps(self.shiftState.uppercase())
     }
-    
+    */
     // Not true: this only works if full access is enabled
     @objc override func canPlaySound() -> Bool {
         let defaults = UserDefaults(suiteName: appSuiteName)
