@@ -21,6 +21,7 @@ let kKeyboardClicks = "kKeyboardClicks"
 let kSmallLowercase = "kSmallLowercase"
 
 class KeyboardViewController: UIInputViewController {
+    var defaultPage = 0
     var uiIsDarkMode:Bool = false
     var needsInputSwitch:Bool = true
     var appExt = true
@@ -236,7 +237,7 @@ class KeyboardViewController: UIInputViewController {
             }
             
             self.layout?.initialize()
-            self.setMode(0)
+            self.setMode(defaultPage)
             
             self.setupKludge()
             
@@ -381,7 +382,7 @@ class KeyboardViewController: UIInputViewController {
                 }
             }
             
-            self.setMode(0)
+            self.setMode(defaultPage)
         }
 
         self.bannerView?.isHidden = false
@@ -887,7 +888,6 @@ class KeyboardViewController: UIInputViewController {
         self.forwardingView.resetTrackedViews()
         self.shiftStartingState = nil
         self.shiftWasMultitapped = false
-        
         let uppercase = self.shiftState.uppercase()
         let characterUppercase = (UserDefaults.standard.bool(forKey: kSmallLowercase) ? uppercase : true)
         self.layout?.layoutKeys(mode, uppercase: uppercase, characterUppercase: characterUppercase, shiftState: self.shiftState)

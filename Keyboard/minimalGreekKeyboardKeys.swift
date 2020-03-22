@@ -43,6 +43,27 @@ func minimalGKKeyboard(needsInputModeSwitchKey:Bool) -> Keyboard {
     
     let backspace = Key(.backspace)
     greekKeyboard.add(key: backspace, row: 2, page: 0)
+    
+    for key in ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"] {
+        let keyModel = Key(.character)
+        keyModel.setLetter(key)
+        greekKeyboard.add(key: keyModel, row: 0, page: 1)
+    }
+    
+    for key in ["A", "S", "D", "F", "G", "H", "J", "K", "L"] {
+        let keyModel = Key(.character)
+        keyModel.setLetter(key)
+        greekKeyboard.add(key: keyModel, row: 1, page: 1)
+    }
+    
+    for key in ["Z", "X", "C", "V", "B", "N", "M"] {
+        let keyModel = Key(.character)
+        keyModel.setLetter(key)
+        greekKeyboard.add(key: keyModel, row: 2, page: 1)
+    }
+
+    let backspace2 = Key(.backspace)
+    greekKeyboard.add(key: backspace2, row: 2, page: 1)
  
     return greekKeyboard
 }

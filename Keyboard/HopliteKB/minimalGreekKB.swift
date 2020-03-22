@@ -24,6 +24,7 @@ class minimalGreekKB: KeyboardViewController {
     let appSuiteName = "group.com.philolog.hoplitekeyboard"
     let unicodeModeKey = "UnicodeAccents"
     var forceLowercase = false
+    var whichLang = 0
     var unicodeMode = 3 //hoplite challenge mode
     //https://www.paintcodeapp.com/news/ultimate-guide-to-iphone-resolutions
     var screenTypes = ["Less than 4s", "iPhone 4s", "iPhone 5s/SE", "iPhone 6/7/8", "iPhone 6/7/8 Plus", "iPhone X/XS", "iPhone XR/iPhone XS Max"]
@@ -95,9 +96,10 @@ class minimalGreekKB: KeyboardViewController {
         }
     }
     
-    convenience init(isAppExtension:Bool) {
+    convenience init(isAppExtension:Bool, page:Int) {
         self.init(nibName: nil, bundle: nil)
         self.appExt = isAppExtension
+        self.defaultPage = page
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
