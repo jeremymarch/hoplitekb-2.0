@@ -554,7 +554,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                     if let f = UIFont(name: "Vusillus", size: 40.0)
                     {
                         key.label.font = f
-                        key.label.insets = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
+                        key.label.insets = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
                     }
                     //key.label.font.withSize(32)
                 }
@@ -577,7 +577,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                     if let f = UIFont(name: "IFAO-Grec-Unicode", size: 38.0)
                     {
                         key.label.font = f
-                        key.label.insets = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
+                        key.label.insets = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
                     }
                 }
                 else if model.lowercaseOutput == "smooth" //6 smooth
@@ -587,13 +587,16 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                     if let f = UIFont(name: "IFAO-Grec-Unicode", size: 38.0)
                     {
                         key.label.font = f
-                        key.label.insets = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
+                        key.label.insets = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
                     }
                 }
                 else if model.lowercaseOutput == "macron" //4 macron
                 {
-                    key.label.font = key.label.font.withSize(38)
-                    key.label.insets = UIEdgeInsets(top: 14, left: 0, bottom: 0, right: 0)
+                    if let f = UIFont(name: "Vusillus", size: 140.0)
+                    {
+                        key.label.font = f
+                        key.label.insets = UIEdgeInsets(top: 4, left: 0, bottom: 0, right: 0)
+                    }
                 }
                 else if model.lowercaseOutput == "breve" //10 breve
                 {
@@ -602,8 +605,11 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                 }
                 else if model.lowercaseOutput == "iotasub" //7 iota subscript
                 {
-                    key.label.font = key.label.font.withSize(38)
-                    key.label.insets = UIEdgeInsets(top: 0, left: 0, bottom: 28, right: 0)
+                    if let f = UIFont(name: "IFAO-Grec-Unicode", size: 440.0)
+                    {
+                        key.label.font = f
+                        key.label.insets = UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0)
+                    }
                 }
             default:
                 key.label.font = key.label.font.withSize(22)
@@ -683,8 +689,10 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
         {
             if model.lowercaseKeyCap == "~"
             {
-                key.label.font = key.label.font.withSize(26)
-                key.label.insets = UIEdgeInsets(top: -12, left: 0, bottom: 0, right: 0)
+                if let f = UIFont(name: "Vusillus", size: 68.0) {
+                    key.label.font = f
+                    key.label.insets = UIEdgeInsets(top: 0, left: 0, bottom: 18, right: 0)
+                }
             }
             else
             {
@@ -842,7 +850,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
             //there is an issue where this gets overwritten
             //in KeyboardKey layoutPopupIfNeeded unless specifically blocked for multipleforms button. fix me
             key.borderView?.isHidden = false
-            print("HHHHHHHHHHHHHHHH")
+            //print("HHHHHHHHHHHHHHHH")
         }/*
         else if model.type == .return
         {
