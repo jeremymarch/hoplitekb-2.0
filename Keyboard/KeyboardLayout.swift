@@ -1242,13 +1242,13 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
         let isStandardWidth = (currentWidth < standardWidth)
         let actualWidth = (isStandardWidth ? standardWidth : currentWidth)
         let actualGap = (isStandardWidth ? standardGap : keyGap)
-        let actualKeyWidth = (actualWidth - CGFloat(row.count - 3) * actualGap) / CGFloat(row.count - 2)
+        //let actualKeyWidth = (actualWidth - CGFloat(row.count - 3) * actualGap) / CGFloat(row.count - 2)
         
         //let sideSpace = (frame.width - actualWidth) / CGFloat(2)
         
         let keySpace = CGFloat(9) * keyWidth + CGFloat(8) * keyGap
         //var actualGapWidth = gapWidth
-        var sideSpace = (frame.width - keySpace) / CGFloat(2)
+        let sideSpace = (frame.width - keySpace) / CGFloat(2)
         
         
         let m = (isLandscape ? self.layoutConstants.flexibleEndRowTotalWidthToKeyWidthMLandscape : self.layoutConstants.flexibleEndRowTotalWidthToKeyWidthMPortrait)
@@ -1257,7 +1257,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
         var specialCharacterWidth = sideSpace * m + c
         specialCharacterWidth = max(specialCharacterWidth, keyWidth)
         specialCharacterWidth = rounded(specialCharacterWidth)
-        let specialCharacterGap = sideSpace - specialCharacterWidth
+        //let specialCharacterGap = sideSpace - specialCharacterWidth
         
         var currentOrigin = (isPad) ? frame.origin.x + sideSpace : frame.origin.x
         for (k, _) in row.enumerated() {

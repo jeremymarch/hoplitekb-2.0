@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol Connectable: class {
+protocol Connectable: AnyObject {
     func attachmentPoints(_ direction: Direction) -> (CGPoint, CGPoint)
     func attachmentDirection() -> Direction?
     func attach(_ direction: Direction?) // call with nil to detach

@@ -12,7 +12,7 @@ import UIKit
 // TODO: refactor
 
 // popup constraints have to be setup with the topmost view in mind; hence these callbacks
-protocol KeyboardKeyProtocol: class {
+protocol KeyboardKeyProtocol: AnyObject {
     func popupFrame(for key: KeyboardKey, direction: Direction) -> CGRect
     func willShowPopup(for key: KeyboardKey, direction: Direction) //may be called multiple times during layout
     func willHidePopup(for key: KeyboardKey)
